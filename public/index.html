@@ -9,27 +9,54 @@
 <body>
   <header class="cabecalho">
     <span class="logo">
-      UNDEREFLEXION
+      UNDEREFLEXION 
     </span>
     <ul class="navbar">
-      <li><a href="#">Início</a></li>
-      <li><a href="#">Sobre</a></li>
-      <li><a href="#">Desenvolvimento</a></li>
-      <li><a href="#">Faça Parte</a></li>
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#desenvolvimento">Desenvolvimento</a></li>
+      <li><a href="#facaParte">Faça Parte</a></li>
       <li><a href="#">Login</a></li>
     </ul>  
   </header>
   <main>
-    <section class="banner tamanho">
+    <section class="banner tamanho" id="inicio">
       <div class="areaTextos">
         <span class="texto principal">Suas ações ...<br> Podem ter grandes impactos em você e nas pessoas ao seu redor.</span>
-        <span class="texto subtitulo">Você sabia que com <span>UNDERTALE</span> e <span>UNDEREFLEXION</span> você pode desenvolver competencias como: RESPONSABILIDADE, INICIATIVA, ESFORÇO e CONFIANÇA</span>
+        <span class="texto subtitulo">Você sabia que com <span class="textoUndertalizado">UNDERTALE</span>, <span class="textoUndertalizado">UNDEREFLEXION</span> e com <span class="comDeterminacao">DETERMINAÇÃO</span>, <span class="comJustica">JUSTIÇA</span>, <span class="comIntegridade">INTEGRIDADE</span>, <span class="comPaciencia">PACIÊNCIA</span>, <span class="comPerseveranca">PERSEVERANÇA</span>, <span class="comBondade">BONDADE</span> e <span class="comBravura">BRAVURA</span> você pode desenvolver <span class="competencia">NOVAS COMPETÊNCIAS</span>?
+        <br><button class="texto buttonBanner" onclick="window.location.href = '#sobre'"><span class="alma">♥</span> Como?</button>
       </div>
-      <img src="./assets/imgs/determinacao.png" alt="almaDeterminacao" class="imgBanner">
+      <div class="areaImg">
+        <div class="imgBanner"></div>
+        <div class="areaTxtAlma">
+          <span class="txtDeterminacao">DETERMINAÇÃO</span>
+          <span class="txtJustica">JUSTIÇA</span>
+          <span class="txtIntegridade">INTEGRIDADE</span>
+          <span class="txtPaciencia">PACIÊNCIA</span>
+          <span class="txtPerseveranca">PERSEVERANÇA</span>
+          <span class="txtBondade">BONDADE</span>
+          <span class="txtBravura">BRAVURA</span>
+        </div>
+      </div>
       </section>
   </main>
-  <section>
-
+  <section class="Sobre" id="sobre">
+    <h1 class="tituloSobre">Mais que um jogo ...</h1>
+    <div class="conteudoSobre">
+      <div class="imgAlmas"></div>
+      <span class="texto msgSobre">Cada um de nós carrega dentro de si o poder de mudar o próprio mundo. Inspirado pelo universo de Undertale,nosso site transforma suas escolhas e reflexões em um verdadeiro "julgamento da alma". Cada decisão que você toma reflete não apenas quem você é, mas quem você pode se tornar.</span>
+    </div>
+  </section>
+  <section class="Desenvolvimento" id="desenvolvimento">
+    <h1 class="tituloSobre">Mais que um jogo ...</h1>
+    <div class="imgBackground"><di class="caixaDialogo"><span class="texto txtDialogo">Imagine um caminho onde suas ações e respostas ajudam a moldar qualidades essenciais, como Esforço, Confiança, Iniciativa e outras. Assim como as almas no jogo Undertale, você irá... </span></div>
+  </section>
+  <section class="FacaParte" id="facaParte">
+    <h1 class="tituloSobre">Faça parte!</h1>
+    <div class="conteudoSobre">
+      <div class="imgAlmas"></div>
+      <span class="texto msgSobre">Cada um de nós carrega dentro de si o poder de mudar o próprio mundo. Inspirado pelo universo de Undertale,nosso site transforma suas escolhas e reflexões em um verdadeiro "julgamento da alma". Cada decisão que você toma reflete não apenas quem você é, mas quem você pode se tornar.</span>
+    </div>
   </section>
 </body>
 </html>

@@ -1,3 +1,7 @@
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top : 0%;
+}
 body {
   margin: 0;
 }
@@ -6,7 +10,7 @@ body {
   display: flex;
   background-color: black;
   justify-content: space-between;
-  padding: 3vh 6vh;
+  padding: 3vh 6vh 3vh 12vh;
   align-items: center;
 }
 
@@ -40,12 +44,13 @@ body {
   position: relative; /* Necessário para o posicionamento do coração */
 }
 
-.navbar li a:hover {
+.navbar li a:hover, .navbar li a:focus{
   color: #ffff00;
   border: 0.5vh solid #ffff00;
+  outline: none;
 }
 
-.navbar li a:hover::before {
+.navbar li a:hover::before, .navbar li a:focus::before {
   content: "♥";
   font-size: 3vh;
   color: red;
@@ -58,6 +63,7 @@ body {
   display: flex;
 }
 .tamanho{
+  
   height: 85vh;
 }
 .texto{
@@ -67,22 +73,384 @@ body {
   
 }
 .subtitulo{
-  font-size: 2.6vh;
-  width: 34vw;
+  font-size: 3.5vh;
+  width: 36vw;
 }
 .principal{
-  font-size: 5.2vh;
-  width: 32vw;
-  line-height: 4vh;
+  font-size: 6.5vh;
+  width: 37vw;
+  line-height: 5.5vh;
 }
 .areaTextos{
-  margin: 10vw 10vw;
-  gap: 4vh;
+  margin: 12vh 10vw;
+  gap: 3vh;
   display: flex;
   flex-direction: column;
   height: fit-content;
 }
-.subtitulo span{
+.subtitulo .competencia {
+  animation: cor 12s infinite;
+}
+@keyframes cor {
+  0% { color: red; }
+  14.3% { color: yellow; }
+  28.6% { color: blue; }
+  42.7% { color: #00eeff;}
+  57.1% { color: #c800ff;}
+  71.4% { color: #4ffc04;}
+  85.7% { color: #ff7b00;}
+  100% { color: red;}
+}
+.subtitulo .textoUndertalizado{
   font-family: 'Monster Friend Fore';
   font-size: 1.5vh;
+}
+.buttonBanner{
+  position: relative;
+  background-color: transparent;
+  border: 0.6vh solid white;
+  font-size: 5vh;
+  padding: 2vh 3vh 2vh 6vh;
+  margin-top: 4vh;
+}
+.alma{
+  font-family: 'Press Start 2P Regular';
+  font-size: 4vh;
+  position: absolute;
+  bottom: 2.5vh;
+  left: 1.5vh;
+  color: #000
+}
+.buttonBanner:hover, .buttonBanner:focus{
+  border: 0.6vh solid #ffff00;
+  color: #ffff00;
+  outline: none;
+}
+.buttonBanner:hover .alma, .buttonBanner:focus .alma{
+  color: red;
+}
+.imgBanner{
+  height: 50vh;
+  width: 50vh;
+  background-size: cover;
+  animation: img 12s infinite;
+}
+@keyframes img {
+  0% { 
+    background-image: url('../assets/imgs/determinacao.png'); 
+  }
+  14.3% { 
+    background-image: url('../assets/imgs/justica.png');
+  }
+  28.6% { 
+    background-image: url('../assets/imgs/integridade.png'); 
+  }
+  42.7% { 
+    background-image: url('../assets/imgs/paciencia2.png');
+  }
+  57.1% { 
+    background-image: url('../assets/imgs/perseveranca.png');
+  }
+  71.4% { 
+    background-image: url('../assets/imgs/bondade.png'); 
+  }
+  85.7% { 
+    background-image: url('../assets/imgs/bravura.png');
+  }
+  100% { 
+    background-image: url('../assets/imgs/determinacao.png'); 
+  }
+}
+.areaImg{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 40vw;
+  height: 75vh;
+}
+.areaTxtAlma{
+  display: flex;
+  position: relative;
+  height: 10vh;
+  justify-content: center;
+  align-items: center;
+}
+.txtDeterminacao, .txtJustica, .txtIntegridade, .txtPaciencia, .txtBravura, .txtPerseveranca, .txtBondade{
+  position: absolute;
+  font-size: 7vh;
+  color: #fff;
+  font-family: 'Determination Mono Web';
+}
+.txtDeterminacao{
+  color: red;
+  animation: determinacao 12s infinite;
+}
+.txtJustica{
+  color: yellow;
+  animation: justica 12s infinite;
+}
+.txtIntegridade{
+  color: blue;
+  animation: integridade 12s infinite;
+}
+.txtPaciencia{
+  color: #00eeff;
+  animation: paciencia 12s infinite;
+}
+.txtPerseveranca{
+  color: #c800ff;
+  animation: perseveranca 12s infinite;
+}
+.txtBondade{
+  color: #4ffc04;
+  animation: bondade 12s infinite;
+}
+.txtBravura{
+  color: #ff7b00;
+  animation: bravura 12s infinite;
+}
+
+
+.comDeterminacao{
+  color: red;
+  animation: deDeterminacao 12s infinite;
+}
+.comJustica{
+  color: yellow;
+  animation: deJustica 12s infinite;
+}
+.comIntegridade{
+  color: blue;
+  animation: deIntegridade 12s infinite;
+}
+.comPaciencia{
+  color: #00eeff;
+  animation: dePaciencia 12s infinite;
+}
+.comPerseveranca{
+  color: #c800ff;
+  animation: dePerseveranca 12s infinite;
+}
+.comBondade{
+  color: #4ffc04;
+  animation: deBondade 12s infinite;
+}
+.comBravura{
+  color: #ff7b00;
+  animation: deBravura 12s infinite;
+}
+@keyframes determinacao {
+  0% {opacity: 1;}
+  14.3% {opacity: 0;}
+  28.6% {opacity: 0;}
+  42.7% {opacity: 0;}
+  57.1% {opacity: 0;}
+  71.4% {opacity: 0;}
+  85.7% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes justica {
+  0% {opacity: 0;}
+  14.3% {opacity: 1;}
+  28.6% {opacity: 0;}
+  42.7% {opacity: 0;}
+  57.1% {opacity: 0;}
+  71.4% {opacity: 0;}
+  85.7% {opacity: 0;}
+  100% {opacity: 0;}
+}
+@keyframes integridade {
+  0% {opacity: 0;}
+  14.3% {opacity: 0;}
+  28.6% {opacity: 1;}
+  42.7% {opacity: 0;}
+  57.1% {opacity: 0;}
+  71.4% {opacity: 0;}
+  85.7% {opacity: 0;}
+  100% {opacity: 0;}
+}
+@keyframes paciencia {
+  0% {opacity: 0;}
+  14.3% {opacity: 0;}
+  28.6% {opacity: 0;}
+  42.7% {opacity: 1;}
+  57.1% {opacity: 0;}
+  71.4% {opacity: 0;}
+  85.7% {opacity: 0;}
+  100% {opacity: 0;}
+}
+@keyframes perseveranca {
+  0% {opacity: 0;}
+  14.3% {opacity: 0;}
+  28.6% {opacity: 0;}
+  42.7% {opacity: 0;}
+  57.1% {opacity: 1;}
+  71.4% {opacity: 0;}
+  85.7% {opacity: 0;}
+  100% {opacity: 0;}
+}
+@keyframes bondade {
+  0% {opacity: 0;}
+  14.3% {opacity: 0;}
+  28.6% {opacity: 0;}
+  42.7% {opacity: 0;}
+  57.1% {opacity: 0;}
+  71.4% {opacity: 1;}
+  85.7% {opacity: 0;}
+  100% {opacity: 0;}
+}
+@keyframes bravura {
+  0% {opacity: 0;}
+  14.3% {opacity: 0;}
+  28.6% {opacity: 0;}
+  42.7% {opacity: 0;}
+  57.1% {opacity: 0;}
+  71.4% {opacity: 0;}
+  85.7% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+
+@keyframes deDeterminacao {
+  0% {color: red;}
+  14.3% {color: #fff}
+  28.6% {color: #fff}
+  42.7% {color: #fff}
+  57.1% {color: #fff}
+  71.4% {color: #fff}
+  85.7% {color: #fff}
+  100% {color: red;}
+}
+@keyframes deJustica {
+  0% {color: #fff}
+  14.3% {color: #ffff00}
+  28.6% {color: #fff}
+  42.7% {color: #fff}
+  57.1% {color: #fff}
+  71.4% {color: #fff}
+  85.7% {color: #fff}
+  100% {color: #fff}
+}
+@keyframes deIntegridade {
+  0% {color: #fff}
+  14.3% {color: #fff}
+  28.6% {color: blue}
+  42.7% {color: #fff}
+  57.1% {color: #fff}
+  71.4% {color: #fff}
+  85.7% {color: #fff}
+  100% {color: #fff}
+}
+@keyframes dePaciencia {
+  0% {color: #fff}
+  14.3% {color: #fff}
+  28.6% {color: #fff}
+  42.7% {color: #00eeff}
+  57.1% {color: #fff}
+  71.4% {color: #fff}
+  85.7% {color: #fff}
+  100% {color: #fff}
+}
+@keyframes dePerseveranca {
+  0% {color: #fff}
+  14.3% {color: #fff}
+  28.6% {color: #fff}
+  42.7% {color: #fff}
+  57.1% {color: #c800ff}
+  71.4% {color: #fff}
+  85.7% {color: #fff}
+  100% {color: #fff}
+}
+@keyframes deBondade {
+  0% {color: #fff}
+  14.3% {color: #fff}
+  28.6% {color: #fff}
+  42.7% {color: #fff}
+  57.1% {color: #fff}
+  71.4% {color: #4ffc04}
+  85.7% {color: #fff}
+  100% {color: #fff}
+}
+@keyframes deBravura {
+  0% {color: #fff}
+  14.3% {color: #fff}
+  28.6% {color: #fff}
+  42.7% {color: #fff}
+  57.1% {color: #fff}
+  71.4% {color: #fff}
+  85.7% {color: #ff7b00}
+  100% {color: #fff}
+}
+
+.Sobre{
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+  padding: 5vh 20vh; 
+  flex-direction: column;
+  align-items: center;
+}
+.tituloSobre{
+  font-weight: normal;
+  font-size: 10vh;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  color: #fff;
+  font-family: 'Determination Mono Web';
+}
+.imgAlmas{
+  height: 50vh;
+  width: 51vh;
+ background-color: #00eeff;
+ background-image: url(../assets/imgs/almas.png);
+ background-size: cover;
+}
+.conteudoSobre{
+  margin-top: 15vh;
+  display: flex;
+  gap: 10vw;
+}
+.msgSobre{
+  width: 40vw;
+  font-size: 5vh;
+}
+.Desenvolvimento{
+  display: flex;
+  height: 100vh;
+  background-color: #000;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+.imgBackground{
+  height: 100vh;
+  position: absolute;
+  width:85vw;
+  z-index: 0;
+  background-image: url(../assets/imgs/salaJulgamento.png);
+  background-size: cover;
+  display: flex;
+  align-items: center;
+}
+.caixaDialogo{
+  display: flex;
+  width: 70vw;
+  height: 20vh;
+  background-color: #000;
+  border: 1vh solid #fff;
+  padding: 3vh;
+  margin-top: 60vh;
+  margin-left: 5.5vw;
+}
+.txtDialogo{
+  font-size: 5vh;
+}
+.FacaParte{
+  height: 90vh;
+  padding: 5vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000;
 }
