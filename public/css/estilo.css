@@ -423,6 +423,15 @@ body {
   align-items: center;
   position: relative;
 }
+.tituloDesenvolvimento{
+  font-weight: normal;
+  font-size: 10vh;
+  margin-block-end: 0;
+  z-index: 2;
+  margin-block-start: 0;
+  color: #fff;
+  font-family: 'Determination Mono Web';
+}
 .imgBackground{
   height: 100vh;
   position: absolute;
@@ -431,20 +440,448 @@ body {
   background-image: url(../assets/imgs/salaJulgamento.png);
   background-size: cover;
   display: flex;
+  flex-direction: column;
   align-items: center;
 }
 .caixaDialogo{
   display: flex;
+  flex-direction: column;
+  position: relative;
   width: 70vw;
   height: 20vh;
   background-color: #000;
   border: 1vh solid #fff;
   padding: 3vh;
-  margin-top: 60vh;
-  margin-left: 5.5vw;
+  margin-top: 58vh;
 }
-.txtDialogo{
+.txtDialogo1{
   font-size: 5vh;
+  animation: animarDialogo 25s steps(56, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  opacity: 0;
+  /* background-color: #4ffc04; */
+}
+.txtDialogo5{
+  font-size: 5vh;
+  animation: animarDialogo5 25s steps(56, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  /* animation-delay: 12s; */
+  opacity: 0;
+  /* background-color: #4ffc04; */
+}
+.txtDialogo2{
+  font-size: 5vh;
+  animation: animarDialogo2 25s steps(54, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  bottom: 12.7vh;
+  white-space: nowrap;
+  /* animation-delay: 3s; */
+  opacity: 0;
+  /* background-color: #00eeff; */
+}
+.txtDialogo6{
+  font-size: 5vh; 
+  animation: animarDialogo6 25s steps(54, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  bottom: 12.7vh;
+  white-space: nowrap;
+  /* animation-delay: 15s; */
+  opacity: 0;
+  /* background-color: #00eeff; */
+}
+.txtDialogo3{
+  font-size: 5vh;
+  animation: animarDialogo3 25s steps(48, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  bottom: 7.5vh;
+  white-space: nowrap;
+  /* animation-delay: 6s; */
+  opacity: 0;
+  /* background-color: #c800ff; */
+}
+.txtDialogo7{
+  font-size: 5vh;
+  animation: animarDialogo7 25s steps(48, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  bottom: 7.5vh;
+  white-space: nowrap;
+  /* animation-delay: 18s; */
+  opacity: 0;
+  /* background-color: #c800ff; */
+}
+.txtDialogo4{
+  font-size: 5vh;
+  animation: animarDialogo4 25s steps(22, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  bottom: 2.3vh;
+  white-space: nowrap;
+  /* animation-delay: 9s; */
+  opacity: 0;
+  /* background-color: #ff7b00; */
+}
+.txtDialogo8{
+  font-size: 5vh;
+  animation: animarDialogo8 25s steps(22, end) infinite;
+  animation-fill-mode: forwards;
+  overflow: hidden;
+  position: absolute;
+  bottom: 2.3vh;
+  white-space: nowrap;
+  /* animation-delay: 21s; */
+  opacity: 0;
+  /* background-color: #ff7b00; */
+}
+@keyframes animarDialogo{
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  11.1% {
+    width: 68vw;
+    opacity: 1;
+  }
+  22.2% {
+    width: 68vw;
+    opacity: 1;
+  }
+  33.3% {
+    width: 68vw;
+    opacity: 1;
+  }
+  44.4% {
+    width: 68vw;
+    opacity: 1;
+  }
+  55.5% {
+    width: 68vw;
+    opacity: 0;
+  }
+  66.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  77.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 0;
+  }
+  100% {
+    width: 68vw;
+    opacity: 0;
+  }
+}
+@keyframes animarDialogo2{
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  11.1% {
+    width: 0vw;
+    opacity: 1;
+  }
+  22.2% {
+    width: 68vw;
+    opacity: 1;
+  }
+  33.3% {
+    width: 68vw;
+    opacity: 1;
+  }
+  44.4% {
+    width: 68vw;
+    opacity: 1;
+  }
+  55.5% {
+    width: 68vw;
+    opacity: 0;
+  }
+  66.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  77.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 0;
+  }
+  100% {
+    width: 68vw;
+    opacity: 0;
+  }
+}
+@keyframes animarDialogo3{
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  11.1% {
+    width: 0;
+    opacity: 0;
+  }
+  22.2% {
+    width: 0;
+    opacity: 1;
+  }
+  33.3% {
+    width: 68vw;
+    opacity: 1;
+  }
+  44.4% {
+    width: 68vw;
+    opacity: 1;
+  }
+  55.5% {
+    width: 68vw;
+    opacity: 0;
+  }
+  66.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  77.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 0;
+  }
+  100% {
+    width: 68vw;
+    opacity: 0;
+  }
+}
+@keyframes animarDialogo4{
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  11.1% {
+    width: 0;
+    opacity: 0;
+  }
+  22.2% {
+    width: 0;
+    opacity: 0;
+  }
+  33.3% {
+    width: 0;
+    opacity: 1;
+  }
+  44.4% {
+    width: 68vw;
+    opacity: 1;
+  }
+  55.5% {
+    width: 68vw;
+    opacity: 0;
+  }
+  66.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  77.7% {
+    width: 68vw;
+    opacity: 0;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 0;
+  }
+  100% {
+    width: 68vw;
+    opacity: 0;
+  }
+}
+@keyframes animarDialogo5{
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  11.1% {
+    width: 0;
+    opacity: 1;
+  }
+  22.2% {
+    width: 0;
+    opacity: 1;
+  }
+  33.3% {
+    width: 0;
+    opacity: 1;
+  }
+  44.4% {
+    width: 0;
+    opacity: 0;
+  }
+  55.5% {
+    width: 0;
+    opacity: 1;
+  }
+  66.7% {
+    width: 68vw;
+    opacity: 1;
+  }
+  77.7% {
+    width: 68vw;
+    opacity: 1;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 1;
+  }
+  100% {
+    width: 68vw;
+    opacity: 1;
+  }
+}
+@keyframes animarDialogo6{
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  11.1% {
+    width: 0;
+    opacity: 1;
+  }
+  22.2% {
+    width: 0;
+    opacity: 0;
+  }
+  33.3% {
+    width: 0;
+    opacity: 0;
+  }
+  44.4% {
+    width: 0;
+    opacity: 0;
+  }
+  55.5% {
+    width: 0;
+    opacity: 0;
+  }
+  66.7% {
+    width: 0;
+    opacity: 1;
+  }
+  77.7% {
+    width: 68vw;
+    opacity: 1;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 1;
+  }
+  100% {
+    width: 68vw;
+    opacity: 1;
+  }
+}
+@keyframes animarDialogo7{
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  11.1% {
+    width: 0;
+    opacity: 0;
+  }
+  22.2% {
+    width: 0;
+    opacity: 0;
+  }
+  33.3% {
+    width: 0;
+    opacity: 0;
+  }
+  44.4% {
+    width: 0;
+    opacity: 0;
+  }
+  55.5% {
+    width: 0;
+    opacity: 0;
+  }
+  66.7% {
+    width: 0;
+    opacity: 0;
+  }
+  77.7% {
+    width: 0;
+    opacity: 1;
+  }
+  88.8% {
+    width: 68vw;
+    opacity: 1;
+  }
+  100% {
+    width: 68vw;
+    opacity: 1;
+  }
+}
+@keyframes animarDialogo8{
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  11.1% {
+    width: 0;
+    opacity: 0;
+  }
+  22.2% {
+    width: 0;
+    opacity: 0;
+  }
+  33.3% {
+    width: 0;
+    opacity: 0;
+  }
+  44.4% {
+    width: 0;
+    opacity: 0;
+  }
+  55.5% {
+    width: 0;
+    opacity: 0;
+  }
+  66.7% {
+    width: 0;
+    opacity: 0;
+  }
+  77.7% {
+    width: 0;
+    opacity: 0;
+  }
+  88.8% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 68vw;
+    opacity: 1;
+  }
 }
 .FacaParte{
   height: 90vh;
@@ -454,3 +891,165 @@ body {
   flex-direction: column;
   background-color: #000;
 }
+.tituloFacaParte{
+  font-weight: normal;
+  font-size: 10vh;
+  margin-block-end: 0;
+  margin-block-start: 0;
+  color: #fff;
+  /* background-color: #00eeff; */
+  font-family: 'Determination Mono Web';
+}
+.conteudoFacaParte{
+  display: flex;
+  margin-top: 5vh;
+  height: 75vh;
+  width: 80vw;
+  align-items: center;
+  justify-content: center;
+  /* background-color: #00eeff; */
+}
+.conteudoLateral{
+  height: 75vh;
+  width: 10vw;
+  /* background-color: #4ffc04; */
+}
+.conteudoCentral{
+  height: 75vh;
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #c800ff; */
+}
+.conteudoCentralCima{
+  height: 20vh;
+  display: flex;
+  width: 60vw;
+  justify-content: center;
+  gap: 10vh;
+  /* background-color: #00eeff; */
+}
+.conteudoCentralMain{
+  display: flex;
+  height: 40vh;
+  width: 60vw;
+  display: flex;
+  justify-content: center;
+  gap: 20vh;
+}
+.conteudoCentralBaixo{
+  height: 20vh;
+  display: flex;
+  width: 60vw;
+  justify-content: center;
+  gap: 10vh;
+  /* background-color: #00eeff; */
+}
+.poteDeterminacao{
+
+  background-image: url(../assets/imgs/poteDeterminacao2.png);
+  background-size: 9.75vh;
+  height: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.poteJustica{
+  background-image: url(../assets/imgs/poteJustica.png);
+  background-size: 10vh;
+  margin-top: 7.5vh;
+  height: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.poteBondade{
+  background-image: url(../assets/imgs/poteBondade.png);
+  background-size: 10vh;
+  margin-top: 7.5vh;
+  height: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.poteIntegridade{
+
+  background-image: url(../assets/imgs/poteIntegridade.png);
+  background-size: 10vh;
+  height: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.poteBravura{
+  background-image: url(../assets/imgs/poteBravura.png);
+  background-size: 10vh;
+  margin-top: 7.5vh;
+  height: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.potePaciencia{
+  background-image: url(../assets/imgs/potePaciencia.png);
+  background-size: 10vh;
+  margin-top: 7.5vh;
+  height: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.poteTeste{
+  background-image: url(../assets/imgs/potePaciencia2.png);
+  background-size: 9.75vh;
+  height: 20vh;
+  width: 20vh;
+  /* background-color: #ffff00; */
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.msgFacaParte{
+  width: 30vw;
+  font-size: 4vh;
+  margin-top: 7vh;
+}
+.saveContainer{
+  position: relative;
+  height: 25vh;
+  width: 25vh;
+}
+.saveEstatico {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.saveAnimado {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  opacity: 0;
+}
+.saveContainer:hover .saveEstatico {
+  opacity: 0;
+}
+
+.saveContainer:hover .saveAnimado {
+  opacity: 1;
+}
+.saveContainer:hover .cadastro {
+  color: #ffff00;
+}
+.cadastro{
+  font-size: 4vh;
+  padding: 0vh 1.5vh;
+  color: #fff;
+  font-family: 'Determination Mono Web';
+  margin-bottom: 2vh;
+}
+
