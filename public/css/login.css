@@ -1,0 +1,185 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../assets/imgs/bgdCadastro.png);
+    background-size: 88vw;
+    background-color: black;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.caixaOpcoes{
+    display: flex;
+    height: 50vh;
+    width: 50vw;
+    background-color: black;
+    border: 1vh solid white;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    gap: 8vw;
+    margin-bottom: 3vh;
+}
+.logo{
+    position: absolute;
+    top: 0;
+    color: white;
+    font-family: 'Monster Friend Fore';
+    font-size: 3vh;
+    margin-top: 2.5vh;
+}
+.lvl{
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 5vh;
+    margin-top: 1vh;
+    margin-left: 2vh;
+}
+.txtsair{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 5vh;
+    margin-right: 2vh;
+    margin-top: 1vh;
+    text-align: center;
+    cursor: pointer;
+}
+.txtsair:hover{
+    color: #ffff00;
+}
+.texto{
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 5vh;
+    width: 13vw;
+    /* background-color: aqua; */
+    text-align: center;
+}
+.bemvindo{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 5vh;
+    margin-bottom: 6vh;
+}
+.buttonsInicio{
+    position: relative;
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 5vh;
+    width: 14vw;
+    height: 10vh;
+    background-color: transparent;
+    cursor: pointer;
+    /* background-color: aqua; */
+    
+  padding: 2vh 3vh 2vh 6vh;
+    border-style: none;
+  }
+  .alma{
+    font-family: 'Press Start 2P Regular';
+    font-size: 4vh;
+    position: absolute;
+    bottom: 2vh;
+    left: 1.5vh;
+    color: #000
+  }
+  .buttonsInicio:hover, .buttonsInicio:focus{
+    border: 0.6vh solid #ffff00;
+    color: #ffff00;
+    outline: none;
+  }
+  .buttonsInicio:hover .alma, .buttonsInicio:focus .alma{
+    color: red;
+  }
+  .areaLogin{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    width: 35vw;
+    background-color: black;
+    margin-bottom: 3vh;
+    gap: 6vh;
+    border: 1vh solid white;
+  }
+  .areaCadastro{
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 60vh;
+    width: 35vw;
+    background-color: black;
+    margin-bottom: 3vh;
+    padding-bottom: 2vh;
+    gap: 6vh;
+    border: 1vh solid white;
+  }
+  .inputs{
+    background-color: transparent;
+    border: 0.5vh solid #fff;
+    color: #fff;
+    font-size: 3vh;
+    padding: 1vh;
+    width: 25vw;
+    font-family: 'Determination Mono Web';
+    text-align: center;
+  }
+  .inputs:focus{
+    outline: none;
+    box-shadow: none;
+  }
+  ::-webkit-input-placeholder{
+    color: #fff;
+  }
+  .txtLogin{
+    position: absolute;
+    top: 0;
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 5vh;
+    margin-top: 2.5vh;
+  }
+  .voltar{
+    font-size: 3vh;
+  }
+  .btnEntrar{
+    position: absolute;
+    bottom: 0;
+    color: white;
+    font-family: 'Determination Mono Web';
+    font-size: 4vh;
+    padding: 1vh 2vw 1vh 3vw;
+    margin-bottom: 3vh;
+    background-color: #000;
+    border: 0.5vh solid #fff;
+  }
+  .btnEntrar:focus, .btnEntrar:hover{
+    border: 0.5vh solid #ffff00;
+    color: #ffff00;
+}
+  .almaEntrar{
+    font-family: 'Press Start 2P Regular';
+    font-size: 3.5vh;
+    position: absolute;
+    bottom: 1vh;
+    left: 1.5vh;
+    color: #000
+  }
+  .btnEntrar:focus .almaEntrar, .btnEntrar:hover .almaEntrar{
+    color: red;
+  }

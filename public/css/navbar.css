@@ -1,0 +1,59 @@
+html{
+    scroll-behavior: smooth;
+    scroll-padding-top : 0%;
+  }
+  body {
+    margin: 0;
+  }
+.cabecalho {
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    padding: 3vh 6vh 3vh 12vh;
+    align-items: center;
+  }
+  
+  .logo {
+    font-family: 'Monster Friend Fore';
+    font-size: 3vh;
+    color: white;
+  }
+  
+  .navbar {
+    display: flex;
+    list-style: none;
+    gap: 1vh;
+  }
+  
+  .navbar li {
+    color: white;
+    font-size: 1.5vh;
+    font-family: 'Press Start 2P Regular';
+  }
+  
+  .navbar li a {
+    text-decoration: none;
+    color: white;
+    padding: 2vh 1vh 2vh 4.5vh;
+    font-size: 1.5vh;
+    border: 0.5vh solid #000;
+    font-family: 'Press Start 2P';
+    min-width: 8vh; /* Define uma largura mínima para evitar movimento */
+    text-align: center;
+    position: relative; /* Necessário para o posicionamento do coração */
+  }
+  
+  .navbar li a:hover, .navbar li a:focus{
+    color: #ffff00;
+    border: 0.5vh solid #ffff00;
+    outline: none;
+  }
+  
+  .navbar li a:hover::before, .navbar li a:focus::before {
+    content: "♥";
+    font-size: 3vh;
+    color: red;
+    position: absolute;
+    left: 0.9vh; 
+    top: 1.4vh; 
+  }

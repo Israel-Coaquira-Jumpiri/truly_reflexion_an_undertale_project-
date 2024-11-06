@@ -1,63 +1,3 @@
-html{
-  scroll-behavior: smooth;
-  scroll-padding-top : 0%;
-}
-body {
-  margin: 0;
-}
-
-.cabecalho {
-  display: flex;
-  background-color: black;
-  justify-content: space-between;
-  padding: 3vh 6vh 3vh 12vh;
-  align-items: center;
-}
-
-.logo {
-  font-family: 'Monster Friend Fore';
-  font-size: 3vh;
-  color: white;
-}
-
-.navbar {
-  display: flex;
-  list-style: none;
-  gap: 1vh;
-}
-
-.navbar li {
-  color: white;
-  font-size: 1.5vh;
-  font-family: 'Press Start 2P Regular';
-}
-
-.navbar li a {
-  text-decoration: none;
-  color: white;
-  padding: 2vh 1vh 2vh 4.5vh;
-  font-size: 1.5vh;
-  border: 0.5vh solid #000;
-  font-family: 'Press Start 2P';
-  min-width: 8vh; /* Define uma largura mínima para evitar movimento */
-  text-align: center;
-  position: relative; /* Necessário para o posicionamento do coração */
-}
-
-.navbar li a:hover, .navbar li a:focus{
-  color: #ffff00;
-  border: 0.5vh solid #ffff00;
-  outline: none;
-}
-
-.navbar li a:hover::before, .navbar li a:focus::before {
-  content: "♥";
-  font-size: 3vh;
-  color: red;
-  position: absolute;
-  left: 0.9vh; 
-  top: 1.4vh; 
-}
 .banner{
   background-color: #000;
   display: flex;
@@ -456,7 +396,7 @@ body {
 }
 .txtDialogo1{
   font-size: 5vh;
-  animation: animarDialogo 25s steps(56, end) infinite;
+  animation: animarDialogo 30s steps(55, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
@@ -466,126 +406,120 @@ body {
 }
 .txtDialogo5{
   font-size: 5vh;
-  animation: animarDialogo5 25s steps(56, end) infinite;
+  animation: animarDialogo5 30s steps(55, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   white-space: nowrap;
-  /* animation-delay: 12s; */
   opacity: 0;
   /* background-color: #4ffc04; */
 }
 .txtDialogo2{
   font-size: 5vh;
-  animation: animarDialogo2 25s steps(54, end) infinite;
+  animation: animarDialogo2 30s steps(54, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   bottom: 12.7vh;
   white-space: nowrap;
-  /* animation-delay: 3s; */
   opacity: 0;
   /* background-color: #00eeff; */
 }
 .txtDialogo6{
   font-size: 5vh; 
-  animation: animarDialogo6 25s steps(54, end) infinite;
+  animation: animarDialogo6 30s steps(53, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   bottom: 12.7vh;
   white-space: nowrap;
-  /* animation-delay: 15s; */
   opacity: 0;
   /* background-color: #00eeff; */
 }
 .txtDialogo3{
   font-size: 5vh;
-  animation: animarDialogo3 25s steps(48, end) infinite;
+  animation: animarDialogo3 30s steps(47, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   bottom: 7.5vh;
   white-space: nowrap;
-  /* animation-delay: 6s; */
   opacity: 0;
   /* background-color: #c800ff; */
 }
 .txtDialogo7{
   font-size: 5vh;
-  animation: animarDialogo7 25s steps(48, end) infinite;
+  animation: animarDialogo7 30s steps(48, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   bottom: 7.5vh;
   white-space: nowrap;
-  /* animation-delay: 18s; */
   opacity: 0;
   /* background-color: #c800ff; */
 }
 .txtDialogo4{
   font-size: 5vh;
-  animation: animarDialogo4 25s steps(22, end) infinite;
+  animation: animarDialogo4 30s steps(22, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   bottom: 2.3vh;
   white-space: nowrap;
-  /* animation-delay: 9s; */
   opacity: 0;
   /* background-color: #ff7b00; */
 }
 .txtDialogo8{
   font-size: 5vh;
-  animation: animarDialogo8 25s steps(22, end) infinite;
+  animation: animarDialogo8 30s steps(22, end) infinite;
   animation-fill-mode: forwards;
   overflow: hidden;
   position: absolute;
   bottom: 2.3vh;
   white-space: nowrap;
-  /* animation-delay: 21s; */
   opacity: 0;
   /* background-color: #ff7b00; */
 }
 @keyframes animarDialogo{
+  
   0% {
     width: 0;
     opacity: 1;
   }
-  11.1% {
-    width: 68vw;
+  12.5% {
+    width: 67vw;
     opacity: 1;
   }
-  22.2% {
-    width: 68vw;
+  25% {
+    width: 67vw;
     opacity: 1;
   }
-  33.3% {
-    width: 68vw;
+  37.5% {
+    width: 67vw;
     opacity: 1;
   }
-  44.4% {
-    width: 68vw;
+  50% {
+    width: 67vw;
     opacity: 1;
   }
-  55.5% {
-    width: 68vw;
+  50.1% {
+    width: 67vw;
     opacity: 0;
   }
-  66.7% {
-    width: 68vw;
+  62.5% {
+    width: 67vw;
     opacity: 0;
   }
-  77.7% {
-    width: 68vw;
+  75% {
+    width: 67vw;
     opacity: 0;
   }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 67vw;
     opacity: 0;
   }
   100% {
-    width: 68vw;
+    width: 67vw;
     opacity: 0;
   }
 }
@@ -594,40 +528,40 @@ body {
     width: 0;
     opacity: 0;
   }
-  11.1% {
-    width: 0vw;
+  12.5% {
+    width: 0;
     opacity: 1;
   }
-  22.2% {
-    width: 68vw;
+  25% {
+    width: 65vw;
     opacity: 1;
   }
-  33.3% {
-    width: 68vw;
+  37.5% {
+    width: 65vw;
     opacity: 1;
   }
-  44.4% {
-    width: 68vw;
+  50% {
+    width: 65vw;
     opacity: 1;
   }
-  55.5% {
-    width: 68vw;
+  50.1% {
+    width: 65vw;
     opacity: 0;
   }
-  66.7% {
-    width: 68vw;
+  62.5% {
+    width: 65vw;
     opacity: 0;
   }
-  77.7% {
-    width: 68vw;
+  75% {
+    width: 65vw;
     opacity: 0;
   }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 65vw;
     opacity: 0;
   }
   100% {
-    width: 68vw;
+    width: 65vw;
     opacity: 0;
   }
 }
@@ -636,124 +570,124 @@ body {
     width: 0;
     opacity: 0;
   }
-  11.1% {
+  12.5% {
     width: 0;
     opacity: 0;
   }
-  22.2% {
+  25% {
     width: 0;
     opacity: 1;
   }
-  33.3% {
-    width: 68vw;
+  37.5% {
+    width: 59vw;
     opacity: 1;
   }
-  44.4% {
-    width: 68vw;
+  50% {
+    width: 59vw;
     opacity: 1;
   }
-  55.5% {
-    width: 68vw;
+  50.1% {
+    width: 59vw;
     opacity: 0;
   }
-  66.7% {
-    width: 68vw;
+  62.5% {
+    width: 59vw;
     opacity: 0;
   }
-  77.7% {
-    width: 68vw;
+  75% {
+    width: 59vw;
     opacity: 0;
   }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 59vw;
     opacity: 0;
   }
   100% {
-    width: 68vw;
+    width: 59vw;
     opacity: 0;
   }
 }
 @keyframes animarDialogo4{
   0% {
     width: 0;
-    opacity: 1;
+    opacity: 0;
   }
-  11.1% {
+  12.5% {
     width: 0;
     opacity: 0;
   }
-  22.2% {
+  25% {
     width: 0;
     opacity: 0;
   }
-  33.3% {
+  37.5% {
     width: 0;
     opacity: 1;
   }
-  44.4% {
-    width: 68vw;
+  50% {
+    width: 30vw;
     opacity: 1;
   }
-  55.5% {
-    width: 68vw;
+  50.1% {
+    width: 30vw;
     opacity: 0;
   }
-  66.7% {
-    width: 68vw;
+  62.5% {
+    width: 30vw;
     opacity: 0;
   }
-  77.7% {
-    width: 68vw;
+  75% {
+    width: 30vw;
     opacity: 0;
   }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 30vw;
     opacity: 0;
   }
   100% {
-    width: 68vw;
+    width: 30vw;
     opacity: 0;
   }
 }
 @keyframes animarDialogo5{
   0% {
     width: 0;
-    opacity: 1;
+    opacity: 0;
   }
-  11.1% {
-    width: 0;
-    opacity: 1;
-  }
-  22.2% {
-    width: 0;
-    opacity: 1;
-  }
-  33.3% {
-    width: 0;
-    opacity: 1;
-  }
-  44.4% {
+  12.5% {
     width: 0;
     opacity: 0;
   }
-  55.5% {
+  25% {
+    width: 0;
+    opacity: 0;
+  }
+  37.5% {
+    width: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 0;
+    opacity: 0;
+  }
+  50.1% {
     width: 0;
     opacity: 1;
   }
-  66.7% {
-    width: 68vw;
+  62.5% {
+    width: 64vw;
     opacity: 1;
   }
-  77.7% {
-    width: 68vw;
+  75% {
+    width: 64vw;
     opacity: 1;
   }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 64vw;
     opacity: 1;
   }
   100% {
-    width: 68vw;
+    width: 64vw;
     opacity: 1;
   }
 }
@@ -762,40 +696,40 @@ body {
     width: 0;
     opacity: 0;
   }
-  11.1% {
+  12.5% {
+    width: 0;
+    opacity: 0;
+  }
+  25% {
+    width: 0;
+    opacity: 0;
+  }
+  37.5% {
+    width: 0;
+    opacity: 0;
+  }
+  50% {
+    width: 0;
+    opacity: 0;
+  }
+  50.1% {
+    width: 0;
+    opacity: 0;
+  }
+  62.5% {
     width: 0;
     opacity: 1;
   }
-  22.2% {
-    width: 0;
-    opacity: 0;
-  }
-  33.3% {
-    width: 0;
-    opacity: 0;
-  }
-  44.4% {
-    width: 0;
-    opacity: 0;
-  }
-  55.5% {
-    width: 0;
-    opacity: 0;
-  }
-  66.7% {
-    width: 0;
+  75% {
+    width: 61vw;
     opacity: 1;
   }
-  77.7% {
-    width: 68vw;
-    opacity: 1;
-  }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 61vw;
     opacity: 1;
   }
   100% {
-    width: 68vw;
+    width: 61vw;
     opacity: 1;
   }
 }
@@ -804,40 +738,40 @@ body {
     width: 0;
     opacity: 0;
   }
-  11.1% {
+  12.5% {
     width: 0;
     opacity: 0;
   }
-  22.2% {
+  25% {
     width: 0;
     opacity: 0;
   }
-  33.3% {
+  37.5% {
     width: 0;
     opacity: 0;
   }
-  44.4% {
+  50% {
     width: 0;
     opacity: 0;
   }
-  55.5% {
+  50.1% {
     width: 0;
     opacity: 0;
   }
-  66.7% {
+  62.5% {
     width: 0;
     opacity: 0;
   }
-  77.7% {
+  75% {
     width: 0;
     opacity: 1;
   }
-  88.8% {
-    width: 68vw;
+  87.5% {
+    width: 62vw;
     opacity: 1;
   }
   100% {
-    width: 68vw;
+    width: 62vw;
     opacity: 1;
   }
 }
@@ -846,35 +780,35 @@ body {
     width: 0;
     opacity: 0;
   }
-  11.1% {
+  12.5% {
     width: 0;
     opacity: 0;
   }
-  22.2% {
+  25% {
     width: 0;
     opacity: 0;
   }
-  33.3% {
+  37.5% {
     width: 0;
     opacity: 0;
   }
-  44.4% {
+  50% {
     width: 0;
     opacity: 0;
   }
-  55.5% {
+  50.1% {
     width: 0;
     opacity: 0;
   }
-  66.7% {
+  62.5% {
     width: 0;
     opacity: 0;
   }
-  77.7% {
+  75% {
     width: 0;
     opacity: 0;
   }
-  88.8% {
+  87.5% {
     width: 0;
     opacity: 1;
   }
@@ -955,8 +889,8 @@ body {
   background-position: center;
 }
 .poteJustica{
-  background-image: url(../assets/imgs/poteJustica.png);
-  background-size: 10vh;
+  background-image: url(../assets/imgs/poteJustica2.png);
+  background-size: 9.75vh;
   margin-top: 7.5vh;
   height: 20vh;
   /* background-color: #ffff00; */
@@ -964,8 +898,8 @@ body {
   background-position: center;
 }
 .poteBondade{
-  background-image: url(../assets/imgs/poteBondade.png);
-  background-size: 10vh;
+  background-image: url(../assets/imgs/poteBondade2.png);
+  background-size: 9.75vh;
   margin-top: 7.5vh;
   height: 20vh;
   /* background-color: #ffff00; */
@@ -974,16 +908,16 @@ body {
 }
 .poteIntegridade{
 
-  background-image: url(../assets/imgs/poteIntegridade.png);
-  background-size: 10vh;
+  background-image: url(../assets/imgs/poteIntegridade2.png);
+  background-size: 9.75vh;
   height: 20vh;
   /* background-color: #ffff00; */
   background-repeat: no-repeat;
   background-position: center;
 }
 .poteBravura{
-  background-image: url(../assets/imgs/poteBravura.png);
-  background-size: 10vh;
+  background-image: url(../assets/imgs/poteBravura2.png);
+  background-size: 9.75vh;
   margin-top: 7.5vh;
   height: 20vh;
   /* background-color: #ffff00; */
@@ -991,8 +925,8 @@ body {
   background-position: center;
 }
 .potePaciencia{
-  background-image: url(../assets/imgs/potePaciencia.png);
-  background-size: 10vh;
+  background-image: url(../assets/imgs/potePaciencia2.png);
+  background-size: 9.75vh;
   margin-top: 7.5vh;
   height: 20vh;
   /* background-color: #ffff00; */
@@ -1017,6 +951,7 @@ body {
   position: relative;
   height: 25vh;
   width: 25vh;
+  cursor: pointer;
 }
 .saveEstatico {
   width: 100%;

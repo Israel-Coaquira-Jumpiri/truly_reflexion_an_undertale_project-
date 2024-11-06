@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./css/navbar.css">
   <link rel="stylesheet" href="./css/estilo.css">
 </head>
 <body>
@@ -13,10 +14,10 @@
     </span>
     <ul class="navbar">
       <li><a href="#inicio">Início</a></li>
-      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#sobre" tabindex="-1">Sobre</a></li>
       <li><a href="#desenvolvimento">Desenvolvimento</a></li>
       <li><a href="#facaParte">Faça Parte</a></li>
-      <li><a href="#">Login</a></li>
+      <li><a href="./pages/login.html">Login</a></li>
     </ul>  
   </header>
   <main>
@@ -51,14 +52,14 @@
     <div class="imgBackground">
       <h1 class="tituloDesenvolvimento">Bem vindo a UNDEREFLEXION!</h1>
       <div class="caixaDialogo">
-        <span class="texto txtDialogo1">Imagine um caminho onde suas ações e respostas ajudam a </span>
+        <span class="texto txtDialogo1">Imagine um caminho onde suas ações e respostas ajudam a</span>
         <span class="texto txtDialogo5">explorar aspectos de si mesmo que talvez nunca tenha</span>
         <span class="texto txtDialogo2">moldar qualidades essenciais, como Esforço, Confiança,</span> 
         <span class="texto txtDialogo6">descoberto, e ao final, receberá um feedback único</span> 
         <span class="texto txtDialogo3">Iniciativa e outras. Assim como as almas no jogo</span> 
         <span class="texto txtDialogo7">do Sans. O guia que revelará suas forças e pontos a</span> 
         <span class="texto txtDialogo4">Undertale, você irá...</span>
-        <span class="texto txtDialogo8">Melhorar</span>
+        <span class="texto txtDialogo8">melhorar.</span>
       </div>
     </div>
   </section>
@@ -78,7 +79,7 @@
           <div class="poteTeste"></div>
         </div>
         <div class="conteudoCentralMain"><span class="texto msgFacaParte">Clique, explore, reflita e descubra como Undereflexion pode ser o seu próximo passo no desenvolvimento pessoal. Pronto para iniciar essa jornada?</span>
-        <div class="saveContainer">
+        <div class="saveContainer" onclick="window.location.href = './pages/login.html'">
           <img src="./assets/imgs/SAVE_point2.png" alt="" class="saveEstatico">
           <img src="./assets/imgs/SAVE_point.gif" alt="" class="saveAnimado">
           <span class="cadastro">Cadastre-se</span>
