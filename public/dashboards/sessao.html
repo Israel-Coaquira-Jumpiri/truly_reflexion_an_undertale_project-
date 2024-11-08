@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/sessao.css">
+    <script src="../js/sessao.js"></script>
 </head>
-<body>
+<body onload="validarSessao()">
     <div class="areaCaixas">
         <div class="caixaPerfil">
-            <span class="usuario">Eleven11092</span>
+            <span id="b_usuario" class="text usuario">Usuário</span>
+            <span class="text items">Dashboards</span>
+            <span class="text">Questionário</span>
+            <span class="text">Desenvolva</span>
+            <span onclick="limparSessao()" class="text sair">SAIR</span>
         </div>
         <div class="caixaMenu">
             

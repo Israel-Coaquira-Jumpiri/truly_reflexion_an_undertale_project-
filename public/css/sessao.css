@@ -12,17 +12,20 @@ body{
 }
 .caixaPerfil{
     display: flex;
-    height: 50vh;
-    width: 12vw;
+    flex-direction: column;
+    height: 44vh;
+    min-width: 9vw;
     background-color: black;
     border: 1vh solid #fff;
-    justify-content: center;
+    padding: 3vh;
+    gap: 2vh;
+    position: relative;
 }
 .caixaMenu{
-    display: flex;
+    display: none;
     height: 50vh;
     width: 32vw;
-    background-color: black;
+    background-color: black; 
     border: 1vh solid #fff;
 }
 .areaCaixas{
@@ -31,9 +34,25 @@ body{
     height: 50vh;
     width: 60vw;
 }
-.usuario{
+.text{
     font-size: 4vh;
-    margin-top: 3vh;
     color: #fff;
-    width: fit-content;
+    width: 15vw;
+    height: 5vh;
+}
+.items{
+    margin-top: 3vh;
+}
+.usuario{
+    align-self: center;
+    text-align: center;
+}
+.sair{
+    position: absolute;
+    bottom: 3vh;
+    align-self: center;
+    text-align: center;
+}
+.sair:hover{
+    color: #ffff00;
 }
