@@ -1,0 +1,101 @@
+body{
+    margin: 0;
+    display: flex;
+    position: relative;
+    background-color: #000;
+    height: 100vh;
+    width: 100vw;
+    flex-direction: column;
+    font-family: 'Determination Mono Web';
+    align-items: center;
+}
+.espacoSans{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin-top: 6vh;
+  height: 35vh;
+  width: 80vW;
+}
+.sannes{
+    height: 35vh;
+}
+.caixaBatalha{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 1vh;
+    margin-top: 1vh;
+    height: 35vh;
+    width: 80vw;
+    background-color: #000;
+    border: 1vh solid #fff;
+    z-index: 1;
+}
+.brilhos {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #0322491a, #14c8ff4d, #0eace680);
+    animation: brilho 2s infinite;
+  }
+  @keyframes brilho {
+    0% {
+        height: 40vh;
+    }
+    50% {
+        height: 30vh;
+    }
+    100% {
+        height: 40vh;
+    }
+  }
+  .areaButoes{
+    display: flex;
+    height:12vh;
+    width: 80vw;
+    z-index: 9;
+    margin-top: 5vh;
+    justify-content: center;
+    gap: 14vh;
+  }
+  .butao{
+    height:12vh;
+    width:15vw;
+    font-family: 'Determination Sans Web';
+    font-size: 10vh;
+    background-color: black;
+    border: 0.5vh solid #FF7F27;
+    color: #FF7F27;
+    cursor: pointer;
+  }
+  .butao:hover, .butao:focus{
+    border-color: #ffff00;
+    color: #ffff00;
+    outline: none;
+    box-shadow: none;
+
+  }
+  .perguntas{
+    position: absolute;
+    color: #000;
+    background-color: #FBFBFB;
+    font-family: 'Determination Sans Web';
+    width: 30vw;
+    padding: 1vw;
+    font-size: 3.2vh;
+    right: 3vh;
+    border-radius: 2vh;
+  }
+  .enunciados{
+    color: #fff;
+    font-size: 3.5vh;
+    margin-left: 2vh;
+  }
+  .cima{
+    margin-top: 1vh;
+  }
+  .cima{
+    margin-bottom: 1vh;
+  }

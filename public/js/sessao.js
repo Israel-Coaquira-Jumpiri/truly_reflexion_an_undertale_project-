@@ -16,3 +16,6 @@ function limparSessao() {
     sessionStorage.clear();
     window.location = "../login.html";
 }
+function iniciarJulgamento(){
+    window.location.href = "./judgement.html";
+}
