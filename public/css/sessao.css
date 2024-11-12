@@ -13,26 +13,26 @@ body{
     font-family: 'Monster Friend Fore';
     color: white;
     font-size: 4vw;
-    margin-top: 20vh;
+    margin-top: 30vh;
 }
 .texto{
     color: white;
     font-size: 6vh;
 }
 .areaButtons{
-    margin-top: 6vh;
+    margin-top: 10vh;
     display: grid;
-    height: 30vh;
-    width: 30vw;
+    height: 13vh;
+    width: 59vw;
     align-items: center;
     justify-items: center;
-    grid-template-columns: 1fr 1fr;
-    gap: 2vh;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1vw;
 }
 .butao{
     height: 13vh;
-    width: 13vw;
-    font-size: 4vh;
+    width: 14vw;
+    font-size: 5vh;
     background-color: transparent;
     border: 0.5vh solid #fff;
     font-family: 'Determination Mono Web';
