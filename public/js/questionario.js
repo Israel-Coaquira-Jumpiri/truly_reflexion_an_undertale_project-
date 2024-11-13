@@ -39,46 +39,46 @@ var questoes = [
         ]
     },
     {
-        pergunta: "Você vê um colega com dificuldades para realizar uma tarefa. O que você faz?",
+        pergunta: "Durante uma discussão em grupo, uma decisão importante precisa ser tomada, mas ninguém quer assumir a responsabilidade. O que você faz?",
         alternativas: [
-            { enunciado: "Oferece ajuda imediatamente.", 
+            { enunciado: "A) Assume a responsabilidade, mesmo sabendo que isso pode te sobrecarregar.", 
+                pontuacao: { Determinacao: 1, Bravura: 1, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: 1, Perseveranca: 0 } },
+            { enunciado: "B) Sugerir que o grupo faça uma votação", 
+                pontuacao: { Determinacao: -2, Bravura: -1, Justica: 1, Bondade: 0, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
+            { enunciado: "C) Aguarda que outra pessoa assuma a responsabilidade, evitando se comprometer.", 
+                pontuacao: { Determinacao: -2, Bravura: -2, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
+            { enunciado: "D) Fica em silêncio e deixa que o grupo siga sem decisão.", 
+                pontuacao: { Determinacao: -3, Bravura: -1, Justica: -1, Bondade: -1, Paciencia: 0, Integridade: -1, Perseveranca: 0 } },
+        ]
+    },
+    {
+        pergunta: "Um colega está claramente estressado e sendo rude com a equipe. Qual é a sua reação?",
+        alternativas: [
+            { enunciado: "Você tenta acalmar a situação e conversar com o colega depois.", 
+                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 1, Perseveranca: 0 } },
+            { enunciado: "Você ignora o comportamento dele e foca na tarefa.", 
+                pontuacao: { Determinacao: 1, Bravura: -1, Justica: -1, Bondade: -1, Paciencia: 1, Integridade: 0, Perseveranca: 0 } },
+            { enunciado: "Você evita interagir com o colega para não se envolver no conflito.", 
+                pontuacao: { Determinacao: -1, Bravura: -1, Justica: 0, Bondade: -2, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
+            { enunciado: "Responde ao comportamento rude da mesma forma para demonstrar que não aceita.", 
+                pontuacao: { Determinacao: 0, Bravura: 1, Justica: 0, Bondade: -2, Paciencia: -2, Integridade: -1, Perseveranca: 0 } },
+        ]
+    },
+    {
+        pergunta: "Você vê um colega receber elogios por uma tarefa que, na verdade, foi feita por você. Qual é a sua atitude?",
+        alternativas: [
+            { enunciado: "A) Conversa com o colega de forma amigável para esclarecer a situação.", 
                 pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Espera que ele peça ajuda.", 
+            { enunciado: "B) Agradece o elogio sem corrigir o erro, mas sente-se incomodado.", 
                 pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Ignora e foca no seu trabalho.", 
+            { enunciado: "C) Ignora a situação, mas evita colaborar com o colega no futuro.", 
                 pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Comenta com outros colegas sobre isso.", 
+            { enunciado: "D) Corrige o elogio em público, deixando claro que você foi o responsável.", 
                 pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
         ]
     },
     {
-        pergunta: "Você vê um colega com dificuldades para realizar uma tarefa. O que você faz?",
-        alternativas: [
-            { enunciado: "Oferece ajuda imediatamente.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Espera que ele peça ajuda.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Ignora e foca no seu trabalho.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Comenta com outros colegas sobre isso.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: -2, Integridade: 1, Perseveranca: 2 } },
-        ]
-    },
-    {
-        pergunta: "Você vê um colega com dificuldades para realizar uma tarefa. O que você faz?",
-        alternativas: [
-            { enunciado: "Oferece ajuda imediatamente.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Espera que ele peça ajuda.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Ignora e foca no seu trabalho.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-            { enunciado: "Comenta com outros colegas sobre isso.", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
-        ]
-    },
-    {
-        pergunta: "Você vê um colega com dificuldades para realizar uma tarefa. O que você faz?",
+        pergunta: "Um colega pede ajuda para uma tarefa, mas você também está sobrecarregado. Como você responde?",
         alternativas: [
             { enunciado: "Oferece ajuda imediatamente.", 
                 pontuacao: { Determinacao: 2, Bravura: 1, Justica: 2, Bondade: 1, Paciencia: 2, Integridade: 1, Perseveranca: 2 } },
