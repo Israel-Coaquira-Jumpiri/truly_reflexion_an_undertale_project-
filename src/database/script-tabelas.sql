@@ -14,27 +14,11 @@ CREATE TABLE pergunta (
     enunciado VARCHAR(45)
 );
 
-CREATE TABLE questionario (
-	fkUsuario INT,
-    fkpergunta INT,
-    horaQuest DATETIME DEFAULT current_timestamp(),
-    CONSTRAINT pkComposta PRIMARY KEY (fkUsuario, fkPergunta),
-    CONSTRAINT fkUsuarioQuest FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
-    CONSTRAINT fkPerguntaQuest FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta)
-);
-
 CREATE TABLE alternativa (
 	fkPergunta INT,
 	idAlternativa INT AUTO_INCREMENT,
     CONSTRAINT pkComposta PRIMARY KEY (fkPergunta, idAlternativa),
     enunciado VARCHAR(45),
-    CONSTRAINT fkPerguntaAlternativa FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta)
-);
-
-CREATE TABLE pontuacao (
-	fkPergunta INT,
-    fkAlternativa INT UNIQUE,
-    CONSTRAINT pkComposta PRIMARY KEY (fkAlternativa, fkPergunta),
     determinacao INT,
     bravura INT,
     justica INT,
@@ -42,13 +26,21 @@ CREATE TABLE pontuacao (
     paciencia INT,
     integridade INT,
     perseveranca INT,
-    CONSTRAINT fkPtsAlt FOREIGN KEY (fkAlternativa) REFERENCES alternativa(idAlternativa),
-    CONSTRAINT fkPtsPerg FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta)
+    CONSTRAINT fkPerguntaAlternativa FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta)
+);
+
+CREATE TABLE escolha (
+	fkUsuario INT,
+    fkAlternativa INT,
+    CONSTRAINT pkComposta PRIMARY KEY (fkUsuario, fkAlternativa),
+    horaQuest DATETIME DEFAULT current_timestamp(),
+    CONSTRAINT fkUsuarioEscolha FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+    CONSTRAINT fkAlternativaEscolhida FOREIGN KEY (fkAlternativa) REFERENCES alternativa(idAlternativa)
 );
 
 SELECT * FROM usuario;
 
--- DROP TABLE pergunta;
+SHOW TABLES;
 
 INSERT INTO pergunta VALUES 
 (DEFAULT, 'Durante uma apresentação em grupo, um dos colegas comete um erro que pode prejudicar a nota de todos. Qual é a sua reação?'),
