@@ -6,23 +6,36 @@
     <title>Document</title>
     <link rel="stylesheet" href="../css/judgement.css">
     <script src="../js/questionario.js"></script>
+    <script src="../js/sessao.js"></script>
 </head>
-<body>
+<body onload="validarSessao()">
+    <audio id="sans-sound" src="../assets/audios/SansSpeak.ogg"></audio>
+    <audio id="butao_som" src="../assets/audios/MenuSelect.ogg"></audio>
+    <audio id="butao_hover_som" src="../assets/audios/MenuCursor.ogg"></audio>
+    <audio id="julgamento_soundtrack" src="../assets/audios/Undertale - Tears in the Rain [Neutral run] [My Take].mp3" loop></audio>
+
     <div class="espacoSans">
         <img src="../assets/imgs/sannes.gif" alt="gif Sans" class="sannes">
-        <span class="perguntas">Humano, para iniciarmos isto, preciso que você seja sincero consigo mesmo na hora de responder, entendido?</span>
+        <span class="perguntas" id="dialogo_pergunta">Humano, para iniciarmos isto, preciso que você seja sincero consigo mesmo na hora de responder, entendido?</span>
     </div>
-    <div class="caixaBatalha">
-        <span class="enunciados cima">A) Tento explicar, mas de forma rápida e sem me aprofundar muito, pois estou com pressa de terminar.</span>
-        <span class="enunciados cima">B) Ajudo meu colega, mas tento combinar a ajuda com a preparação da apresentação, sem comprometer muito o tempo de estudo.</span>
-        <span class="enunciados baixo">C) Enunciado extra enorme super gigante abdominal da extra enorme super gigante abdominal da alternativa C</span>
-        <span class="enunciados baixo">D) Enunciado extra enorme super gigante abdominal da extra enorme super gigante abdominal da alternativa D</span>
+    <button class="butao inicial" id="botaoIniciar" onmouseover="somDeMenuCursor()" onclick="iniciarQuestionario()">ENTENDIDO</button>
+    <div class="caixaBatalha" id="caixa_batalha">
+        <span class="enunciados cima" id="enunciado_a">A) Tento explicar, mas de forma rápida e sem me aprofundar muito, pois estou com pressa de terminar.</span>
+        <span class="enunciados cima" id="enunciado_b">B) Ajudo meu colega, mas tento combinar a ajuda com a preparação da apresentação, sem comprometer muito o tempo de estudo.</span>
+        <span class="enunciados baixo" id="enunciado_c">C) Enunciado extra enorme super gigante abdominal da extra enorme super gigante abdominal da alternativa C</span>
+        <span class="enunciados baixo" id="enunciado_d">D) Enunciado extra enorme super gigante abdominal da extra enorme super gigante abdominal da alternativa D</span>
+    </div>
+    <div class="barraJogador" id="barra_jogador">
+        <span class="barraTxtJogador" id="lvJogador">/LV 1 </span>
+        <span id="b_usuario" class="barraTxtJogador jogador">Usuário</span>
+        <div class="barraVida"></div>
+        <span class="barraTxtJogador vida">40/40</span>
     </div>
     <div class="areaButoes" id="areabotoes">
-        <button tabindex="1" id="opcao1" class="butao">OPÇÃO A</button>
-        <button tabindex="2" id="opcao2" class="butao">OPÇÃO B</button>
-        <button tabindex="3" id="opcao3" class="butao">OPÇÃO C</button>
-        <button tabindex="4" id="opcao4" class="butao">OPÇÃO D</button>
+        <button tabindex="1" id="opcao_a" class="butao" onmouseover="somDeMenuCursor()" onclick="escolher('A')">OPÇÃO A</button>
+        <button tabindex="2" id="opcao_b" class="butao" onmouseover="somDeMenuCursor()" onclick="escolher('B')">OPÇÃO B</button>
+        <button tabindex="3" id="opcao_c" class="butao" onmouseover="somDeMenuCursor()" onclick="escolher('C')">OPÇÃO C</button>
+        <button tabindex="4" id="opcao_d" class="butao" onmouseover="somDeMenuCursor()" onclick="escolher('D')">OPÇÃO D</button>
     </div>
     <div class="brilhos"></div>
 </body>

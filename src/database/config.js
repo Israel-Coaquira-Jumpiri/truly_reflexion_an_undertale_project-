@@ -30,7 +30,7 @@ function executar(instrucao) {
         conexao.on('error', function (erro) {
             return ("ERRO NO MySQL SERVER: ", erro.sqlMessage);
         });
-    });
+    }); 
 }
 
 module.exports = {

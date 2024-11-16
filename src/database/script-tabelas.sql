@@ -14,11 +14,8 @@ CREATE TABLE pergunta (
     enunciado VARCHAR(45)
 );
 
-CREATE TABLE alternativa (
-	fkPergunta INT,
-	idAlternativa INT AUTO_INCREMENT,
-    CONSTRAINT pkComposta PRIMARY KEY (fkPergunta, idAlternativa),
-    enunciado VARCHAR(45),
+CREATE TABLE resultado (
+    idResultado INT PRIMARY KEY AUTO_INCREMENT,
     determinacao INT,
     bravura INT,
     justica INT,
@@ -26,7 +23,8 @@ CREATE TABLE alternativa (
     paciencia INT,
     integridade INT,
     perseveranca INT,
-    CONSTRAINT fkPerguntaAlternativa FOREIGN KEY (fkPergunta) REFERENCES pergunta(idPergunta)
+    fkUsuario INT,
+    CONSTRAINT fkusuarioResultado FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario);
 );
 
 CREATE TABLE escolha (

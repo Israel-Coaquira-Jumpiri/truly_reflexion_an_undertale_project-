@@ -54,13 +54,13 @@ var questoes = [
     {
         pergunta: "Um colega está claramente estressado e sendo rude com a equipe. Qual é a sua reação?",
         alternativas: [
-            { enunciado: "Você tenta acalmar a situação e conversar com o colega depois.", 
+            { enunciado: "A) Você tenta acalmar a situação e conversar com o colega depois.", 
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 1, Perseveranca: 0 } },
-            { enunciado: "Você ignora o comportamento dele e foca na tarefa.", 
+            { enunciado: "B) Você ignora o comportamento dele e foca na tarefa.", 
                 pontuacao: { Determinacao: 1, Bravura: -1, Justica: -1, Bondade: -1, Paciencia: 1, Integridade: 0, Perseveranca: 0 } },
-            { enunciado: "Você evita interagir com o colega para não se envolver no conflito.", 
+            { enunciado: "C) Você evita interagir com o colega para não se envolver no conflito.", 
                 pontuacao: { Determinacao: -1, Bravura: -1, Justica: 0, Bondade: -2, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
-            { enunciado: "Responde ao comportamento rude da mesma forma para demonstrar que não aceita.", 
+            { enunciado: "D) Responde ao comportamento rude da mesma forma para demonstrar que não aceita.", 
                 pontuacao: { Determinacao: 0, Bravura: 1, Justica: 0, Bondade: -2, Paciencia: -2, Integridade: -1, Perseveranca: 0 } },
         ]
     },
@@ -110,7 +110,7 @@ var questoes = [
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 1, Perseveranca: 0 } },
             { enunciado: "B) Escuta o feedback, mas evita se comprometer em aplicar as sugestões.  ", 
                 pontuacao: { Determinacao: 1, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: -1, Perseveranca: 0 } },
-            { enunciado: "C) Justifica-se para o colega, evitando aceitar a crítica.", 
+            { enunciado: "C) Justifica-se para o professor, evitando aceitar a crítica.", 
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: -1, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "D) Reage defensivamente, ignorando a crítica.", 
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: -2, Perseveranca: 0 } },
@@ -260,3 +260,141 @@ var questoes = [
         ]
     }
 ];
+    var lista_selecionada = [];
+    var indexPergunta = 0;
+    var ptsDeterminacao = 5;
+    var ptsBravura = 5;
+    var ptsJustica = 5;
+    var ptsBondade = 5;
+    var ptsPaciencia = 5;
+    var ptsIntegridade = 5;
+    var ptsPerseveranca = 5;
+    
+    function iniciarQuestionario(){
+        butao_som.play();
+        caixa_batalha.style.display = 'grid';
+        barra_jogador.style.display = 'flex'
+        areabotoes.style.display = 'flex';
+        botaoIniciar.style.display = 'none';
+        criarQuestionario();
+    }
+    function criarQuestionario(){
+        julgamento_soundtrack.play()
+        var lista_questoes = [];
+        for (var contador = 0; contador < 1; contador++) {
+            var numeroAleatorio = Math.random();
+            var questaoAleatoria = Math.floor(numeroAleatorio * 20)
+            var questaoExistente = lista_questoes.includes(questaoAleatoria)
+            if (questaoExistente == false) {
+                lista_questoes.push(questaoAleatoria);
+            }
+            var tamanho_lista = lista_questoes.length;
+            if (tamanho_lista < 10) {
+                contador--
+            } else{
+                lista_selecionada = lista_questoes;
+                renderizarQuestao();
+            }
+        }
+    }
+    function renderizarQuestao(){
+        dialogo_pergunta.innerHTML = questoes[lista_selecionada[indexPergunta]].pergunta;
+        typeWrite(dialogo_pergunta); 
+        enunciado_a.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[0].enunciado;
+        enunciado_b.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[1].enunciado;
+        enunciado_c.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[2].enunciado;
+        enunciado_d.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[3].enunciado;
+        lvJogador.innerHTML = `LV ${indexPergunta+1}`
+        console.log("Lista selecionada", lista_selecionada);
+    }
+    function escolher(alternativa){
+        butao_som.play();
+        if (indexPergunta < 9) {
+        if (alternativa == 'A') {
+            ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Determinacao;
+            ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Bravura;
+            ptsJustica += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Justica;
+            ptsBondade += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Bondade;
+            ptsPaciencia += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Paciencia;
+            ptsIntegridade += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Integridade;
+            ptsPerseveranca += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Perseveranca;
+        } else if (alternativa == 'B'){
+            ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Determinacao;
+            ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Bravura;
+            ptsJustica += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Justica;
+            ptsBondade += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Bondade;
+            ptsPaciencia += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Paciencia;
+            ptsIntegridade += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Integridade;
+            ptsPerseveranca += questoes[lista_selecionada[indexPergunta]].alternativas[1].pontuacao.Perseveranca;
+        } else if (alternativa == 'C'){
+            ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Determinacao;
+            ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Bravura;
+            ptsJustica += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Justica;
+            ptsBondade += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Bondade;
+            ptsPaciencia += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Paciencia;
+            ptsIntegridade += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Integridade;
+            ptsPerseveranca += questoes[lista_selecionada[indexPergunta]].alternativas[2].pontuacao.Perseveranca;
+        } else if (alternativa == 'D'){
+            ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Determinacao;
+            ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Bravura;
+            ptsJustica += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Justica;
+            ptsBondade += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Bondade;
+            ptsPaciencia += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Paciencia;
+            ptsIntegridade += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Integridade;
+            ptsPerseveranca += questoes[lista_selecionada[indexPergunta]].alternativas[3].pontuacao.Perseveranca;
+        }
+        indexPergunta++
+            console.log("Pontuação de Determinação Atual: ", ptsDeterminacao);
+            console.log("Pontuação de Bravura Atual: ", ptsBravura);
+            console.log("Pontuação de Justiça Atual: ", ptsJustica);
+            console.log("Pontuação de Bondade Atual: ", ptsBondade);
+            console.log("Pontuação de Paciência Atual: ", ptsPaciencia);
+            console.log("Pontuação de Integridade Atual: ", ptsIntegridade);
+            console.log("Pontuação de Determinação Atual: ", ptsPerseveranca);
+            renderizarQuestao();
+        } else {
+            console.log("Finalizado");
+            console.log("Pontuação de Determinação Final: ", ptsDeterminacao);
+            console.log("Pontuação de Bravura Final: ", ptsBravura);
+            console.log("Pontuação de Justiça Final: ", ptsJustica);
+            console.log("Pontuação de Bondade Final: ", ptsBondade);
+            console.log("Pontuação de Paciência Final: ", ptsPaciencia);
+            console.log("Pontuação de Integridade Final: ", ptsIntegridade);
+            console.log("Pontuação de Determinação Final: ", ptsPerseveranca);
+
+        }
+    }
+    function receberMensagem (){
+
+    }
+    function typeWrite(elemento) { 
+        const textoArray = elemento.innerHTML.split(''); 
+        elemento.innerHTML = ' '; 
+        const audio = document.getElementById('sans-sound'); 
+        textoArray.forEach(function(letra, i) { 
+            setTimeout(function() { 
+                elemento.innerHTML += letra; 
+                if (audio) { 
+                    audio.currentTime = 0; // Reinicia o som 
+                    audio.play().catch(
+                        error => console.error('Erro ao reproduzir áudio:', error)
+                    ); // Toca o som 
+                    } }, 75 * i); 
+                }
+            ); 
+        } 
+        document.addEventListener('DOMContentLoaded', function() { 
+            const titulo = document.getElementById('dialogo_pergunta'); 
+            const audioElement = document.getElementById('sans-sound'); 
+                if (titulo && audioElement) { 
+                    // Carrega o áudio para garantir que ele esteja pronto para ser reproduzido 
+                    audioElement.load(); 
+                    typeWrite(titulo); 
+                } else { 
+                    console.error('Elemento #dialogo_pergunta ou #sans-sound não encontrado.'); 
+                }
+            }
+        );
+        function somDeMenuCursor(){
+            butao_hover_som.play()
+        }
