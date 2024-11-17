@@ -44,6 +44,8 @@ body{
 .butao:hover{
     color: #ffff00;
     border-color: #ffff00;
+    transition: 300ms;
+    transform: translateY(-5px);
 }
 .brilhos {
     width: 100%;

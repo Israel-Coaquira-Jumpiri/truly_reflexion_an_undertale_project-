@@ -32,9 +32,9 @@ function limparSessao() {
 function iniciarJulgamento(){
     window.location.href = "./judgement.html";
 }
-window.addEventListener('focus', function() { 
-    ativarMusica();
-    });
+// window.addEventListener('focus', function() { 
+//     ativarMusica();
+//     });
 document.addEventListener('visibilitychange', function() { 
     if (document.visibilityState === 'visible') { 
         ativarMusica(); 

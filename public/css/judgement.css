@@ -9,6 +9,20 @@ body{
     font-family: 'Determination Mono Web';
     align-items: center;
 }
+.area_cutscene{
+  display: none;
+  position: absolute;
+  z-index: 6;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000;
+  flex-direction: column;
+  align-items: center;
+}
+.cutscene{
+  height: 100vh;
+
+}
 @font-face {
   font-family:"font-sans";
   src: url(/public/font/pixel-comic-sans-undertale-sans-font.ttf) format("truetype");
@@ -92,7 +106,7 @@ body{
     display: none;
     height:12vh;
     width: 84vw;
-    z-index: 9;
+    z-index: 5;
     justify-content: center;
     gap: 15vh;
   }

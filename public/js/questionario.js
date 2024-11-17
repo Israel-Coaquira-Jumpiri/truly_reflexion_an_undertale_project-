@@ -269,6 +269,7 @@ var questoes = [
     var ptsPaciencia = 5;
     var ptsIntegridade = 5;
     var ptsPerseveranca = 5;
+
     
     function iniciarQuestionario(){
         butao_som.play();
@@ -297,14 +298,58 @@ var questoes = [
             }
         }
     }
-    function renderizarQuestao(){
+    function limparQuestao(){
+        enunciado_a.innerHTML = '';
+        enunciado_b.innerHTML = '';
+        enunciado_c.innerHTML = '';
+        enunciado_d.innerHTML = '';
+        
+        opcao_a.disabled = true;
+        opcao_a.style.border = '0.5vh solid #733f1d'
+        opcao_a.style.color = '#733f1d'
+        opcao_b.disabled = true;
+        opcao_b.style.border = '0.5vh solid #733f1d'
+        opcao_b.style.color = '#733f1d'
+        opcao_c.disabled = true;
+        opcao_c.style.border = '0.5vh solid #733f1d'
+        opcao_c.style.color = '#733f1d'
+        opcao_d.disabled = true;
+        opcao_d.style.border = '0.5vh solid #733f1d'
+        opcao_d.style.color = '#733f1d'
+    }
+    function desabilitarIniciar(){
+        botaoIniciar.disabled = true;
+        botaoIniciar.style.border = '0.5vh solid #733f1d'
+        botaoIniciar.style.color = '#733f1d'
+    }
+    function habilitarBotoes(){
+        botaoIniciar.disabled = false;
+        botaoIniciar.style.border = '0.5vh solid #FF7F27';
+        botaoIniciar.style.color = '#FF7F27';
+        opcao_a.disabled = false;
+        opcao_a.style.border = '0.5vh solid #FF7F27';
+        opcao_a.style.color = '#FF7F27';
+        opcao_b.disabled = false;
+        opcao_b.style.border = '0.5vh solid #FF7F27';
+        opcao_b.style.color = '#FF7F27';
+        opcao_c.disabled = false;
+        opcao_c.style.border = '0.5vh solid #FF7F27';
+        opcao_c.style.color = '#FF7F27';
+        opcao_d.disabled = false;
+        opcao_d.style.border = '0.5vh solid #FF7F27';
+        opcao_d.style.color = '#FF7F27';
+    }
+    async function renderizarQuestao(){
         dialogo_pergunta.innerHTML = questoes[lista_selecionada[indexPergunta]].pergunta;
-        typeWrite(dialogo_pergunta); 
+        limparQuestao();
+        var som_do_sans = document.getElementById('sans-sound');   
+        lvJogador.innerHTML = `LV ${indexPergunta+1}`
+        await efeitorEscrever(dialogo_pergunta, som_do_sans);
         enunciado_a.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[0].enunciado;
         enunciado_b.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[1].enunciado;
         enunciado_c.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[2].enunciado;
         enunciado_d.innerHTML = questoes[lista_selecionada[indexPergunta]].alternativas[3].enunciado;
-        lvJogador.innerHTML = `LV ${indexPergunta+1}`
+        habilitarBotoes()
         console.log("Lista selecionada", lista_selecionada);
     }
     function escolher(alternativa){
@@ -361,40 +406,473 @@ var questoes = [
             console.log("Pontuação de Paciência Final: ", ptsPaciencia);
             console.log("Pontuação de Integridade Final: ", ptsIntegridade);
             console.log("Pontuação de Determinação Final: ", ptsPerseveranca);
+            receberMensagemFinal()
 
         }
     }
-    function receberMensagem (){
-
+    async function exibirCutsceneFinal(){
+        cutscene_Final.style.display = 'flex'; 
+        cutscene_fim.currentTime = 0;
+        cutscene_fim.play();
+            return new Promise((resolve) =>{
+            cutscene_fim.addEventListener('ended', function(){
+                cutscene_Final.style.display = 'none'; 
+                resolve();
+            }, { once: true})
+        })
     }
-    function typeWrite(elemento) { 
-        const textoArray = elemento.innerHTML.split(''); 
-        elemento.innerHTML = ' '; 
-        const audio = document.getElementById('sans-sound'); 
-        textoArray.forEach(function(letra, i) { 
+    function efeitorEscrever(texto, som) { 
+        return new Promise((resolve) => {
+        const texto_em_vetor = texto.innerHTML.split(''); 
+        texto.innerHTML = ' '; 
+        texto_em_vetor.forEach(function(letra, i) {
             setTimeout(function() { 
-                elemento.innerHTML += letra; 
-                if (audio) { 
-                    audio.currentTime = 0; // Reinicia o som 
-                    audio.play().catch(
-                        error => console.error('Erro ao reproduzir áudio:', error)
-                    ); // Toca o som 
-                    } }, 75 * i); 
+                texto.innerHTML += letra; 
+                if (som) { 
+                    som.currentTime = 0; 
+                    som.play().catch(error => console.error('Erro ao reproduzir áudio:', error));  
                 }
-            ); 
-        } 
-        document.addEventListener('DOMContentLoaded', function() { 
-            const titulo = document.getElementById('dialogo_pergunta'); 
-            const audioElement = document.getElementById('sans-sound'); 
-                if (titulo && audioElement) { 
+                if (i == texto_em_vetor.length -1) {
+                    resolve();
+                }
+            }, 75 * i); 
+        }); 
+        }); 
+    }
+        document.addEventListener('DOMContentLoaded', async function() { 
+            const dialogoInicial = document.getElementById('dialogo_pergunta'); 
+            const somSans = document.getElementById('sans-sound'); 
+                if (dialogoInicial && somSans) { 
                     // Carrega o áudio para garantir que ele esteja pronto para ser reproduzido 
-                    audioElement.load(); 
-                    typeWrite(titulo); 
+                    somSans.load();
+                    desabilitarIniciar();
+                    await efeitorEscrever(dialogoInicial, somSans);
+                    habilitarBotoes(); 
                 } else { 
-                    console.error('Elemento #dialogo_pergunta ou #sans-sound não encontrado.'); 
+                    console.error('texto #dialogo_pergunta ou #sans-sound não encontrado.'); 
                 }
             }
         );
-        function somDeMenuCursor(){
-            butao_hover_som.play()
+        function somDeMenuCursor(botao){
+            if (botao.disabled === false) {
+                botao.style.color = '#ffff00';
+                botao.style.border = '0.5vh solid #ffff00';
+                butao_hover_som.play();
+            }
+        }
+        function voltarOriginal(botao){
+            if (botao.disabled ==- false) {
+                botao.style.border = '0.5vh solid #FF7F27';
+                botao.style.color = '#FF7F27';
+            }
+        }
+        
+        async function receberMensagemFinal (){
+            limparQuestao();
+            julgamento_soundtrack.pause();
+            var somSans = document.getElementById('sans-sound'); 
+            sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
+            dialogo_pergunta.innerHTML = 'Creio que cheguei a uma conclusão sobre você!'
+            await efeitorEscrever(dialogo_pergunta, somSans)
+            await new Promise(resolve => setTimeout(resolve, 2000));
+                await exibirCutsceneFinal();
+    
+            recado_final_soundtrack.play();
+            dialogo_pergunta.innerHTML ='';
+            if (ptsBondade < 6 && ptsJustica < 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Heh, você tá meio... na defensiva, né? Ser gentil não mata ninguém, cara. E, olha, até a justiça precisa de uma mãozinha. Pensa nisso e...';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if (ptsPaciencia < 6 && ptsPerseveranca < 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = 'Parece que a pressa te pegou, huh? Lembra que nem todo caminho precisa ser percorrido com o pé no acelerador. Dá uma respirada e segue firme e...';
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if (ptsIntegridade < 6 && ptsBravura < 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = 'Se esconder nas sombras, huh? Isso até funciona... mas, às vezes, a integridade e a coragem são o que fazem alguém brilhar. Tenta dar a cara a tapa de vez em quando e...';
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = 'sabe... às vezes, é fácil ficar nas sombras, mas... onde tá a coragem nisso? Talvez seja hora de dar um passo à frente e, uh... fazer a coisa certa, sabe?';
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if (ptsDeterminacao >= 6 && ptsBondade < 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = 'Heh, vejo que você é bem determinado. Isso é bom. Só... não deixa de ser uma pessoa legal no processo, beleza? Determinação é legal, mas gentileza faz o mundo girar e...';
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if (ptsBondade >= 5 && ptsBondade <= 7 && ptsBravura >= 5 && ptsBravura <= 7 && ptsDeterminacao >= 5 && ptsDeterminacao <= 7 && ptsIntegridade >= 5 && ptsIntegridade <= 7 && ptsJustica >= 5 && ptsJustica <= 7 && ptsPaciencia >= 5 && ptsPaciencia <= 7 && ptsPerseveranca >= 5 && ptsPerseveranca <= 7) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = 'Nada mal, nada mal! Tá andando na linha... mas será que isso é o suficiente? Sempre dá pra ser um pouco mais determinado... ou bondoso... ou corajoso... Sabe como é...';
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if (ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6  && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Heh... parece que você ainda tem bastante o que aprender. Nada de errado nisso. Só... não desiste agora, ok? Mesmo que pareça difícil. Isso pode ser o começo de algo melhor.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Parece que tem um monte de coisas pra ajustar aí. Mas relaxa... nem todo mundo é um 'super-herói' da primeira vez. Dá uma olhada onde pode melhorar e tenta de novo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if (ptsBondade >=7 && ptsBravura < 6 && ptsDeterminacao < 6  && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da BONDADE? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsBondade < 6 && ptsBravura >=7 && ptsDeterminacao < 6  && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da BRAVURA? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao >=7  && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da DETERMINAÇÃO? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6  && ptsIntegridade >=7 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da INTEGRIDADE? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+    
+            } else if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6  && ptsIntegridade < 6 && ptsJustica >=7 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da JUSTIÇA? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6  && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia >=7 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da PACIÊNCIA? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+    
+            } else if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6  && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca >=7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Oh, então você é o campeão da PERSEVERANÇA? Legal, mas lembra que focar só numa coisa pode te deixar cego pra outras. Quem sabe a vida te pede algo além disso... então fica esperto.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } 
+            if(ptsBondade > 8 && ptsBravura > 8 && ptsDeterminacao > 8  && ptsIntegridade > 8 && ptsJustica > 8 && ptsPaciencia > 8 && ptsPerseveranca > 8){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Bem, bem, olha só quem tá pronto pra ser o novo modelo de comportamento! Não vou mentir... é meio impressionante. Só não esquece de continuar assim, ou você acaba... bem, sabe como.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+    
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Parece que você anda fazendo tudo certo. Quem diria, hein? Mas... sabe, ninguém é perfeito. Ou é? Heh, só não deixa essa confiança subir à cabeça...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Hmm, parece que a sua determinação tá meio... capenga. A vida pode te derrubar, mas, heh, que tal levantar um pouquinho mais rápido da próxima vez?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica >=7 && ptsBondade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Olha só... você parece saber o que é justo, mas... e a bondade? Tá meio em falta. Lembra que às vezes é preciso ser justo e gentil. Nem todo mundo é um vilão pra você julgar, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade >=7 && ptsBravura < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é uma boa pessoa, não vou negar. Mas... às vezes, bondade precisa de um empurrãozinho de coragem. Que tal tentar mostrar isso mais na prática? Do tipo... colocar a cara a tapa e tudo e...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia >=7 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe esperar. Legal. Só não esquece que paciência sem ação... é só, tipo, uma longa soneca. Acorda pra vida, parceiro...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+    
+            }
+            if(ptsJustica < 6 && ptsIntegridade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "É, parece que você anda dando umas... escorregadas por aí. O que foi? Decidiu que as regras são... opcionais? Às vezes, é bom lembrar que o que vai... volta, parceiro...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+    
+            }
+            if(ptsBravura >=7 && ptsDeterminacao >=7 && ptsPaciencia < 6  && ptsBondade < 8){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Olha só o herói destemido! Só toma cuidado, valente... Determinação sem paciência e bondade pode, uh... acabar sendo meio solitária, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia  >=7 && ptsPerseveranca >=7 && ptsIntegridade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe esperar e seguir firme, mas... integridade? Huh, talvez isso seja algo pra refletir. Porque continuar no caminho errado... ainda é seguir o caminho errado, entende?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade  >=7 && ptsIntegridade >=7 && ptsBravura < 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é um dos bons, não vou negar. Mas... às vezes os bons precisam de um pouco mais de... fogo, sabe? Coragem pra enfrentar o que vier. Só bondade não leva você tão longe...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPerseveranca  >=7 && ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6 && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é Perseverante! Você sabe se manter firme... mas e o resto? Não adianta só persistir se o caminho não é o certo. Só... um toque...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao  >=7 && ptsBondade < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Olha só, você tem determinação. Isso é legal. Mas... às vezes, ser determinado demais sem se importar com os outros pode acabar... mal, sabe? Dá uma chance pros outros de vez em quando...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBravura >=7 && ptsJustica >=7 && ptsPaciencia < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você gosta de fazer a coisa certa, não importa o custo, huh? Mas, às vezes, acelerar demais... faz você perder o que tá ao redor. Paciência, meu amigo... a vida não é só um sprint...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsIntegridade < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Hm, tá me dizendo que integridade e persistência não são muito sua praia? É... bom, talvez seja hora de rever os atalhos. Eles parecem fáceis, mas no fim... você acaba dando uma volta...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade >=7 && ptsJustica < 6 && ptsIntegridade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é uma pessoa boa, sem dúvida. Só que... nem sempre só a bondade resolve. Às vezes, é preciso fazer o que é justo, mesmo que seja difícil. Que tal equilibrar isso um pouco?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica >= 9 && ptsBravura < 7 && ptsDeterminacao < 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é do tipo que gosta de ver tudo certo. Mas... quando chega a hora de se arriscar pra fazer o certo, talvez falte um empurrãozinho. Tá na hora de se jogar um pouco mais...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia >= 9 && ptsBravura < 7 && ptsDeterminacao < 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Paciência é uma virtude, eu sei. Mas só esperar não vai resolver tudo. Às vezes, é preciso agir e... arriscar um pouco. Que tal tentar sair da zona de conforto?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsIntegridade >= 9 && ptsBondade < 7 && ptsBravura < 7 && ptsDeterminacao < 7 && ptsJustica < 7 && ptsPaciencia < 7 && ptsPerseveranca < 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Uau, olha só! Uma pessoa íntegra. Isso é legal, mas... integridade sem um pouco de ação é tipo... uma estátua. Bela de ver, mas parada. Que tal usar toda essa integridade pra fazer algo?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsIntegridade >= 7 && ptsBondade < 6 && ptsBravura >= 7 && ptsDeterminacao >= 7 && ptsJustica >= 7 && ptsPaciencia >= 7 && ptsPerseveranca >= 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tá indo bem, parceiro. Só cuidado pra não ser... hã, 'certinho demais'. Às vezes, ser legal com os outros faz mais diferença do que qualquer regra...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Bondade nunca é demais, sabe? Um 'por favor' aqui, um 'obrigado' ali, pode fazer mais diferença do que você imagina...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsIntegridade >= 7 && ptsPaciencia < 6 && ptsBravura >= 7 && ptsDeterminacao >= 7 && ptsJustica >= 7 && ptsBondade >= 7 && ptsPerseveranca >= 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tá mandando bem na maioria das áreas, mas, sério, apressado desse jeito, vai acabar queimando a largada. Relaxa um pouco, as coisas também têm seu tempo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsIntegridade >= 7 && ptsBravura < 6 && ptsPaciencia >= 7 && ptsDeterminacao >= 7 && ptsJustica >= 7 && ptsBondade >= 7 && ptsPerseveranca >= 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Tá quase perfeito, mas parece que você hesita na hora de enfrentar desafios de frente. Coragem não é a ausência de medo, é só... dar aquele passo mesmo com medo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsIntegridade >= 7 && ptsPerseveranca < 6 && ptsPaciencia >= 7 && ptsDeterminacao >= 7 && ptsJustica >= 7 && ptsBondade >= 7 && ptsBravura >= 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tá indo bem, mas desistir no meio do caminho? Não parece seu estilo. Levanta, sacode a poeira e termina o que começou...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsIntegridade >= 7 && ptsJustica < 6 && ptsPaciencia >= 7 && ptsDeterminacao >= 7 && ptsPerseveranca >= 7 && ptsBondade >= 7 && ptsBravura >= 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tá indo bem, mas tá fechando os olhos pra algumas injustiças ao seu redor. Que tal levantar a voz por quem precisa?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsIntegridade >= 7 && ptsDeterminacao < 6 && ptsPaciencia >= 7 && ptsJustica >= 7 && ptsPerseveranca >= 7 && ptsBondade >= 7 && ptsBravura >= 7){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Hmm, parece que você é bom em ficar parado quando precisa se mover. Tá tudo bem, só não esquece que a vida não vai esperar você decidir se quer entrar no jogo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsIntegridade > 6 && ptsBondade < 6 && ptsDeterminacao > 6  && ptsPaciencia < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Olha só, o guerreiro determinado. Só cuidado pra não atropelar os outros enquanto segue seu caminho. Uma dose de bondade e paciência nunca fez mal a ninguém, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBravura < 5 && ptsBondade > 6 && ptsDeterminacao < 5  && ptsPaciencia > 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é calmo, tranquilo e boa gente... mas a vida às vezes pede um pouco de ousadia. Que tal colocar um pouquinho de ação nesse seu coração bondoso? Sair da zona de conforto pode ser divertido...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica < 6 && ptsPaciencia < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Justiça e paciência meio em baixa, huh? Lembre-se, às vezes a pressa ou o interesse próprio podem atrapalhar o que é realmente justo. Dá uma maneirada na impaciência, só um conselho...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia > 6 && ptsIntegridade > 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Hm, você é do tipo que espera a maré passar e mantém seus princípios. Só que... às vezes, remar contra a corrente também é necessário. Vai lá, dá um pouco mais de gás!";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsPerseveranca < 6 && ptsIntegridade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Parece que você quer fazer o que é certo... só que, às vezes, falta força pra seguir até o fim. Ser justo é bom, mas ser consistente é ainda melhor...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsBravura > 6 && ptsPaciencia < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você gosta de resolver as coisas rápido e de forma justa, né? Só cuidado pra não ser tipo um furacão. Às vezes, dar um tempo ajuda a ver outras soluções...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao > 6 && ptsPerseveranca > 6 && ptsBravura < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe insistir até conseguir, e isso é ótimo. Mas, às vezes, falta dar o primeiro passo em situações arriscadas. Que tal tentar? O chão tá firme, eu acho...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsPaciencia > 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é uma boa pessoa, sem dúvida. Mas... ser bom sem ser justo pode deixar coisas importantes passarem. Que tal equilibrar a balança, hein?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é do tipo que quer que tudo seja justo, mas... nem sempre a justiça vem rápido ou fácil. Persistir é chato, eu sei, mas no final... pode valer a pena...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPerseveranca > 6 && ptsPaciencia > 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe aguentar os trancos e seguir em frente, e isso é ótimo. Só cuidado pra não ignorar quando algo errado tá acontecendo ao seu redor. Falar é difícil, mas necessário...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsBravura < 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tem um coração grande, mas parece que ele fica meio tímido quando precisa se arriscar. Às vezes, ser bom também significa ser forte o bastante pra agir...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao > 6 && ptsIntegridade < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Determinado você é, sem dúvida. Só que, sem um pouco de honestidade e senso de justiça, você pode acabar atropelando uns valores importantes no caminho...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao > 6 && ptsBondade > 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você se esforça e tem um coração de ouro, mas... ser bonzinho demais pode acabar desequilibrando a balança. Às vezes, dizer 'não' também é importante...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsIntegridade > 6 && ptsBravura < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Ah, um bastião da moralidade, hein? Isso é legal, mas, se você não sustentar suas escolhas, elas acabam caindo por conta própria. Bora levantar a coragem aí...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPerseveranca > 6 && ptsPaciencia > 6 && ptsDeterminacao < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é o mestre em esperar... e esperar... mas quando é hora de agir, parece que fica no modo de descanso. Justiça não acontece sozinha, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBravura > 6 && ptsJustica > 6 && ptsBondade < 6 && ptsIntegridade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você gosta de lutar pelo que é certo, mas, às vezes, esquece de ser gentil no caminho. A integridade também tá no jeito como você trata os outros, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsPaciencia > 6 && ptsDeterminacao < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "É, você é ótimo em cuidar dos outros, mas... e de você? A vida não vai desacelerar só porque você tá indo no seu ritmo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBravura > 6 && ptsIntegridade > 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tem coragem e é justo, mas parece que desiste quando as coisas não dão certo rápido. Spoiler: algumas coisas boas levam tempo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao > 6 && ptsPerseveranca > 6 && ptsBondade < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe se esforçar e persistir, mas... e se o esforço estiver no caminho errado? Persistência sem propósito pode ser só... teimosia disfarçada...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsBondade < 6 && ptsBravura < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é tipo um juiz imparcial, só que às vezes ser justo demais te faz parecer um pouco... frio. Que tal aquecer isso com um toque de empatia?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao > 6 && ptsIntegridade < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você corre atrás do que quer, mas o caminho que escolhe... nem sempre é o mais reto. Ser determinado é bom, mas que tal ajustar sua bússola moral?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPerseveranca > 6 && ptsBravura < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é tipo uma tartaruga: vai devagar e chega longe. Só que... às vezes, a tartaruga precisa se levantar e lutar pelo que é certo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsJustica > 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Ser gentil e justo é ótimo, mas... quando é que você vai se colocar em primeiro lugar? Não dá pra ajudar os outros com o tanque vazio...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao < 6 && ptsIntegridade > 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Ei, pelo menos você tem a verdade do seu lado. Só que, sem ação e coragem, a integridade não passa de uma boa intenção...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            } else if(ptsBondade < 6 && ptsBravura < 6 && ptsDeterminacao > 6 && ptsIntegridade < 6 && ptsJustica < 6 && ptsPaciencia < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tá tentando, e isso já é um começo. Só lembra que dá pra melhorar em cada passo. Determinação é só o começo da história...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPerseveranca > 6 && ptsIntegridade > 6 && ptsBondade < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você segue seus valores e não desiste, mas... o que adianta persistir se o caminho não é justo com os outros? Dá uma ajustada nisso aí...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBravura > 6 && ptsDeterminacao > 6 && ptsPaciencia < 6 && ptsBondade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é uma força da natureza, mas, às vezes, parece que tá passando por cima das pessoas sem perceber. Ser forte também é ser gentil...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia > 6 && ptsBondade > 6 && ptsBravura < 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é super tranquilo e ajuda quem precisa, mas falta aquela faísca pra começar. Que tal dar o primeiro passo e ver o que acontece?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsPaciencia < 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tem um bom senso do que é certo, mas tá faltando energia pra colocar isso em prática. E, sério, apressar as coisas nunca ajuda...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsJustica < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tem um coração enorme, mas coração sem ação não resolve tudo. Ser bom também significa lutar pelo que é justo, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsIntegridade < 6 && ptsBondade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você tem um senso de justiça invejável, mas, sem bondade e honestidade, justiça pode virar frieza. Equilibrar isso faz toda a diferença...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBravura > 6 && ptsPaciencia < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é o tipo que enfrenta qualquer coisa... mas será que tá enfrentando pelos motivos certos? Coragem sem justiça pode virar só... caos..";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsDeterminacao > 6 && ptsIntegridade < 6 && ptsBravura < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você não desiste, o que é impressionante, mas às vezes parece que tá esquecendo o que é certo e quem você pode ajudar no caminho...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia > 6 && ptsBravura < 6 && ptsJustica < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe esperar, mas esperar pra sempre não é a solução. Alguma hora, tem que levantar e lutar pelo que é certo, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsIntegridade > 6 && ptsPaciencia < 6 && ptsBondade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você segue o que é certo, mas parece que tá esquecendo de colocar um pouco de empatia no processo. Justiça sem bondade pode ser só... dureza...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsPaciencia > 6 && ptsJustica < 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você é gentil e sabe esperar, mas tá faltando energia pra lutar pelo que importa. Dá pra ser bom e determinado ao mesmo tempo, sabe?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPerseveranca > 6 && ptsBravura < 6 && ptsBondade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você segue firme, mas será que tá indo na direção certa? Às vezes, é preciso coragem pra parar e avaliar o impacto no caminho...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsJustica > 6 && ptsPaciencia < 6 && ptsBondade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe o que é certo, mas a pressa em corrigir tudo tá deixando as pessoas pra trás. Justiça com um toque de bondade nunca faz mal...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsBondade > 6 && ptsJustica < 6 && ptsPerseveranca < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você se preocupa com os outros, mas tá faltando aquele empurrão pra agir e persistir. Bondade sem ação é só intenção...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsPaciencia > 6 && ptsBravura < 6 && ptsIntegridade < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Esperar e observar é bom, mas tá na hora de ser honesto consigo mesmo e enfrentar o que precisa. Paciência só não resolve tudo...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            if(ptsIntegridade > 6 && ptsJustica > 6 && ptsDeterminacao < 6){
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Você sabe o que é certo e vive de acordo com isso, mas será que tá fazendo o suficiente pra alcançar o que realmente importa?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            }
+            await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+            await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima";
+                await efeitorEscrever(dialogo_pergunta, somSans)
         }
