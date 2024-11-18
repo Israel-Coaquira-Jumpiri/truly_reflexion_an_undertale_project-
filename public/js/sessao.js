@@ -18,7 +18,7 @@ function ativarMusica(){
     } else { 
         console.error('Elemento #menu_theme não encontrado.'); 
     }
-}
+} 
 function butaoHover (){
     butao_hover_som.play()
 }
@@ -32,9 +32,9 @@ function limparSessao() {
 function iniciarJulgamento(){
     window.location.href = "./judgement.html";
 }
-// window.addEventListener('focus', function() { 
-//     ativarMusica();
-//     });
+function visualizarDesempenho(){
+    window.location.href = "./dashboard.html";
+}
 document.addEventListener('visibilitychange', function() { 
     if (document.visibilityState === 'visible') { 
         ativarMusica(); 

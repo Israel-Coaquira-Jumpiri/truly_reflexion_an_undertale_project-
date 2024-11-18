@@ -2,63 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Gráfico de Competências estilo Undertale</title>
+    <title>Gráficos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        
-        body {
-            background-color: #000; /* Fundo preto */
-            color: #FFF; /* Texto branco */
-            font-family: 'Determination Mono Web';
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .chart-container {
-            width: 300px;
-            margin: 20px;
-        }
-        .chart-text {
-            text-align: center;
-            margin-top: -10px;
-            font-size: 14px;
-            color: #FFF;
-        }
-    </style>
+    <script src="../js/dashboards.js"></script>
+    <link rel="stylesheet" href="../css/dashboards.css">
 </head>
-<body>
-    <h1>Sans: "Quantos pontos de Determinação você tem, hein?"</h1>
-    <div class="chart-container">
-        <canvas id="chartDetermination"></canvas>
-        <div class="chart-text">Determinação</div>
+<body onload="tocarTema()">
+    <audio id="temaPagina" src="../assets/audios/temaCompetencias.mp3" loop></audio>
+    <audio id="butao_som" src="../assets/audios/MenuSelect.ogg"></audio>
+    <audio id="butao_hover_som" src="../assets/audios/MenuCursor.ogg"></audio>
+    <div class="barraLateral">
+        <h1>COMPETÊNCIAS</h1>
+        <div class="areaOpcoes">
+            <button id="cptDeterminacao" onmouseover="butaoHover()" class="competencias determinacao" onclick="somClick(); mostrarGrafico('determinacao')">DETERMINAÇÃO</button>
+            <button id="cptBravura" onmouseover="butaoHover()" class="competencias bravura delay" onclick="somClick(); mostrarGrafico('bravura')">BRAVURA</button>
+            <button id="cptJustica" onmouseover="butaoHover()" class="competencias justica" onclick="somClick(); mostrarGrafico('justica')">JUSTIÇA</button>
+            <button id="cptBondade" onmouseover="butaoHover()" class="competencias bondade delay" onclick="somClick(); mostrarGrafico('bondade')">BONDADE</button>
+            <button id="cptPaciencia" onmouseover="butaoHover()" class="competencias paciencia" onclick="somClick(); mostrarGrafico('paciencia')">PACIÊNCIA</button>
+            <button id="cptIntegridade" onmouseover="butaoHover()" class="competencias integridade delay" onclick="somClick(); mostrarGrafico('integridade')">INTEGRIDADE</button>
+            <button id="cptPerseveranca" onmouseover="butaoHover()" class="competencias perseveranca" onclick="somClick(); mostrarGrafico('perseveranca')">PERSEVERANÇA</button>
+        </div>
     </div>
-
+    <div class="areaGraficos">
+        <div class="chart-container">
+            <canvas id="graficoDeterminacao"></canvas>
+            <canvas id="graficoBravura"></canvas>
+            <canvas id="graficoJustica"></canvas>
+            <canvas id="graficoBondade"></canvas>
+            <canvas id="graficoPaciencia"></canvas>
+            <canvas id="graficoIntegridade"></canvas>
+            <canvas id="graficoPerseveranca"></canvas>
+        </div>
+        <span class="spnLegenda" id="spnLegenda">Seu nível de <span id="txtCompetencia">DETERMINAÇÃO</span> é de <span id="pctCompetencia">100%</span></span></span>
+    </div>
+        
     <script>
-        const ctx = document.getElementById('chartDetermination').getContext('2d');
-        new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Determinação', 'Falta Determinação...'],
-                datasets: [{
-                    data: [70, 100-70], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#F90202', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
-                    borderWidth: 5,
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false, // Sem legenda para manter o visual simples
-                    },
-                    tooltip: {
-                        enabled: true, // Desabilita o tooltip para parecer mais o estilo Undertale
-                    }
-                }, // Rosca com corte mais largo
-            }
-        });
+        
     </script>
 </body>
 </html>

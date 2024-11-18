@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/sessao.css">
-    <script src="../js/sessao.js"></script>
+    <script src="../js/sessao.js"></script> 
 </head>
 <body onload="validarSessao(); ativarMusica()">
     <audio id="menu_theme" src="../assets/audios/Undereflexion - Menu Theme.mp3" loop></audio>
@@ -16,7 +16,7 @@
         <div class="areaButtons">
 
             <button onmouseover="butaoHover()" onclick="somClick(); iniciarJulgamento()" class="butao texto">Julgamento</button>
-            <button onmouseover="butaoHover()" onclick="somClick();" class="butao texto">Dashboards</button>
+            <button onmouseover="butaoHover()" onclick="somClick(); visualizarDesempenho()" class="butao texto">Desempenho</button>
             <button onmouseover="butaoHover()" onclick="somClick();" class="butao texto">Extras</button>
             <button onmouseover="butaoHover()" onclick="somClick(); limparSessao()" class="butao texto">Sair</button>
         </div>
