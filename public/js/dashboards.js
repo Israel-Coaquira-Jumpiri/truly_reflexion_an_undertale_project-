@@ -8,6 +8,7 @@ function butaoHover (){
     butao_hover_som.play()
 }
 function somClick (){
+    butao_som.currentTime = 0
     butao_som.play()
 }
 

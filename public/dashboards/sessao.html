@@ -7,18 +7,18 @@
     <link rel="stylesheet" href="../css/sessao.css">
     <script src="../js/sessao.js"></script> 
 </head>
-<body onload="validarSessao(); ativarMusica()">
+<body onload="validarSessao(); ativarMusica()"> 
     <audio id="menu_theme" src="../assets/audios/Undereflexion - Menu Theme.mp3" loop></audio>
     <audio id="butao_som" src="../assets/audios/MenuSelect.ogg"></audio>
     <audio id="butao_hover_som" src="../assets/audios/MenuCursor.ogg"></audio>
         <h1 class="titulo">UNDEREFLEXION</h1>
-        <span class="texto">Bem vindo <span id="b_usuario" class="texto">Usuário</span>!</span>
+        <span class="texto subtitulo">Bem vindo <span id="b_usuario" class="texto">Usuário</span>!</span>
         <div class="areaButtons">
 
-            <button onmouseover="butaoHover()" onclick="somClick(); iniciarJulgamento()" class="butao texto">Julgamento</button>
-            <button onmouseover="butaoHover()" onclick="somClick(); visualizarDesempenho()" class="butao texto">Desempenho</button>
-            <button onmouseover="butaoHover()" onclick="somClick();" class="butao texto">Extras</button>
-            <button onmouseover="butaoHover()" onclick="somClick(); limparSessao()" class="butao texto">Sair</button>
+            <button onmouseover="butaoHover()" onclick="somClick(); iniciarJulgamento()" class="butao texto esquerdo">Julgamento</button>
+            <button onmouseover="butaoHover()" onclick="somClick(); visualizarDesempenho()" class="butao texto esquerdo">Desempenho</button>
+            <button onmouseover="butaoHover()" onclick="somClick();" class="butao texto direito">Extras</button>
+            <button onmouseover="butaoHover()" onclick="somClick(); limparSessao()" class="butao texto direito">Sair</button>
         </div>
         <div class="brilhos"></div>
 </body>
