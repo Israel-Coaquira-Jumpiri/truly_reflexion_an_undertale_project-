@@ -5,7 +5,7 @@ function autenticar(req, res) {
     var senha = req.body.senhaServer;
 
     if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu email está undefinedo!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
@@ -19,10 +19,10 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
                                      res.status(200).json({
-                                         id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email,
+                                        idUsuario: resultadoAutenticar[0].idUsuario,
                                         nome: resultadoAutenticar[0].nome,
-                                        senha: resultadoAutenticar[0].senha,
+                                        email: resultadoAutenticar[0].email,
+                                        acessoJulgamento: resultadoAutenticar[0].acessoJulgamento
                                     });
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
@@ -74,8 +74,30 @@ function cadastrar(req, res) {
             );
     }
 }
+function atualizarAcesso(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var idusuario = req.body.idUsuarioServer;
+
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        usuarioModel.atualizarAcesso(idusuario)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) { 
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a atualização! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
 
 module.exports = {
     autenticar,
-    cadastrar
+    cadastrar,
+    atualizarAcesso
 }

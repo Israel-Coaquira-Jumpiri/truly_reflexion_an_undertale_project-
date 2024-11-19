@@ -270,6 +270,104 @@ var questoes = [
     var ptsIntegridade = 5;
     var ptsPerseveranca = 5;
 
+    function receberPontuacaoAtual(){
+        if (sessionStorage.PRIMEIRO_ACESSO == 0) {;
+            ptsDeterminacao = 5;
+            ptsBravura = 5;
+            ptsJustica = 5;
+            ptsBondade = 5;
+            ptsPaciencia = 5;
+            ptsIntegridade = 5;
+            ptsPerseveranca = 5;
+        } else{
+        fetch(`/pontuacoes/listarPontuacao/${sessionStorage.ID_USUARIO}`, {
+            method: "GET",
+        }).then(function (respostaPontuacoes) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (respostaPontuacoes.ok) {
+                console.log(respostaPontuacoes);
+
+                respostaPontuacoes.json().then(dados => {
+                    console.log(dados[0]);
+                    console.log(JSON.stringify(dados[0]));
+                    ptsDeterminacao = dados[0].determinacao;
+                    ptsBravura = dados[0].bravura;
+                    ptsJustica = dados[0].justica;
+                    ptsBondade = dados[0].bondade;
+                    ptsPaciencia = dados[0].paciencia;
+                    ptsIntegridade = dados[0].integridade;
+                    ptsPerseveranca = dados[0].perseveranca;
+                });
+            } else {
+                console.log("Houve um erro ao puxar os dados do questionario anterior!");
+                respostaPontuacoes.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+        return false;
+    }
+    }
+    function registrarPontuacaoFinal(){
+        fetch("/pontuacoes/cadastrarPontuacao", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                determinacaoServer: ptsDeterminacao,
+                bravuraServer: ptsBravura,
+                justicaServer: ptsJustica,
+                bondadeServer: ptsBondade,
+                pacienciaServer: ptsPaciencia,
+                integridadeServer: ptsIntegridade,
+                perseverancaServer: ptsPerseveranca,
+                fkUsuarioServer: sessionStorage.ID_USUARIO
+            }),
+          })
+            .then(function (resposta) {
+              console.log("resposta: ", resposta);
+        
+              if (resposta.ok) {
+                console.log("Pontuação cadastrada com sucesso!");
+              } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+              }
+            })
+            .catch(function (resposta) {
+              console.log(`#ERRO: ${resposta}`);
+            });
+          return false;
+    }
+    function atualizarAcesso(){
+        sessionStorage.PRIMEIRO_ACESSO = 1;
+        fetch("/usuarios/atualizarAcesso", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              idUsuarioServer: sessionStorage.ID_USUARIO,
+            }),
+          })
+            .then(function (resposta) {
+              console.log("resposta: ", resposta);
+        
+              if (resposta.ok) {
+                console.log("Atualização realizada com sucesso!");
+              } else {
+                throw "Houve um erro ao tentar realizar o cadastro!";
+              }
+            })
+            .catch(function (resposta) {
+              console.log(`#ERRO: ${resposta}`);
+            });
+        
+          return false;
+    }
     
     function iniciarQuestionario(){
         butao_som.play();
@@ -298,6 +396,42 @@ var questoes = [
             }
         }
     }
+    function cadastrarPontuacoesFinais(){
+        fetch("/pontuacoes/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                determinacaoServer: ptsDeterminacao,
+                bravuraServer: ptsBravura,
+                justicaServer: ptsJustica,
+                bondadeServer: ptsBondade,
+                pacienciaServer: ptsPaciencia,
+                integridadeServer: ptsIntegridade,
+                perseverancaServer: ptsPerseveranca,
+                fkUsuarioServer: sessionStorage.ID_USUARIO
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+            if (resposta.ok) {
+                console.log(resposta);
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+    
     function limparQuestao(){
         enunciado_a.innerHTML = '';
         enunciado_b.innerHTML = '';
@@ -395,8 +529,43 @@ var questoes = [
             console.log("Pontuação de Bondade Atual: ", ptsBondade);
             console.log("Pontuação de Paciência Atual: ", ptsPaciencia);
             console.log("Pontuação de Integridade Atual: ", ptsIntegridade);
-            console.log("Pontuação de Determinação Atual: ", ptsPerseveranca);
+            console.log("Pontuação de Perseverança Atual: ", ptsPerseveranca);
             renderizarQuestao();
+        if (ptsDeterminacao < 0) {
+            ptsDeterminacao = 0;        
+        } else if (ptsDeterminacao > 10) {
+            ptsDeterminacao = 10;
+        }
+        if (ptsBravura < 0) {
+            ptsBravura = 0;        
+        } else if (ptsBravura > 10) {
+            ptsBravura = 10;
+        }
+        if (ptsJustica < 0) {
+            ptsJustica = 0;        
+        } else if (ptsJustica > 10) {
+            ptsJustica = 10;
+        }
+        if (ptsBondade < 0) {
+            ptsBondade = 0;        
+        } else if (ptsBondade > 10) {
+            ptsBondade = 10;
+        }
+        if (ptsPaciencia < 0) {
+            ptsPaciencia = 0;        
+        } else if (ptsPaciencia > 10) {
+            ptsPaciencia = 10;
+        }
+        if (ptsIntegridade < 0) {
+            ptsIntegridade = 0;        
+        } else if (ptsIntegridade > 10) {
+            ptsIntegridade = 10;
+        }
+        if (ptsPerseveranca < 0) {
+            ptsPerseveranca = 0;        
+        } else if (ptsPerseveranca > 10) {
+            ptsPerseveranca = 10;
+        }
         } else {
             console.log("Finalizado");
             console.log("Pontuação de Determinação Final: ", ptsDeterminacao);
@@ -873,6 +1042,10 @@ var questoes = [
                 dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             await new Promise(resolve => setTimeout(resolve, 3000));
-                dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima";
+                dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima!";
                 await efeitorEscrever(dialogo_pergunta, somSans)
+            registrarPontuacaoFinal();
+            atualizarAcesso();
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            window.location.href = "../dashboards/sessao.html";
         }

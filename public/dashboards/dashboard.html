@@ -7,7 +7,7 @@
     <script src="../js/dashboards.js"></script>
     <link rel="stylesheet" href="../css/dashboards.css">
 </head>
-<body onload="tocarTema()">
+<body onload="tocarTema(); receberPontuacaoAtual();">
     <audio id="temaPagina" src="../assets/audios/temaCompetencias.mp3" loop></audio>
     <audio id="butao_som" src="../assets/audios/MenuSelect.ogg"></audio>
     <audio id="butao_hover_som" src="../assets/audios/MenuCursor.ogg"></audio>
@@ -33,7 +33,7 @@
             <canvas id="graficoIntegridade"></canvas>
             <canvas id="graficoPerseveranca"></canvas>
         </div>
-        <span class="spnLegenda" id="spnLegenda">Seu nível de <span id="txtCompetencia">DETERMINAÇÃO</span> é de <span id="pctCompetencia">100%</span></span></span>
+        <span class="spnLegenda" id="spnLegenda">Seu nível de <span id="txtCompetencia">DETERMINAÇÃO</span> é de <span id="pctCompetencia">10</span>0%</span></span>
     </div>
         
     <script>
