@@ -28,8 +28,13 @@ SELECT * FROM Pontuacao;
 INSERT INTO Pontuacao VALUES 
 (DEFAULT, 3, 5, 5, 5, 4, 5, 5, 10);
 
+TRUNCATE TABLE Pontuacao;
+DROP TABLE Pontuacao;
+TRUNCATE TABLE Usuario;
 ALTER TABLE Usuario ADD COLUMN acessoJulgamento TINYINT;
-
+	
+    DELETE FROM usuario WHERE idUsuario = 9;
+    
 UPDATE Usuario SET acessoJulgamento = 1 WHERE idusuario = 1;
 
 SELECT * FROM Pontuacao AS p LEFT JOIN Usuario AS u ON p.fkUsuario = u.idUsuario WHERE idUsuario = 1;

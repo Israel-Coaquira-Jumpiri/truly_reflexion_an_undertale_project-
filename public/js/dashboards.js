@@ -83,9 +83,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Determinação', 'Falta Determinação...'],
                 datasets: [{
-                    data: [ptsDeterminacao, 10-ptsDeterminacao], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#ff0000', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsDeterminacao, 10-ptsDeterminacao], 
+                    backgroundColor: ['#ff0000', '#333333'],
+                    borderColor: '#000000',
                     borderWidth: 0,
                 }]
             },
@@ -117,9 +117,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Bravura', 'Falta Bravura...'],
                 datasets: [{
-                    data: [ptsBravura, 10-ptsBravura], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#ff8c00', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsBravura, 10-ptsBravura],
+                    backgroundColor: ['#ff8c00', '#333333'],
+                    borderColor: '#000000',
                     borderWidth: 0,
                 }]
             },
@@ -152,9 +152,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Justiça', 'Falta Justiça...'],
                 datasets: [{
-                    data: [ptsJustica, 10-ptsJustica], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#ffff00', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsJustica, 10-ptsJustica],
+                    backgroundColor: ['#ffff00', '#333333'],
+                    borderColor: '#000000',
                     borderWidth: 0,
                 }]
             },
@@ -187,9 +187,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Bondade', 'Falta Bondade...'],
                 datasets: [{
-                    data: [ptsBondade, 10-ptsBondade], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#00ff59', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsBondade, 10-ptsBondade],
+                    backgroundColor: ['#00ff59', '#333333'],
+                    borderColor: '#000000',
                     borderWidth: 0,
                 }]
             },
@@ -222,9 +222,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Paciência', 'Falta Paciência...'],
                 datasets: [{
-                    data: [ptsPaciencia, 10-ptsPaciencia], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#00fff7', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsPaciencia, 10-ptsPaciencia],
+                    backgroundColor: ['#00fff7', '#333333'],
+                    borderColor: '#000000', 
                     borderWidth: 0,
                 }]
             },
@@ -256,9 +256,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Integridade', 'Falta Integridade...'],
                 datasets: [{
-                    data: [ptsIntegridade, 10-ptsIntegridade], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#0008ff', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsIntegridade, 10-ptsIntegridade],
+                    backgroundColor: ['#0008ff', '#333333'],
+                    borderColor: '#000000',
                     borderWidth: 0,
                 }]
             },
@@ -290,9 +290,9 @@ function mostrarGrafico(competencia){
             data: {
                 labels: ['Perseverança', 'Falta Perseverança...'],
                 datasets: [{
-                    data: [ptsPerseveranca, 10-ptsPerseveranca], // Exemplo de dados, com 70% de Determinação
-                    backgroundColor: ['#ff00ea', '#333333'], // Branco e cinza escuro
-                    borderColor: '#000000', // Preto para simular uma borda forte
+                    data: [ptsPerseveranca, 10-ptsPerseveranca],
+                    backgroundColor: ['#ff00ea', '#333333'],
+                    borderColor: '#000000',
                     borderWidth: 0,
                 }]
             },

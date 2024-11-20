@@ -3,24 +3,24 @@ var questoes = [
         pergunta: "Durante uma apresentação em grupo, um dos colegas comete um erro que pode prejudicar a nota de todos. Qual é a sua reação?",
         alternativas: [
             { enunciado: "A) Com calma, você ajuda a corrigir o erro na apresentação, se possível, ou minimiza as consequências sem expor o colega.", 
-                pontuacao: { Determinacao: 0, Bravura: 1, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 0, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 0, Bravura: 1, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 1, Perseveranca: 0 } },
             { enunciado: "B) Você tenta contornar a situação, mas não interfere muito para não se comprometer.", 
-                pontuacao: { Determinacao: 1, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: -1, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 1, Bravura: 1, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "C) Você corrige o erro, mas faz questão de mencionar que o problema não foi causado por você.", 
-                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: -2, Paciencia: -1, Integridade: -2, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: -1, Paciencia: -1, Integridade: -1, Perseveranca: 0 } },
             { enunciado: "D) Não tenta corrigir o erro, preferindo seguir a apresentação.", 
-                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: -1, Paciencia: 0, Integridade: -2, Perseveranca: 0 } },
+                pontuacao: { Determinacao: -1, Bravura: -1, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: -2, Perseveranca: 0 } },
         ]
     },
     {
         pergunta: "Na reta final do semestre, você percebe que está atrasado em algumas matérias. Como lida com a situação?",
         alternativas: [
             { enunciado: "A) Organiza um cronograma de estudos intensivo para recuperar o tempo.", 
-                pontuacao: { Determinacao: 2, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: 1, Perseveranca: 2 } },
+                pontuacao: { Determinacao: 2, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 1, Integridade: 1, Perseveranca: 2 } },
             { enunciado: "B) Concentra-se nas matérias mais importantes e deixa as outras para depois.", 
-                pontuacao: { Determinacao: 1, Bravura: 0, Justica: -1, Bondade: 0, Paciencia: 0, Integridade: -1, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 1, Bravura: 1, Justica: -1, Bondade: 0, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "C) Pede ajuda ao professor para entender o conteúdo. ", 
-                pontuacao: { Determinacao: 2, Bravura: 1, Justica: 1, Bondade: 0, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 0, Bravura: 1, Justica: 1, Bondade: 1, Paciencia: -1, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "D) Decide relaxar e deixar para o próximo semestre o que não der tempo.", 
                 pontuacao: { Determinacao: -2, Bravura: -1, Justica: -1, Bondade: 0, Paciencia: 0, Integridade: -1, Perseveranca: 0 } },
         ]
@@ -57,9 +57,9 @@ var questoes = [
             { enunciado: "A) Você tenta acalmar a situação e conversar com o colega depois.", 
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 1, Perseveranca: 0 } },
             { enunciado: "B) Você ignora o comportamento dele e foca na tarefa.", 
-                pontuacao: { Determinacao: 1, Bravura: -1, Justica: -1, Bondade: -1, Paciencia: 1, Integridade: 0, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 1, Bravura: -1, Justica: -1, Bondade: 0, Paciencia: 1, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "C) Você evita interagir com o colega para não se envolver no conflito.", 
-                pontuacao: { Determinacao: -1, Bravura: -1, Justica: 0, Bondade: -2, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
+                pontuacao: { Determinacao: -1, Bravura: -1, Justica: 0, Bondade: -1, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "D) Responde ao comportamento rude da mesma forma para demonstrar que não aceita.", 
                 pontuacao: { Determinacao: 0, Bravura: 1, Justica: 0, Bondade: -2, Paciencia: -2, Integridade: -1, Perseveranca: 0 } },
         ]
@@ -72,7 +72,7 @@ var questoes = [
             { enunciado: "B) Agradece o elogio sem corrigir o erro, mas sente-se incomodado.", 
                 pontuacao: { Determinacao: 0, Bravura: -1, Justica: -2, Bondade: 0, Paciencia: 1, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "C) Ignora a situação, mas evita colaborar com o colega no futuro.", 
-                pontuacao: { Determinacao: -1, Bravura: -1, Justica: -1, Bondade: 0, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
+                pontuacao: { Determinacao: -1, Bravura: -1, Justica: -1, Bondade: -1, Paciencia: 0, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "D) Corrige o elogio em público, deixando claro que você foi o responsável.", 
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: -2, Paciencia: -1, Integridade: 0, Perseveranca: 0 } },
         ]
@@ -104,16 +104,16 @@ var questoes = [
         ]
     },
     {
-        pergunta: "Você recebe uma crítica construtiva de um lider pedagógico sobre seu trabalho. Como reage?",
+        pergunta: "Você recebe uma feedback de um lider pedagógico em relação a seu trabalho. Como reage?",
         alternativas: [
             { enunciado: "A) Agradece o feedback e tenta melhorar na próxima oportunidade.", 
                 pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 1, Paciencia: 1, Integridade: 1, Perseveranca: 0 } },
             { enunciado: "B) Escuta o feedback, mas evita se comprometer em aplicar as sugestões.  ", 
                 pontuacao: { Determinacao: 1, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: -1, Perseveranca: 0 } },
             { enunciado: "C) Justifica-se para o professor, evitando aceitar a crítica.", 
-                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: -1, Integridade: 0, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 0, Bravura: 0, Justica: -1, Bondade: 0, Paciencia: -1, Integridade: 0, Perseveranca: 0 } },
             { enunciado: "D) Reage defensivamente, ignorando a crítica.", 
-                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: 0, Paciencia: 0, Integridade: -2, Perseveranca: 0 } },
+                pontuacao: { Determinacao: 0, Bravura: 0, Justica: 0, Bondade: -1, Paciencia: -1, Integridade: -2, Perseveranca: 0 } },
         ]
     },
     {
@@ -612,7 +612,6 @@ var questoes = [
             const dialogoInicial = document.getElementById('dialogo_pergunta'); 
             const somSans = document.getElementById('sans-sound'); 
                 if (dialogoInicial && somSans) { 
-                    // Carrega o áudio para garantir que ele esteja pronto para ser reproduzido 
                     somSans.load();
                     desabilitarIniciar();
                     await efeitorEscrever(dialogoInicial, somSans);
@@ -644,10 +643,22 @@ var questoes = [
             dialogo_pergunta.innerHTML = 'Creio que cheguei a uma conclusão sobre você!'
             await efeitorEscrever(dialogo_pergunta, somSans)
             await new Promise(resolve => setTimeout(resolve, 2000));
-                await exibirCutsceneFinal();
-    
+            await exibirCutsceneFinal();
             recado_final_soundtrack.play();
             dialogo_pergunta.innerHTML ='';
+            // await efeitorEscrever(dialogo_pergunta, somSans)
+
+            // if (ptsDeterminacao > 6) {
+            //     await new Promise(resolve => setTimeout(resolve, 3000));
+            //     dialogo_pergunta.innerHTML = 'Heh, parece que você é uma pessoa bem determinada, e que não desiste fácil, isso é um ponto interessante... ';
+            //     await efeitorEscrever(dialogo_pergunta, somSans)
+            //     if (ptsBravura > 6) {
+            //         await new Promise(resolve => setTimeout(resolve, 3000));
+            //         dialogo_pergunta.innerHTML = 'Além de determinada você demonstra um grande coração';
+            //         await efeitorEscrever(dialogo_pergunta, somSans)
+            //     }
+            // }
+
             if (ptsBondade < 6 && ptsJustica < 6) {
                 await new Promise(resolve => setTimeout(resolve, 3000));
                     dialogo_pergunta.innerHTML = 'Heh, você tá meio... na defensiva, né? Ser gentil não mata ninguém, cara. E, olha, até a justiça precisa de uma mãozinha. Pensa nisso e...';

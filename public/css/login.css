@@ -9,7 +9,6 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
 }
 .caixaOpcoes{
     display: flex;
@@ -156,7 +155,7 @@ body{
   }
   .voltar{
     font-size: 3vh;
-  }
+  } 
   .btnEntrar{
     position: absolute;
     bottom: 0;
@@ -182,4 +181,20 @@ body{
   }
   .btnEntrar:focus .almaEntrar, .btnEntrar:hover .almaEntrar{
     color: red;
+  }
+  .bannerLogo{
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: #000;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 5;
+  }
+  .logoBnr{
+    position: absolute;
+    color: white;
+    font-family: 'Monster Friend Fore';
+    font-size: 4vw;
   }

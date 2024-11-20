@@ -11,13 +11,17 @@ body{
 }
 .titulo{
     font-family: 'Monster Friend Fore';
+    font-weight: unset;
     color: white;
     font-size: 4vw;
     margin-top: 30vh;
     animation: surgirDeBaixo 2s;
 }
 .subtitulo{
-    animation: surgirDeBaixo 2s
+    opacity: 0;
+    animation: aparecerFantasma 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
 }
 .texto{
     color: white;
@@ -97,7 +101,7 @@ body{
   @keyframes surgirDeBaixo {
     from{
         opacity: 1;
-        transform: translateY(10vh);
+        transform: translateY(15vh);
     }
     to{
         opacity: 1;
@@ -119,6 +123,14 @@ body{
         background: linear-gradient(to bottom, rgba(3, 34, 73, 0.1), rgba(20, 200, 255, 0.3), rgba(14, 172, 230, 0.5));
         opacity: 1;
         height: 30vh;
+    }
+  }
+  @keyframes aparecerFantasma {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
     }
   }
   

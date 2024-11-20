@@ -9,6 +9,10 @@
     <script src="./js/sessao.js"></script>
   </head>             
   <body>
+    <audio src="./assets/audios/UndereflexionLogoSound.mp3" id="logoSound"></audio>
+    <div class="bannerLogo" id="bannerLoading">
+          <span class="logoBnr">UNDEREFLEXION</span>
+    </div>
   <div class="caixaOpcoes" id="caixa_opcoes">
         <span class="lvl">LVL 1</span>
         <span class="logo">UNDEREFLEXION</span>
@@ -94,9 +98,10 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.PRIMEIRO_ACESSO = json.acessoJulgamento;
 
+                    exibirLogo();
                     setTimeout(function () {
                         window.location = "./dashboards/sessao.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 3000);
 
                 });
 
@@ -121,11 +126,13 @@
         cardErro.style.display = "none"
     }
 
-function cadastrar() {
-  // aguardar();
+    function exibirLogo(){
+      bannerLoading.style.display = 'flex';
+      logoSound.currentTime = 0;
+      logoSound.play();
+    }
 
-  //Recupere o valor da nova input pelo nome do id
-  // Agora vá para o método fetch logo abaixo
+function cadastrar() {
   var nomeVar = nome_input.value;
   var emailVar = email_input.value;
   var senhaVar = senha_input.value;
