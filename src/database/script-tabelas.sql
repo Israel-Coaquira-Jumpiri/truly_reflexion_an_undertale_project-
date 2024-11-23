@@ -25,6 +25,7 @@ CREATE TABLE Pontuacao (
 SELECT * FROM Usuario;
 SELECT * FROM Pontuacao;
 
+DELETE FROM Usuario WHERE idUsuario = 12;
 INSERT INTO Pontuacao VALUES 
 (DEFAULT, 3, 5, 5, 5, 4, 5, 5, 10);
 

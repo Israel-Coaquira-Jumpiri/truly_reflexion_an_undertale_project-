@@ -132,7 +132,7 @@ body{
     position: absolute;
     bottom: 0;
     left: 0;
-    background: linear-gradient(to bottom, #0322491a, #14c8ff4d, #0eace680);
+    background: linear-gradient(to bottom, #0322491a, #ff14144d, #e60e0e80);
     animation: brilho 2s infinite;
   }
   @keyframes brilho {

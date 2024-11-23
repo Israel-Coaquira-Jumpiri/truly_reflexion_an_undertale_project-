@@ -599,7 +599,7 @@ var questoes = [
                 texto.innerHTML += letra; 
                 if (som) { 
                     som.currentTime = 0; 
-                    som.play().catch(error => console.error('Erro ao reproduzir áudio:', error));  
+                    som.play()
                 }
                 if (i == texto_em_vetor.length -1) {
                     resolve();
@@ -1048,7 +1048,7 @@ var questoes = [
                 await new Promise(resolve => setTimeout(resolve, 3000));
                 dialogo_pergunta.innerHTML = "Você sabe o que é certo e vive de acordo com isso, mas será que tá fazendo o suficiente pra alcançar o que realmente importa?";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-            }
+            } 
             await new Promise(resolve => setTimeout(resolve, 3000));
                 dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
                 await efeitorEscrever(dialogo_pergunta, somSans)

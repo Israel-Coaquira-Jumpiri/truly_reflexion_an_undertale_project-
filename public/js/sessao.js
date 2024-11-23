@@ -23,17 +23,18 @@ function butaoHover (){
     butao_hover_som.play()
 }
 function somClick (){
+    butao_som.currentTime = 0;
     butao_som.play()
 }
 function limparSessao() {
     sessionStorage.clear();
-    window.location = "../login.html";
+    setTimeout(() => window.location = "../login.html", 200)
 }
 function iniciarJulgamento(){
-    window.location.href = "./judgement.html";
+    setTimeout(() => window.location.href = "./judgement.html", 200)
 }
 function visualizarDesempenho(){
-    window.location.href = "./dashboard.html";
+    setTimeout(() => window.location.href = "./dashboard.html", 200)
 }
 document.addEventListener('visibilitychange', function() { 
     if (document.visibilityState === 'visible') { 
