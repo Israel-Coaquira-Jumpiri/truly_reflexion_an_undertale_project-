@@ -646,18 +646,18 @@ var questoes = [
             await exibirCutsceneFinal();
             recado_final_soundtrack.play();
             dialogo_pergunta.innerHTML ='';
-            // await efeitorEscrever(dialogo_pergunta, somSans)
+            await efeitorEscrever(dialogo_pergunta, somSans)
 
-            // if (ptsDeterminacao > 6) {
-            //     await new Promise(resolve => setTimeout(resolve, 3000));
-            //     dialogo_pergunta.innerHTML = 'Heh, parece que você é uma pessoa bem determinada, e que não desiste fácil, isso é um ponto interessante... ';
-            //     await efeitorEscrever(dialogo_pergunta, somSans)
-            //     if (ptsBravura > 6) {
-            //         await new Promise(resolve => setTimeout(resolve, 3000));
-            //         dialogo_pergunta.innerHTML = 'Além de determinada você demonstra um grande coração';
-            //         await efeitorEscrever(dialogo_pergunta, somSans)
-            //     }
-            // }
+            if (ptsDeterminacao > 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Ei, sua determinação está bem alta! Dá pra ver que você não desiste fácil e isso é incrível. Sinto-me inspirado ao ver como você se mantém firme mesmo quando as coisas ficam difíceis. Continue nesse ritmo, porque é com essa energia que grandes coisas acontecem!";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                if (ptsBravura > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Além de determinada você demonstra um grande coração';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+            }
 
             if (ptsBondade < 6 && ptsJustica < 6) {
                 await new Promise(resolve => setTimeout(resolve, 3000));
