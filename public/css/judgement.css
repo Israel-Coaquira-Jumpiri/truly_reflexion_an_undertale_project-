@@ -50,8 +50,8 @@ body{
     font-family: 'Determination Sans Web';
     width: 28vw;
     padding: 1vw;
-    font-size: 3.2vh;
-    right: 5vh;
+    font-size: 1.5vw;
+    left: 48vw;
     border-radius: 2vh;
   }
   .caixaBatalha{
@@ -67,7 +67,7 @@ body{
   }
   .enunciados{
     color: #fff;
-    font-size: 3.5vh;
+    font-size: 1.6vw;
     margin-left: 2vh;
   }
   .cima{
@@ -112,10 +112,12 @@ body{
   }
   .butao{
     height:12vh;
+    display: inline-block;
+    white-space: nowrap;
     padding:0 0.4vw;
     text-align: center;
     font-family: 'Determination Sans Web';
-    font-size: 10vh;
+    font-size: 4.8vw;
     background-color: black;
     border: 0.5vh solid #FF7F27;
     color: #FF7F27;

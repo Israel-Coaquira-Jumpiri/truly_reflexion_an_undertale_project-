@@ -14,7 +14,7 @@ function validarSessao() {
 function ativarMusica(){ 
     var audio = document.getElementById('menu_theme'); 
     if (audio) {  // Reinicia o som 
-        audio.play().catch(error => console.error('Erro ao reproduzir áudio:', error)); 
+        audio.play()
     } else { 
         console.error('Elemento #menu_theme não encontrado.'); 
     }

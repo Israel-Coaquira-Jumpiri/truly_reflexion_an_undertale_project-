@@ -635,7 +635,7 @@ var questoes = [
             }
         }
         
-        async function receberMensagemFinal (){
+        async function receberMensagemFinal(){
             limparQuestao();
             julgamento_soundtrack.pause();
             var somSans = document.getElementById('sans-sound'); 
@@ -645,7 +645,7 @@ var questoes = [
             await new Promise(resolve => setTimeout(resolve, 2000));
             await exibirCutsceneFinal();
             recado_final_soundtrack.play();
-            dialogo_pergunta.innerHTML ='';
+            dialogo_pergunta.innerHTML ='Bom, por onde posso começar...';
             await efeitorEscrever(dialogo_pergunta, somSans)
 
             if (ptsDeterminacao > 6) {
@@ -711,6 +711,69 @@ var questoes = [
                     dialogo_pergunta.innerHTML = 'Sua perseverança parece estar um pouco fraca. Isso pode significar que você tá se sentindo desmotivado em algumas situações. Lembra por que começou? Reconectar com seus objetivos pode te ajudar a encontrar forças pra continuar.';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
+            } else{
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Percebi que sua determinação precisa ser trabalhada. Sinto-me preocupado porque, sem determinação, nós acabamos meio perdidos no caminho, mas não se preocupe. É normal passar por isso as vezes, o importante é se levantar e tentar de novo, focando no que realmente importa.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                if (ptsBravura > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Mas, olha lá sua bravura está muito boa! Sinto-me animado porque, quando você tem coragem, pode superar qualquer coisa. A determinação pode não estar onde deveria, mas a coragem te ajuda a continuar, mesmo sem saber exatamente o que fazer. Que tal usar sua bravura para ir atrás de coisas que realmente te motivem? Isso vai te dar aquele empurrãozinho pra seguir em frente.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Porém, percebi que sua bravura não tá tão alta quanto poderia. Isso pode dificultar a hora de dar o primeiro passo em situações desafiadoras. Que tal começar enfrentando pequenos desafios e ir aumentando aos poucos?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsJustica > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Porém percebi que sua justiça está legal! Sinto-me feliz porque, mesmo sem toda a determinação, você ainda se preocupa com o que é certo. Você tem um norte! Embora às vezes ele pareça um pouco distante. Que tal dar mais atenção a isso e pensar no que é justo para te dar um motivo extra de seguir adiante?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Além disso, percebi que sua justiça está um pouco baixa. Sinto-me inquieto porque, sem agir de acordo com o que é certo, a determinação fica sem direção. Que tal dar mais atenção ao que é justo pra você? Isso vai ajudar a trazer um pouco mais de clareza, e talvez até te motive a encontrar a determinação que você precisa.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsBondade > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'E a bondade também está no seu lado positivo. Sinto-me tocado porque, quando você tem bondade, é mais fácil encontrar propósito nas ações. Isso vai te ajudar a dar um foco maior, mesmo quando a determinação não parece tão forte. Que tal praticar mais a bondade e deixar ela guiar seus próximos passos?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Percebi que a bondade está baixa. Sinto-me preocupado, porque, sem bondade, fica difícil de manter a determinação e encontrar um propósito. Que tal começar com pequenos gestos de bondade, mesmo que você não tenha muita motivação? Sei que você irá conseguir!';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPaciencia > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Ah, e sua paciência também tá bem alta, né? Sinto-me aliviado porque a paciência vai te ajudar a seguir em frente sem pressa, mesmo quando a determinação não está lá. Você vai saber esperar o momento certo e continuar a jornada, sem pressões desnecessárias. Isso é fundamental pra te ajudar a superar essa fase de baixa determinação.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Notei que a paciência tá bem abaixo. Sinto-me desconfortável, porque, sem paciência, sua determinação vai ser como tentar correr sem ter fôlego. Que tal dar uma pausa e tentar ser mais calmo consigo mesmo? Respire fundo, e com o tempo a paciência vai se encaixando com a sua determinação.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsIntegridade > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Por fim, a sua integridade também tá boa, o que é uma grande vantagem. Sinto-me confiante porque, quando você tem integridade, é mais fácil manter o foco nos objetivos, mesmo que a determinação não seja a maior. Que tal usar seus princípios pra trazer mais força pra sua caminhada? Isso vai ajudar muito.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Percebi que sua integridade também está baixa. Sinto-me atendo porque, sem uma base sólida de valores, fica difícil continuar quando a determinação tá em baixa. Que tal refletir mais sobre seus princípios e o que realmente importa pra você? Isso pode te ajudar a encontrar a força pra buscar a determinação de volta';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPerseveranca > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua perseverança tá legal, o que é bom! Isso mostra que, mesmo quando as coisas ficam difíceis, você continua indo em frente. Que tal usar essa força de persistência pra reacender a chama da determinação? Às vezes, só precisamos de um empurrãozinho.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'A sua perseverança parece baixa. Sinto-me preocupado, porque isto pode te deixar sem direção. Mas calma, isso acontece com todo mundo às vezes. Que tal começar pequeno? Com uma meta simples, que você pode conquistar, e trabalhe nela um passo de cada vez. Persistência é algo que cresce com prática, e ela vai trazer a determinação junto.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
             }
 
             if (ptsBravura > 6) {
@@ -767,6 +830,60 @@ var questoes = [
                     dialogo_pergunta.innerHTML = 'Sua perseverança tá oscilando. Sinto-me atento porque bravura sem persistência pode fazer com que você desista antes de alcançar seus objetivos. Que tal se comprometer com pequenos passos diários? Sei que você consegue manter o foco!';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
+            } else{
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Sua bravura tá tão forte que parece até que você tá pronto pra enfrentar qualquer desafio. Sinto-me inspirado porque essa coragem de seguir em frente é o que faz toda a diferença quando as coisas complicam. Mantenha-se firme, porque você tá indo muito bem!";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+
+                if (ptsJustica > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua justiça é admirável, isso é algo que poucos têm. Mas sua bravura tá um pouco baixa, o que pode dificultar agir mesmo quando sabe o que é certo. Sinto-me esperançoso porque você já tem a ética certa, só precisa confiar mais no seu instinto.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Percebo que sua justiça está baixa também, o que pode dificultar agir quando situações desafiadoras aparecem. Sinto-me preocupado porque deixar passar o que é certo pode trazer arrependimentos. Que tal começar refletindo sobre pequenos passos pra mudar isso?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsBondade > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua bondade está legal, você é o tipo de pessoa que fortalece o ambiente! Mas com a bravura baixa, talvez esteja hesitando em tomar a iniciativa de ajudar ainda mais. Sinto-me otimista porque já vejo o potencial aí, só falta um empurrãozinho.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'A sua bondade está baixa... pode parecer difícil se conectar com os outros ou dar aquele primeiro passo. Sinto-me reflexivo porque às vezes todos precisamos de um empurrão pra sair da zona de conforto. Que tal começarmos com pequenos atos de gentileza?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPaciencia > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua paciência está legal. Mas percebo que, com bravura baixa, talvez você esteja esperando demais pra agir. Sinto-me confiante porque paciência e coragem juntos podem ser uma combinação poderosa.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'A paciência está baixa também, está faltando a habilidade de esperar resultados e a iniciativa também... Sinto-me atento porque me pergunto: o que tem te segurado ultimamente? Talvez seja hora de ajustar o foco e ser mais gentil consigo mesmo.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsIntegridade > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Integridade alta... Isso mostra que você é uma pessoa de princípios. Mas sem bravura, pode ser difícil defender esses valores em situações difíceis. Sinto-me animado porque já tá no caminho certo, só falta dar aquele passo a mais.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua integridade está um pouco baixa, o que pode tornar difícil manter seus valores nas decisões. Sinto-me preocupado porque isso pode gerar conflitos internos. Que tal começar identificando o que é mais importante pra você e agir com isso em mente?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPerseveranca > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua perseverança tá legal, você definitivamente não desiste fácil. Mas a bravura baixa pode estar te impedindo de arriscar em coisas novas. Sinto-me encorajado porque sei que, com essa persistência, a coragem vai vir naturalmente.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Com bravura e perseverança baixas, pode parecer que desistir é a saída mais fácil. Sinto-me esperançoso porque você ainda tá aqui, o que já mostra que algo em você quer mudar. Vamos tentar, um passinho de cada vez? Pequenas vitórias fazem grandes diferenças.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
             }
 
             if (ptsJustica > 6) {
@@ -790,7 +907,7 @@ var questoes = [
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 } else{
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Porém, sua perseverança está baixa. Sinto-me atento porque justiça sem paciência pode levar a julgamentos apressados. Que tal exercitar mais escuta e reflexão antes de agir? Tenho certeza de que isso vai fortalecer sua presença.';
+                    dialogo_pergunta.innerHTML = 'Porém, sua paciência está baixa. Sinto-me atento porque justiça sem paciência pode levar a julgamentos apressados. Que tal exercitar mais escuta e reflexão antes de agir? Tenho certeza de que isso vai fortalecer sua presença.';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
 
@@ -813,39 +930,83 @@ var questoes = [
                     dialogo_pergunta.innerHTML = 'Sua perseverança precisa ser trabalhada. Isso pode significar que você não consegue finalizar o que começa. Repito, Lembra por que começou? Reconectar com seus objetivos pode te ajudar a encontrar forças pra continuar.';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
-            }
-            if (ptsBondade > 6) {
+            } else{
                 await new Promise(resolve => setTimeout(resolve, 3000));
-                dialogo_pergunta.innerHTML = "Sua bondade me chama atenção. Sinto-me inspirado porque ser gentil é algo que ilumina o dia de todo mundo. Continue assim! O mundo precisa de mais bondade, e você tá mandando muito bem nisso!";
+                dialogo_pergunta.innerHTML = "Eu notei que sua justiça tá meio baixa... Sinto-me preocupado, porque isso pode afetar como você se relaciona com os outros. Mas sei que você tem o potencial pra melhorar, só precisamos trabalhar nisso juntos";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                
-                if (ptsPaciencia > 6) {
+
+                if (ptsBondade > 6) {
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Além disso, sua paciência está ótima. Sinto-me tranquilo porque essa combinação mostra que você sabe ouvir, esperar e agir no momento certo, o que fortalece ainda mais suas conexões. Continue assim e iras construir pontes com quem está ao seu redor!';
+                    dialogo_pergunta.innerHTML = 'Embora sua justiça não esteja no melhor nível, vejo que sua bondade é forte. Sinto-me esperançoso porque sua bondade pode ajudar a compensar um pouco, mas precisamos focar mais na justiça também. Vamos encontrar esse equilíbrio?';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 } else{
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Porém, vi que sua paciência tá um pouco baixa. Sinto-me preocupado porque bondade sem paciência pode ser mal interpretada ou até mesmo frustrante pra você. Que tal tentar respirar fundo antes de agir? Isso pode te trazer mais equilíbrio.';
+                    dialogo_pergunta.innerHTML = 'Ambas, justiça e bondade, estão precisando de atenção... Sinto-me preocupado, porque essas duas qualidades são importantes pra ajudar você a lidar com os outros de forma mais equilibrada. Que tal a gente tentar melhorar um pouco cada uma delas?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPaciencia > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Sua paciência parece estar ótima, eu me sinto esperançoso, pois com essa paciência, você não realiza julgamentos apressados, e com ela podemos trabalhar o seu senso de justiça... Topa?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Justiça e paciência baixas, pode te levar a um caminho de julgamentos apressados e imorais, sinto me preocupado, pois são competências muito importantes para bons trabalhos em equipe, que tal tentarmos melhorar isso?';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
 
                 if (ptsIntegridade > 6) {
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Sua integridade está alta, e isso reforça ainda mais a sua bondade. Sinto-me confiante porque ser bondoso e com valores é um diferencial. Continue equilibrando essas duas qualidades, porque juntas elas são um verdadeiro exemplo!';
+                    dialogo_pergunta.innerHTML = 'Mesmo com sua justiça um pouco baixa, a integridade tá lá em cima! Isso é algo bem positivo. Sinto-me otimista porque sua integridade pode guiar suas escolhas, mas seria bom se a justiça estivesse mais em alta também. Que tal focarmos nisso?';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 } else{
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Sua integridade também tá precisando de atenção. Sinto-me atento porque ser bondoso sem valores concretos pode te deixar vulnerável. Vamos trabalhar em alinhar suas ações com seus princípios? Tenho certeza de que isso vai fortalecer sua confiança.';
+                    dialogo_pergunta.innerHTML = 'Com a justiça e a integridade abaixo, as coisas podem ficar difíceis... Sinto-me frustrado, porque essas qualidades são essenciais para as suas decisões. Mas sei que você pode melhorar. Vamos trabalhar nelas, juntos?';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
 
                 if (ptsPerseveranca > 6) {
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Sua perseverança também tá legal, o que mostra que sua bondade não é só passageira. Sinto-me motivado porque persistir no que é bom, mesmo quando as coisas não são fáceis, é uma habilidade rara. Tá no caminho certo!';
+                    dialogo_pergunta.innerHTML = 'Você tem perseverança, e isso é ótimo! Sinto-me encorajado porque, com essa perseverança, você pode superar qualquer dificuldade, inclusive em relação à justiça. Vamos trabalhar juntos para deixar sua justiça mais forte?';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 } else{
                     await new Promise(resolve => setTimeout(resolve, 3000));
-                    dialogo_pergunta.innerHTML = 'Percebi que sua perseverança tá baixa. Sinto-me atento porque ser bondoso é ótimo, mas persistir na bondade em momentos dificéis é o verdadeiro desafio. Que tal praticar pequenos atos de gentileza diários, mesmo em situações difíceis? Pode fazer diferença!';
+                    dialogo_pergunta.innerHTML = 'Sei que você tem potencial, mas tanto a justiça quanto a perseverança estão precisando de mais atenção... Sinto-me um pouco preocupado, mas com um pouco mais de esforço, você vai conseguir melhorar. Vamos focar nisso?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+            }
+            if (ptsBondade > 6) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Percebi que a bondade tá meio em baixa... Sinto que isso pode afetar suas relações com os outros. Mas não se preocupe, você pode melhorar, e eu tô aqui pra ajudar nisso.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                
+                if (ptsPaciencia > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Você tem paciência, e isso é algo raro. Mesmo que a bondade esteja baixa, isso mostra que você tem a capacidade de melhorar, de agir com mais calma e mais compreensão. Só precisa dar o primeiro passo.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Bondade e paciência estão precisando de mais atenção... Isso pode te fazer se sentir um pouco distante ou impaciente com os outros. É um sinal de que talvez seja hora de repensar como você se conecta com quem está ao seu redor.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsIntegridade > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'A integridade que você tem é forte. Isso me dá uma esperança de que, mesmo com a bondade em baixa, você pode transformar suas ações e impactar o mundo ao seu redor com sua honestidade e valores sólidos.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Com a bondade e a integridade em baixa, sinto que há uma desconexão com o que realmente importa. Eu sei que você pode melhorar isso, mas precisa se olhar de forma mais honesta e decidir mudar. Eu acredito que você consegue.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPerseveranca > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Eu vejo sua perseverança, e ela é impressionante. Mesmo com a bondade em baixa, sinto me confiante, pois acredito que você tem a força necessária para melhorar, passo a passo. Só não se esqueça de olhar com mais empatia para os outros.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Quando a bondade e a perseverança estão fracas, parece que é fácil desanimar. Eu sei que pode ser difícil, mas eu sinto que você tem capacidade de se levantar. Apenas dê um passo de cada vez, que a mudança virá.';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
             }
@@ -873,6 +1034,30 @@ var questoes = [
                     dialogo_pergunta.innerHTML = 'Sua perseverança tá precisando de um empurrão. Sinto-me atento porque paciência sem ação pode acabar virando acomodação. Vamos transformar essa calma em passos consistentes? Pequenos avanços podem levar a grandes conquistas!';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
+            } else{
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "A paciência não tá no seu melhor momento, e eu entendo... a vida pode ser bem agitada. Só que isso pode te fazer reagir de forma impetuosa. Precisa respirar fundo e tentar dar espaço pras coisas acontecerem com mais calma.";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+
+                if (ptsIntegridade > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Apesar da paciência estar em falta, sua integridade se destaca. Isso mostra que, mesmo em momentos de pressa, você tem a capacidade de agir de forma honesta e verdadeira. Só lembre-se de que agir com calma também é parte disso.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Com a paciência e a integridade em baixa, fica difícil tomar decisões que tragam resultados positivos. Você talvez sinta uma urgência de agir, mas, sem refletir, acaba prejudicando sua conexão com os outros. É hora de desacelerar e pensar mais nas suas atitudes.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
+
+                if (ptsPerseveranca > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Você tem perseverança, e isso é algo que poucos possuem. A paciência pode estar em baixa, mas sua determinação em seguir em frente é admirável. Apenas não se deixe levar pela pressa. A persistência também precisa de tempo.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'A paciência e a perseverança estão fraquinhas, né? Isso pode te fazer sentir que nada vai pra frente. Mas eu sei que você tem o que é preciso pra mudar, só precisa dar espaço para as coisas fluírem no seu tempo. Acredite em você.';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
             }
             if (ptsIntegridade > 6) {
                 await new Promise(resolve => setTimeout(resolve, 3000));
@@ -888,20 +1073,37 @@ var questoes = [
                     dialogo_pergunta.innerHTML = 'Sua perseverança parece estar um pouco fraca. Você está precisando ser um pouco mais consistente com seus valores. Lembre do que é importante para você! Eu sei que você consegue!.';
                     await efeitorEscrever(dialogo_pergunta, somSans)
                 }
+            } else{
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "Eu sinto que você tem se distanciado um pouco dos seus valores e princípios. Isso pode estar gerando insegurança nas suas decisões. Precisamos dar mais atenção àquilo que é realmente importante, pra que as coisas fluam de forma mais sincera. Que tal refletir mais antes de agir?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
+                
+                if (ptsPerseveranca > 6) {
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'Mesmo com a integridade um pouco comprometida, sua perseverança se mantém firme. Isso é bom, mas a persistência sem um norte claro pode te levar a resultados insatisfatórios. É importante alinhar suas ações com seus valores, assim você não vai apenas continuar, mas seguir de forma mais forte. Você poderia refletir sobre suas escolhas?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                } else{
+                    await new Promise(resolve => setTimeout(resolve, 3000));
+                    dialogo_pergunta.innerHTML = 'A falta de integridade e perseverança pode estar te deixando sem rumo, e eu sinto que isso deve ser difícil. Se continuar nesse caminho, as coisas tendem a desmoronar. Eu te encorajo a encontrar o equilíbrio entre o que é certo e o que realmente importa pra você. Vamos tentar fortalecer essas qualidades, juntos?';
+                    await efeitorEscrever(dialogo_pergunta, somSans)
+                }
             }
             if (ptsPerseveranca > 6) {
                 await new Promise(resolve => setTimeout(resolve, 3000));
                 dialogo_pergunta.innerHTML = "Você tá com a perseverança lá em cima, hein? Sinto-me inspirado porque é assim que se conquistam grandes coisas: com determinação, foco e uma dose generosa de paciência. Essa persistência de seguir em frente, não importa o que aconteça, é realmente um diferencial. Continue com essa energia!";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                
+            } else {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+                dialogo_pergunta.innerHTML = "A falta de perseverança é algo que me preocupa... sei que os desafios podem te deixar desmotivado. Mas você tem o que é preciso para seguir em frente. Precisamos encontrar maneiras de reaquecer a sua vontade de continuar, mesmo quando tudo estiver difícil. Você pode tentar dar o primeiro passo novamente?";
+                await efeitorEscrever(dialogo_pergunta, somSans)
             }
             
             await new Promise(resolve => setTimeout(resolve, 3000));
-                dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
-                await efeitorEscrever(dialogo_pergunta, somSans)
+            dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
+            await efeitorEscrever(dialogo_pergunta, somSans)
             await new Promise(resolve => setTimeout(resolve, 3000));
-                dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima!";
-                await efeitorEscrever(dialogo_pergunta, somSans)
+            dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima!";
+            await efeitorEscrever(dialogo_pergunta, somSans)
             registrarPontuacaoFinal();
             atualizarAcesso();
             await new Promise(resolve => setTimeout(resolve, 3000));

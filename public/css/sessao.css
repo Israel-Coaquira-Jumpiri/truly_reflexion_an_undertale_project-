@@ -26,7 +26,7 @@ body{
 .texto{
     color: white;
     z-index: 5;
-    font-size: 6vh;
+    font-size: 3vw;
 }
 .areaButtons{
     margin-top: 10vh;
@@ -41,7 +41,7 @@ body{
 .butao{
     height: 13vh;
     width: 14vw;
-    font-size: 5vh;
+    font-size: 2.4vw;
     background-color: transparent;
     border: 0.5vh solid #fff;
     background-color: #000;
