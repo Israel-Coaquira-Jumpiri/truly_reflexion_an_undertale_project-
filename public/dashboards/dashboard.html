@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <title>Gráficos</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="../js/dashboards.js"></script>
     <link rel="stylesheet" href="../css/dashboards.css">
 </head>
 <body onload="tocarTema(); receberPontuacaoAtual();">
+    <button class="btnVoltar competencias" onmouseover="butaoHover()" onclick="voltarParaSessao(); somClick()"><i class="fas fa-chevron-circle-left"></i></button>
+    <div class="areaMenu" id="div_menu">
+        <button class="btnMenu competencias" onmouseover="butaoHover()" onclick="mudarModoMenu(); somClick()"><i class="fas fa-bars"></i></button>
+        <div class="divOpcoes">
+            <button class="competencias menuOpcao" onclick="verResultados()">RESULTADO</button>
+            <button class="competencias menuOpcao" onclick="verHistorico()">HISTÓRICO</button>
+        </div>
+    </div>
+
     <audio id="temaPagina" src="../assets/audios/temaCompetencias.mp3" loop></audio>
     <audio id="butao_som" src="../assets/audios/MenuSelect.ogg"></audio>
     <audio id="butao_hover_som" src="../assets/audios/MenuCursor.ogg"></audio>
     <div class="barraLateral">
-        <h1>RESULTADOS</h1>
+        <h1 id="titulo">RESULTADOS</h1>
         <div class="areaOpcoes">
             <button id="cptDeterminacao" onmouseover="butaoHover()" class="competencias determinacao" onclick="somClick(); mostrarGrafico('determinacao')">DETERMINAÇÃO</button>
             <button id="cptBravura" onmouseover="butaoHover()" class="competencias bravura delay" onclick="somClick(); mostrarGrafico('bravura')">BRAVURA</button>
@@ -24,7 +34,7 @@
         </div>
     </div>
     <div class="areaGraficos">
-        <div class="chart-container">
+        <div class="chart-container" id="div_chart">
             <canvas id="graficoDeterminacao"></canvas>
             <canvas id="graficoBravura"></canvas>
             <canvas id="graficoJustica"></canvas>
@@ -33,11 +43,7 @@
             <canvas id="graficoIntegridade"></canvas>
             <canvas id="graficoPerseveranca"></canvas>
         </div>
-        <span class="spnLegenda" id="spnLegenda">Seu nível de <span id="txtCompetencia">DETERMINAÇÃO</span> é de <span id="pctCompetencia">10</span>0%</span></span>
+        <span class="spnLegenda" id="spnLegenda">Seu nível de <span id="txtCompetencia">COMPETÊNCIA</span> é de <span id="pctCompetencia"></span>%</span></span>
     </div>
-        
-    <script>
-        
-    </script>
 </body>
 </html>

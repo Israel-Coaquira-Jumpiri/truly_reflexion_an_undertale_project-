@@ -605,10 +605,10 @@ var questoes = [
                     resolve();
                 }
             }, 40 * i); 
-        }); 
-        }); 
-    }
-        document.addEventListener('DOMContentLoaded', async function() { 
+        });
+        });
+    };
+        document.addEventListener('DOMContentLoaded', async function() {
             const dialogoInicial = document.getElementById('dialogo_pergunta'); 
             const somSans = document.getElementById('sans-sound'); 
                 if (dialogoInicial && somSans) { 

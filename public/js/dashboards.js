@@ -1,5 +1,7 @@
-var grafico = document.getElementById('graficoDeterminacao').getContext('2d');
-var criarGrafico;
+var grafico = "";
+var graficoExistente;
+var modo_menu = "fechado"
+var modoGraficos = "Gráficos de rosca com resultados atuais"
 
 function tocarTema(){
     temaPagina.play();
@@ -7,10 +9,63 @@ function tocarTema(){
 function butaoHover (){
     butao_hover_som.play()
 }
+function voltarParaSessao(){
+    setTimeout(()=> window.location.href = "./sessao.html", 200)
+}
+function mudarModoMenu(){
+    if (modo_menu == "fechado") {
+        div_menu.style.cssText = `right: 0vw;`;
+        modo_menu = "aberto"
+    } else {
+        div_menu.style.cssText = `right: -15vw;`;
+        modo_menu = "fechado"
+    }
+}
+function verResultados(){
+    spnLegenda.style.display = 'none'
+    txtCompetencia.innerHTML = '';
+    pctCompetencia.innerHTML = "";
+    txtCompetencia.style.color = ''
+    graficoDeterminacao.style.display = 'none';
+    graficoBravura.style.display = 'none';
+    graficoJustica.style.display = 'none';
+    graficoBondade.style.display = 'none';
+    graficoPaciencia.style.display = 'none';
+    graficoIntegridade.style.display = 'none';
+    graficoPerseveranca.style.display = 'none';
+    div_menu.style.cssText = `right: -15vw;`;
+    modo_menu = "fechado"
+    titulo.innerHTML = "RESULTADOS"
+    modoGraficos = "Gráficos de rosca com resultados atuais";
+}
+function verHistorico(){
+    spnLegenda.style.display = 'none'
+    txtCompetencia.innerHTML = '';
+    pctCompetencia.innerHTML = "";
+    txtCompetencia.style.color = ''
+    graficoDeterminacao.style.display = 'none';
+    graficoBravura.style.display = 'none';
+    graficoJustica.style.display = 'none';
+    graficoBondade.style.display = 'none';
+    graficoPaciencia.style.display = 'none';
+    graficoIntegridade.style.display = 'none';
+    graficoPerseveranca.style.display = 'none';
+    div_menu.style.cssText = `right: -15vw;`;
+    modo_menu = "fechado"
+    titulo.innerHTML = "HISTÓRICO"
+    modoGraficos = "Gráficos de linha com histórico de pontuações";
+}
 function somClick (){
     butao_som.currentTime = 0
     butao_som.play()
 }
+    var historico_determinacao = [];
+    var historico_bravura = [];
+    var historico_justica = [];
+    var historico_bondade = [];
+    var historico_paciencia = [];
+    var historico_integridade = [];
+    var historico_perseveranca = [];
     var ptsDeterminacao = 5;
     var ptsBravura = 5;
     var ptsJustica = 5;
@@ -40,6 +95,10 @@ function receberPontuacaoAtual(){
             respostaPontuacoes.json().then(dados => {
                 console.log(dados[0]);
                 console.log(JSON.stringify(dados[0]));
+                // for (let cont = 0; cont < array.length; cont++) {
+                //     const element = array[cont];
+                    
+                // }
                 ptsDeterminacao = dados[0].determinacao;
                 ptsBravura = dados[0].bravura;
                 ptsJustica = dados[0].justica;
@@ -62,10 +121,11 @@ function receberPontuacaoAtual(){
 }
 
 function mostrarGrafico(competencia){
+    if (modoGraficos == "Gráficos de rosca com resultados atuais") {
     spnLegenda.style.display = 'block'
     if (competencia == 'determinacao') {
         txtCompetencia.innerHTML = 'DETERMINAÇÃO'
-        pctCompetencia.innerHTML = ptsDeterminacao;
+        pctCompetencia.innerHTML = ptsDeterminacao * 10;
         txtCompetencia.style.color = '#ff0000'
         graficoDeterminacao.style.display = 'block';
         graficoBravura.style.display = 'none';
@@ -75,10 +135,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
         grafico = document.getElementById('graficoDeterminacao').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Determinação', 'Falta Determinação...'],
@@ -99,7 +159,7 @@ function mostrarGrafico(competencia){
         });
     } else if (competencia == 'bravura') {
         txtCompetencia.innerHTML = 'BRAVURA'
-        pctCompetencia.innerHTML = ptsBravura;
+        pctCompetencia.innerHTML = ptsBravura * 10;
         txtCompetencia.style.color = '#ff8c00'
         graficoDeterminacao.style.display = 'none';
         graficoBravura.style.display = 'block';
@@ -109,10 +169,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
         grafico = document.getElementById('graficoBravura').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Bravura', 'Falta Bravura...'],
@@ -134,7 +194,7 @@ function mostrarGrafico(competencia){
         
     } else if (competencia == 'justica') {
         txtCompetencia.innerHTML = 'JUSTIÇA'
-        pctCompetencia.innerHTML = ptsJustica;
+        pctCompetencia.innerHTML = ptsJustica * 10;
         txtCompetencia.style.color = '#ffff00'
         graficoDeterminacao.style.display = 'none';
         graficoBravura.style.display = 'none';
@@ -144,10 +204,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
         grafico = document.getElementById('graficoJustica').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Justiça', 'Falta Justiça...'],
@@ -169,7 +229,7 @@ function mostrarGrafico(competencia){
         
     } else if (competencia == 'bondade') {
         txtCompetencia.innerHTML = 'BONDADE'
-        pctCompetencia.innerHTML = ptsBondade;
+        pctCompetencia.innerHTML = ptsBondade * 10;
         txtCompetencia.style.color = '#00ff59'
         graficoDeterminacao.style.display = 'none';
         graficoBravura.style.display = 'none';
@@ -179,10 +239,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
         grafico = document.getElementById('graficoBondade').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Bondade', 'Falta Bondade...'],
@@ -204,7 +264,7 @@ function mostrarGrafico(competencia){
         
     } else if (competencia == 'paciencia') {
         txtCompetencia.innerHTML = 'PACIÊNCIA'
-        pctCompetencia.innerHTML = ptsPaciencia;
+        pctCompetencia.innerHTML = ptsPaciencia * 10;
         txtCompetencia.style.color = '#00fff7'
         graficoDeterminacao.style.display = 'none';
         graficoBravura.style.display = 'none';
@@ -214,10 +274,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
         grafico = document.getElementById('graficoPaciencia').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Paciência', 'Falta Paciência...'],
@@ -238,7 +298,7 @@ function mostrarGrafico(competencia){
         });
     } else if (competencia == 'integridade') {
         txtCompetencia.innerHTML = 'INTEGRIDADE'
-        pctCompetencia.innerHTML = ptsIntegridade;
+        pctCompetencia.innerHTML = ptsIntegridade * 10;
         txtCompetencia.style.color = '#0008ff'
         graficoDeterminacao.style.display = 'none';
         graficoBravura.style.display = 'none';
@@ -248,10 +308,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'block';
         graficoPerseveranca.style.display = 'none';
         grafico = document.getElementById('graficoIntegridade').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Integridade', 'Falta Integridade...'],
@@ -272,7 +332,7 @@ function mostrarGrafico(competencia){
         });
     } else if (competencia == 'perseveranca') {
         txtCompetencia.innerHTML = 'PERSEVERANÇA'
-        pctCompetencia.innerHTML = ptsPerseveranca;
+        pctCompetencia.innerHTML = ptsPerseveranca * 10;
         txtCompetencia.style.color = '#ff00ea'
         graficoDeterminacao.style.display = 'none';
         graficoBravura.style.display = 'none';
@@ -282,10 +342,10 @@ function mostrarGrafico(competencia){
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'block';
         grafico = document.getElementById('graficoPerseveranca').getContext('2d');
-        if (criarGrafico) {
-            criarGrafico.destroy()
+        if (graficoExistente) {
+            graficoExistente.destroy()
         } 
-        criarGrafico = new Chart(grafico, {
+        graficoExistente = new Chart(grafico, {
             type: 'doughnut',
             data: {
                 labels: ['Perseverança', 'Falta Perseverança...'],
@@ -304,5 +364,398 @@ function mostrarGrafico(competencia){
                 }, 
             }
         });
+    }  
+ } else if(modoGraficos = "Gráficos de linha com histórico de pontuações"){
+    div_chart.style.cssText = ``;
+    if (competencia == 'determinacao') {
+        txtCompetencia.innerHTML = 'DETERMINAÇÃO'
+        pctCompetencia.innerHTML = ptsDeterminacao;
+        txtCompetencia.style.color = '#ff0000'
+        graficoDeterminacao.style.display = 'block';
+        graficoBravura.style.display = 'none';
+        graficoJustica.style.display = 'none';
+        graficoBondade.style.display = 'none';
+        graficoPaciencia.style.display = 'none';
+        graficoIntegridade.style.display = 'none';
+        graficoPerseveranca.style.display = 'none';
+        grafico = document.getElementById('graficoDeterminacao').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
+    } else if (competencia == 'bravura') {
+        txtCompetencia.innerHTML = 'BRAVURA'
+        pctCompetencia.innerHTML = ptsBravura;
+        txtCompetencia.style.color = '#ff8c00'
+        graficoDeterminacao.style.display = 'none';
+        graficoBravura.style.display = 'block';
+        graficoJustica.style.display = 'none';
+        graficoBondade.style.display = 'none';
+        graficoPaciencia.style.display = 'none';
+        graficoIntegridade.style.display = 'none';
+        graficoPerseveranca.style.display = 'none';
+        grafico = document.getElementById('graficoBravura').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
+        
+    } else if (competencia == 'justica') {
+        txtCompetencia.innerHTML = 'JUSTIÇA'
+        pctCompetencia.innerHTML = ptsJustica;
+        txtCompetencia.style.color = '#ffff00'
+        graficoDeterminacao.style.display = 'none';
+        graficoBravura.style.display = 'none';
+        graficoJustica.style.display = 'block';
+        graficoBondade.style.display = 'none';
+        graficoPaciencia.style.display = 'none';
+        graficoIntegridade.style.display = 'none';
+        graficoPerseveranca.style.display = 'none';
+        grafico = document.getElementById('graficoJustica').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
+        
+    } else if (competencia == 'bondade') {
+        txtCompetencia.innerHTML = 'BONDADE'
+        pctCompetencia.innerHTML = ptsBondade;
+        txtCompetencia.style.color = '#00ff59'
+        graficoDeterminacao.style.display = 'none';
+        graficoBravura.style.display = 'none';
+        graficoJustica.style.display = 'none';
+        graficoBondade.style.display = 'block';
+        graficoPaciencia.style.display = 'none';
+        graficoIntegridade.style.display = 'none';
+        graficoPerseveranca.style.display = 'none';
+        grafico = document.getElementById('graficoBondade').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
+        
+    } else if (competencia == 'paciencia') {
+        txtCompetencia.innerHTML = 'PACIÊNCIA'
+        pctCompetencia.innerHTML = ptsPaciencia;
+        txtCompetencia.style.color = '#00fff7'
+        graficoDeterminacao.style.display = 'none';
+        graficoBravura.style.display = 'none';
+        graficoJustica.style.display = 'none';
+        graficoBondade.style.display = 'none';
+        graficoPaciencia.style.display = 'block';
+        graficoIntegridade.style.display = 'none';
+        graficoPerseveranca.style.display = 'none';
+        grafico = document.getElementById('graficoPaciencia').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
+    } else if (competencia == 'integridade') {
+        txtCompetencia.innerHTML = 'INTEGRIDADE'
+        pctCompetencia.innerHTML = ptsIntegridade;
+        txtCompetencia.style.color = '#0008ff'
+        graficoDeterminacao.style.display = 'none';
+        graficoBravura.style.display = 'none';
+        graficoJustica.style.display = 'none';
+        graficoBondade.style.display = 'none';
+        graficoPaciencia.style.display = 'none';
+        graficoIntegridade.style.display = 'block';
+        graficoPerseveranca.style.display = 'none';
+        grafico = document.getElementById('graficoIntegridade').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
+    } else if (competencia == 'perseveranca') {
+        txtCompetencia.innerHTML = 'PERSEVERANÇA'
+        pctCompetencia.innerHTML = ptsPerseveranca;
+        txtCompetencia.style.color = '#ff00ea'
+        graficoDeterminacao.style.display = 'none';
+        graficoBravura.style.display = 'none';
+        graficoJustica.style.display = 'none';
+        graficoBondade.style.display = 'none';
+        graficoPaciencia.style.display = 'none';
+        graficoIntegridade.style.display = 'none';
+        graficoPerseveranca.style.display = 'block';
+        grafico = document.getElementById('graficoPerseveranca').getContext('2d');
+        if (graficoExistente) {
+            graficoExistente.destroy()
+        } 
+        graficoExistente = new Chart(grafico, {
+            type: 'line',
+            data: {
+                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                datasets: [{
+                label: 'My First Dataset',
+                backgroundColor: 'aqua',
+                data: [0, 1, 2, 5, 8, 9, 10],
+                fill: true,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            }]
+            },
+            options: {
+                plugins: {
+                    title: {
+                        display: false,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                }, 
+            },
+            scales: {
+                x: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Month'
+                  }
+                },
+                y: {
+                  display: true,
+                  title: {
+                    display: true,
+                    text: 'Value'
+                  }
+                }
+            }
+        });
     }
+ } 
 }

@@ -21,7 +21,7 @@ function ativarMusica(){
 } 
 function butaoHover (){
     butao_hover_som.play()
-}
+} 
 function somClick (){
     butao_som.currentTime = 0;
     butao_som.play()
@@ -36,8 +36,3 @@ function iniciarJulgamento(){
 function visualizarDesempenho(){
     setTimeout(() => window.location.href = "./dashboard.html", 200)
 }
-document.addEventListener('visibilitychange', function() { 
-    if (document.visibilityState === 'visible') { 
-        ativarMusica(); 
-    } 
-    });
