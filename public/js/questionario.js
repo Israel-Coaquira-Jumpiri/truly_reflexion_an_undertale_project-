@@ -388,7 +388,7 @@ var questoes = [
                 lista_questoes.push(questaoAleatoria);
             }
             var tamanho_lista = lista_questoes.length;
-            if (tamanho_lista < 10) {
+            if (tamanho_lista < 5) {
                 contador--
             } else{
                 lista_selecionada = lista_questoes;
@@ -488,7 +488,7 @@ var questoes = [
     }
     function escolher(alternativa){
         butao_som.play();
-        if (indexPergunta < 9) {
+        if (indexPergunta < 4) {
         if (alternativa == 'A') {
             ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Determinacao;
             ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Bravura;
@@ -598,13 +598,13 @@ var questoes = [
             setTimeout(function() { 
                 texto.innerHTML += letra; 
                 if (som) { 
-                    som.currentTime = 0; 
+                    // som.currentTime = 0; 
                     som.play()
                 }
                 if (i == texto_em_vetor.length -1) {
                     resolve();
                 }
-            }, 70 * i); 
+            }, 40 * i); 
         }); 
         }); 
     }
@@ -643,323 +643,110 @@ var questoes = [
             dialogo_pergunta.innerHTML = 'Creio que cheguei a uma conclusão sobre você!'
             await efeitorEscrever(dialogo_pergunta, somSans)
             await new Promise(resolve => setTimeout(resolve, 2000));
-            await exibirCutsceneFinal();
+            // await exibirCutsceneFinal();
             recado_final_soundtrack.play();
             dialogo_pergunta.innerHTML ='Bom, por onde posso começar...';
+            var ptsResiliencia = (ptsDeterminacao + ptsPerseveranca)/2
+            var ptsProatividade = (ptsBravura + ptsPaciencia)/2;
+            var ptsAdaptabilidade = (ptsBondade + ptsJustica + ptsIntegridade)/3
             await efeitorEscrever(dialogo_pergunta, somSans)
-            if (ptsDeterminacao < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Olha, parece que sua determinação tá meio apagada, e isso me deixa preocupado." 
+            if (ptsResiliencia < 5) {
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesNormal.jpg'
+                dialogo_pergunta.innerHTML = "Percebi que você tem encontrado dificuldade em lidar com as adversidades. Imagino que isso esteja pesando pra você, e sinto que pode estar precisando de um momento pra respirar. É importante lembrar que falhar não é o fim"; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu percebo que você pode estar enfrentando barreiras que tornam tudo mais difícil."
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
+                dialogo_pergunta.innerHTML = "é parte do processo. Que tal começar identificando uma única coisa que pode aliviar essa pressão? Pequenos passos também levam a grandes caminhos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "O que eu realmente desejo é ver você se reconectar com aquilo que importa pra você." 
+            } else if (ptsResiliencia < 8){
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
+                dialogo_pergunta.innerHTML = "Notei que você está enfrentando os desafios, mas em alguns momentos parece que o peso é maior do que deveria. Imagino que seja frustrante sentir que nem sempre dá conta de tudo."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Que tal pensar em um pequeno objetivo, só pra dar aquele primeiro passo? Lembre-se: até uma faísca pode acender uma chama.";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsDeterminacao <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Sua determinação tá no jogo, e isso é muito bom. Eu percebo que você tá buscando, e isso me deixa esperançoso, porque é um sinal de que você não desistiu."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Mas sabe, às vezes, só persistir não é o bastante. O que você acha de tentar um novo jeito de abordar as coisas? Pode ser uma chance de ver até onde essa força pode te levar"
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
+                dialogo_pergunta.innerHTML = "Que tal experimentar estratégias que te ajudem a se reequilibrar mais rápido, como reconhecer o que realmente está ao seu alcance? Lembre-se: sua força está no que você já faz, só precisa lapidá-la.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Caramba, sua determinação tá tão forte que parece que você pode enfrentar qualquer coisa!" 
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
+                dialogo_pergunta.innerHTML = "Você tem mostrado uma habilidade notável em enfrentar os altos e baixos com equilíbrio. Isso demonstra maturidade e autoconsciência, qualidades que nem todo mundo cultiva com facilidade."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me deixa inspirado, porque mostra o quanto você tá comprometido com o que quer alcançar."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Só que, até mesmo os mais determinados precisam lembrar: não é sobre correr sempre, mas sobre saber quando dar uma pausa."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Reserve um momento pra recarregar, porque o caminho ainda é longo e cheio de possibilidades"
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
+                dialogo_pergunta.innerHTML = "Continue praticando esse cuidado consigo mesmo, mas fique atento: até os mais resilientes precisam de momentos de pausa. Preservar o que você já conquistou é tão importante quanto crescer.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
-            if (ptsBravura < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu percebo que, talvez, você tenha hesitado um pouco na hora de enfrentar desafios."
+
+            if (ptsProatividade < 5) {
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
+                dialogo_pergunta.innerHTML = "Notei que você tem deixado algumas coisas acumularem ou talvez nem saiba por onde começar. Isso pode estar deixando as coisas ainda mais difíceis. Que tal dedicar cinco minutos hoje pra listar as tarefas que você precisa resolver?"; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me deixa um pouco preocupado, porque eu sei que, por dentro, você tem mais força do que imagina."
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesNormal.jpg'
+                dialogo_pergunta.innerHTML = "Não precisa ser perfeito, o importante é dar o primeiro passo. Sua organização pode se transformar na sua melhor aliada, mas só se você der uma chance pra ela.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "O que eu gostaria de ver é você se arriscar mais, até que seja confortável." 
+            } else if (ptsProatividade < 8){
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
+                dialogo_pergunta.innerHTML = "Você está fazendo o básico e se esforçando, mas parece que ainda há espaço pra ir além. Talvez a sensação de conforto esteja segurando seu potencial."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Que tal tentar dar um pequeno passo fora da sua zona de conforto e ver como se sente?";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsBravura <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem mostrado coragem, mesmo que não seja fácil. Isso me dá esperança, porque significa que você tá tentando, mesmo quando o medo aparece."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Mas olha, ser bravo não significa não ter medo, significa agir apesar dele."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu gostaria de ver você tomando mais decisões corajosas, nem que seja aos poucos, sem pressa de ser perfeito. Isso vai te fortalecer."
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
+                dialogo_pergunta.innerHTML = "Que tal buscar algo que te desafie de verdade, algo que você sabe que pode fazer, mas ainda não tentou? Crescer às vezes significa sair da zona de conforto, mesmo que dê um frio na barriga.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Uau, você tem encarado os desafios de frente, não tem medo de se expor e isso me impressiona."
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
+                dialogo_pergunta.innerHTML = "É incrível ver o quanto você toma iniciativa e busca soluções antes mesmo que os problemas apareçam. Isso demonstra uma mente estratégica e um senso de responsabilidade admirável."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu sinto uma energia positiva vindo disso, porque mostra que você tem o que é preciso pra se lançar em qualquer situação."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Só lembre-se, bravura também é saber quando pedir ajuda, quando compartilhar o peso." 
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Talvez, se você tiver um momento pra refletir antes de seguir, isso pode te trazer mais força."
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
+                dialogo_pergunta.innerHTML = "Continue mantendo esse ritmo, mas lembre-se: ser proativo também envolve saber priorizar e respeitar seus próprios limites. Sua produtividade deve sempre trabalhar ao seu favor, e não contra.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
-            if (ptsJustica < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Percebo que em algumas situações, pode ser difícil encontrar o equilíbrio e fazer o que é certo."
+
+            if (ptsAdaptabilidade < 5) {
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesNormal.jpg'
+                dialogo_pergunta.innerHTML = "Percebi que você tem encontrado dificuldade em se ajustar a algumas situações sociais. Isso pode ser desconfortável, mas saiba que é algo comum. Talvez você esteja se sentindo deslocado ou inseguro sobre como agir.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me deixa um pouco triste, porque sei que você quer fazer o bem, mas às vezes fica difícil escolher o melhor caminho."
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg' 
+                dialogo_pergunta.innerHTML = "Que tal começar ouvindo com mais atenção ou contribuindo com pequenos comentários durante conversas? Criar conexões não precisa ser perfeito, só precisa ser genuíno.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Gostaria de te sugerir que, na próxima vez que sentir esse impasse, pense um pouco sobre o impacto das suas escolhas nos outros." 
+            } else if (ptsAdaptabilidade < 8){
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesNormal.jpg'
+                dialogo_pergunta.innerHTML = "Você tem conseguido se adaptar, mas às vezes parece hesitar em mostrar quem você realmente é. Talvez tenha receio de não ser compreendido, o que é totalmente normal.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso pode te ajudar a tomar decisões mais justas.";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsJustica <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem tentado, e isso é visível. Eu sinto que você está buscando agir com justiça, mesmo quando a situação não é fácil."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Porém, às vezes, a dúvida ainda pode te paralisar."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000)); 
-                dialogo_pergunta.innerHTML = "Eu gostaria de te convidar a continuar ouvindo mais as pessoas ao seu redor, refletindo mais sobre o que é justo para todos."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Às vezes, esse pequeno ajuste pode fazer uma grande diferença.";
+                await new Promise(resolve => setTimeout(resolve, 4000)); 
+                sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
+                dialogo_pergunta.innerHTML = "Que tal focar em pequenos gestos que demonstrem sua autenticidade? Um pouco mais de confiança pode ser o que falta pra transformar interações mornas em conexões verdadeiras.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem sido uma pessoa muito justa, sempre tentando fazer o que é certo, mesmo quando não é o caminho mais fácil." 
+                await new Promise(resolve => setTimeout(resolve, 4000));
+                sansImg.src = '../assets/imgs/sannesNormal.jpg'
+                dialogo_pergunta.innerHTML = "Você tem uma habilidade admirável de se ajustar e criar conexões em diversas situações. Isso demonstra empatia e inteligência social, algo que faz toda a diferença em ambientes acadêmicos e profissionais.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me deixa tranquilo, porque vejo que você leva isso muito a sério."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000)); 
-                dialogo_pergunta.innerHTML = "No entanto, é importante lembrar que ninguém é perfeito."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Mesmo nas situações difíceis, se você puder refletir antes de tomar decisões..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "pode encontrar maneiras de ser ainda mais justo com todos, incluindo você mesmo."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            }
-            if (ptsBondade < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Percebo que, às vezes, pode ser difícil ser gentil, especialmente quando você se sente desmotivado ou frustrado."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me preocupa, porque vejo que você tem muito potencial para espalhar bondade..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "mas talvez ainda não esteja reconhecendo como pequenas atitudes podem fazer grande diferença."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Gostaria de sugerir que, ao invés de se concentrar no que está fora de seu controle..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "tente fazer algo bom, mesmo que seja pequeno, todos os dias. Isso pode te ajudar a ver o impacto positivo.";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsBondade <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem mostrado gestos de bondade, mas sinto que, em alguns momentos, falta aquela espontaneidade."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu sei que você tem um coração bom e que se importa com os outros..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = " mas pode ser que, por medo de errar ou de não ser suficiente, você se retraia."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Que tal tentar ser um pouco mais gentil com você mesmo?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso pode te ajudar a também expandir sua bondade para os outros, sem pressa."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu vejo que você tem se dedicado a ser uma pessoa genuinamente bondosa."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me deixa bem tranquilo, porque é um reflexo de seu caráter."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Mas, lembre-se: a bondade verdadeira também inclui ser gentil consigo mesmo, mesmo quando as coisas não saem como esperado." 
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Quando você se der o devido valor, sua bondade pode crescer ainda mais."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            }
-            if (ptsPaciencia < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Percebo que, quando as coisas não vão como o esperado, você tende a se frustar rapidamente, o que é completamente compreensível."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu sinto que, às vezes, isso pode te impedir de lidar com situações difíceis de uma maneira mais tranquila."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me preocupa, porque sei que a paciência pode trazer clareza e ajudar a lidar com os desafios de forma mais leve."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Que tal tentar respirar fundo e dar um passo atrás quando algo não sair como planejado? Isso pode te ajudar a agir com mais calma.";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsPaciencia <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem mostrado alguma paciência..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "mas, em algumas situações, sinto que poderia se permitir um pouco mais de flexibilidade."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Sei que, às vezes, o ambiente exige muito de você, mas a paciência é uma habilidade que cresce com a prática."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "E eu sinto que, quando você sente que o controle está fugindo, talvez seja o momento de confiar no processo."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "O que você acha de, em situações desafiadoras, tentar dar um tempo para si mesmo antes de reagir?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "É admirável ver como você tem sido paciente, principalmente nos momentos em que as coisas não são fáceis."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me tranquiliza, porque sei que você tem uma visão mais ampla e equilibrada das situações."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "No entanto, sinto que pode ser necessário manter esse equilíbrio também com você mesmo."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Às vezes, a paciência precisa começar com a autocompaixão."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "O que você acha de continuar cultivando essa paciência para si mesmo também?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            }
-            if (ptsIntegridade < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Notei que em algumas situações, a sua integridade tem sido desafiada."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso pode ser uma consequência de pressões externas, mas também sinto que isso pode impactar a confiança que os outros têm em você."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu me preocupo com o impacto que isso pode ter nos seus relacionamentos e na sua própria paz de espírito."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu entendo que as coisas nem sempre são simples, mas que tal tentar ser mais honesto consigo mesmo sobre suas escolhas?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso pode trazer mais confiança para você e para quem está ao seu redor.";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsIntegridade <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem demonstrado integridade na maioria das vezes..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "mas percebo que há momentos em que você poderia ser um pouco mais fiel aos seus princípios."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me deixa com uma sensação de que talvez você se perca um pouco em algumas situações."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu entendo que há muita pressão, mas talvez, ao alinhar suas ações com o que você acredita, você se sentirá mais forte e em paz."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "O que acha de, ao tomar decisões, refletir um pouco mais sobre o que é mais importante para você?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu vejo que a sua integridade tem sido um ponto forte e uma base sólida para as suas ações..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "e isso me deixa tranquilo, porque sei que você pode ser confiável, mesmo nos momentos mais difíceis."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso me faz acreditar que você tem uma visão clara do que é certo..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "No entanto, sinto que é sempre bom continuar a manter essa postura firme, mesmo quando os ventos da vida ficam mais fortes."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Você tem sido um exemplo para os outros, mas que tal reforçar ainda mais isso, cuidando de sua integridade em cada pequeno gesto?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            }
-            if (ptsPerseveranca < 5) {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Percebo que, em algumas situações, você tem se sentido paralisado ou desmotivado, o que pode ser frustrante."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "A perseverança, mais do que insistir em algo, é sobre saber quando dar o próximo passo, mesmo quando as coisas não saem como o esperado."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Talvez seja hora de olhar para o que está te impedindo de continuar e decidir dar um pequeno passo..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "mesmo que ele pareça insignificante. O que acha de tentar isso?";
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else if (ptsPerseveranca <= 7){
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Vejo que você tem conseguido continuar em frente, mas parece que algo ainda te pesa..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "como se as dificuldades te deixassem indeciso sobre qual direção seguir."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Isso é normal, e é bom que você tenha se mantido firme até aqui."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Porém, a perseverança também é saber onde investir sua energia."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Que tal dar uma olhada nas pequenas vitórias que já conquistou e perceber o que te motiva a seguir?"
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = " Isso pode ajudar a criar mais clareza e confiança."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-            } else {
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Eu vejo que você tem uma força impressionante para continuar, mesmo quando o caminho é desafiador."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Sua perseverança realmente brilha, e isso é algo valioso..."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Porém, percebo que, com essa força, você também precisa garantir que está se cuidando ao longo da jornada."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "Às vezes, um pouco de descanso e reflexão pode renovar essa energia."
-                await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                dialogo_pergunta.innerHTML = "O que acha de equilibrar sua perseverança com momentos de pausa para recarregar?"
+                await new Promise(resolve => setTimeout(resolve, 4000)); 
+                sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
+                dialogo_pergunta.innerHTML = "Continue se permitindo ser quem você é, mas também lembre-se de respeitar seus próprios limites. Conexões genuínas surgem quando somos honestos com os outros e conosco mesmos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
             
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 4000));
+            sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg' 
             dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
             await efeitorEscrever(dialogo_pergunta, somSans)
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
             dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima!";
             await efeitorEscrever(dialogo_pergunta, somSans)
             registrarPontuacaoFinal();
             atualizarAcesso();
-            await new Promise(resolve => setTimeout(resolve, 3000));
+            await new Promise(resolve => setTimeout(resolve, 2000));
             window.location.href = "../dashboards/sessao.html";
         }
