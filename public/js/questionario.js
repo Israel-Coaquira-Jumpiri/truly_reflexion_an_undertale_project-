@@ -651,29 +651,29 @@ var questoes = [
             var ptsAdaptabilidade = (ptsBondade + ptsJustica + ptsIntegridade)/3
             await efeitorEscrever(dialogo_pergunta, somSans)
             if (ptsResiliencia < 5) {
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
                 dialogo_pergunta.innerHTML = "Percebi que você tem encontrado dificuldade em lidar com as adversidades. Imagino que isso esteja pesando pra você, e sinto que pode estar precisando de um momento pra respirar. É importante lembrar que falhar não é o fim"; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "é parte do processo. Que tal começar identificando uma única coisa que pode aliviar essa pressão? Pequenos passos também levam a grandes caminhos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsResiliencia < 8){
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "Notei que você está enfrentando os desafios, mas em alguns momentos parece que o peso é maior do que deveria. Imagino que seja frustrante sentir que nem sempre dá conta de tudo."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Que tal experimentar estratégias que te ajudem a se reequilibrar mais rápido, como reconhecer o que realmente está ao seu alcance? Lembre-se: sua força está no que você já faz, só precisa lapidá-la.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "Você tem mostrado uma habilidade notável em enfrentar os altos e baixos com equilíbrio. Isso demonstra maturidade e autoconsciência, qualidades que nem todo mundo cultiva com facilidade."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Continue praticando esse cuidado consigo mesmo, mas fique atento: até os mais resilientes precisam de momentos de pausa. Preservar o que você já conquistou é tão importante quanto crescer.";
                 await efeitorEscrever(dialogo_pergunta, somSans)

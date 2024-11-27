@@ -17,7 +17,7 @@ var ptsBondade = 5;
 var ptsPaciencia = 5;
 var ptsIntegridade = 5;
 var ptsPerseveranca = 5;
-var maiores_pontuacoes = {
+var penultimas_pontuacoes = {
     determinacao: 0,
     bravura: 0,
     justica: 0,
@@ -26,16 +26,6 @@ var maiores_pontuacoes = {
     integridade: 0,
     perseveranca: 0
 }
-var menores_pontuacoes = {
-    determinacao: 0,
-    bravura: 0,
-    justica: 0,
-    bondade: 0,
-    paciencia: 0,
-    integridade: 0,
-    perseveranca: 0
-}
-
 function tocarTema(){
     temaPagina.play();
 }
@@ -69,6 +59,7 @@ function verResultados(){
     div_menu.style.cssText = `right: -15vw;`;
     modo_menu = "fechado"
     titulo.innerHTML = "RESULTADOS"
+    spnKPI_linha.innerHTML = ``;
     modoGraficos = "Gráficos de rosca com resultados atuais";
 }
 function verHistorico(){
@@ -119,51 +110,7 @@ function receberPontuacaoAtual(){
                     
                 // }
                 var contador_quest = 1;
-                maiores_pontuacoes.determinacao = dados[0].determinacao;
-                maiores_pontuacoes.bravura = dados[0].bravura;
-                maiores_pontuacoes.justica = dados[0].justica;
-                maiores_pontuacoes.bondade = dados[0].bondade;
-                maiores_pontuacoes.paciencia = dados[0].paciencia;
-                maiores_pontuacoes.integridade = dados[0].integridade;
-                maiores_pontuacoes.perseveranca = dados[0].perseveranca;
-                menores_pontuacoes.determinacao = dados[0].determinacao;
-                menores_pontuacoes.bravura = dados[0].bravura;
-                menores_pontuacoes.justica = dados[0].justica;
-                menores_pontuacoes.bondade = dados[0].bondade;
-                menores_pontuacoes.paciencia = dados[0].paciencia;
-                menores_pontuacoes.integridade = dados[0].integridade;
-                menores_pontuacoes.perseveranca = dados[0].perseveranca;
                 for (var contador = (dados.length-1); contador >= 0; contador--) {
-                    if (dados[contador].determinacao > maiores_pontuacoes.determinacao) {
-                        maiores_pontuacoes.determinacao = dados[contador].determinacao;
-                    } else if (dados[contador].bravura > maiores_pontuacoes.bravura) {
-                        maiores_pontuacoes.bravura = dados[contador].bravura;
-                    } else if (dados[contador].justica > maiores_pontuacoes.justica) {
-                        maiores_pontuacoes.justica = dados[contador].justica;
-                    } else if (dados[contador].bondade > maiores_pontuacoes.bondade) {
-                        maiores_pontuacoes.bondade = dados[contador].bondade;
-                    } else if (dados[contador].paciencia > maiores_pontuacoes.paciencia) {
-                        maiores_pontuacoes.paciencia = dados[contador].paciencia;
-                    } else if (dados[contador].integridade > maiores_pontuacoes.integridade) {
-                        maiores_pontuacoes.integridade = dados[contador].integridade;
-                    } else if (dados[contador].perseveranca > maiores_pontuacoes.perseveranca) {
-                        maiores_pontuacoes.perseveranca = dados[contador].perseveranca;
-                    }
-                    if (dados[contador].determinacao < menores_pontuacoes.determinacao) {
-                        menores_pontuacoes.determinacao = dados[contador].determinacao;
-                    } else if (dados[contador].bravura < menores_pontuacoes.bravura) {
-                        menores_pontuacoes.bravura = dados[contador].bravura;
-                    } else if (dados[contador].justica < menores_pontuacoes.justica) {
-                        menores_pontuacoes.justica = dados[contador].justica;
-                    } else if (dados[contador].bondade < menores_pontuacoes.bondade) {
-                        menores_pontuacoes.bondade = dados[contador].bondade;
-                    } else if (dados[contador].paciencia < menores_pontuacoes.paciencia) {
-                        menores_pontuacoes.paciencia = dados[contador].paciencia;
-                    } else if (dados[contador].integridade < menores_pontuacoes.integridade) {
-                        menores_pontuacoes.integridade = dados[contador].integridade;
-                    } else if (dados[contador].perseveranca < menores_pontuacoes.perseveranca) {
-                        menores_pontuacoes.perseveranca = dados[contador].perseveranca;
-                    }
                     historico_determinacao.push(dados[contador].determinacao);
                     historico_bravura.push(dados[contador].bravura);
                     historico_justica.push(dados[contador].justica);
@@ -173,9 +120,9 @@ function receberPontuacaoAtual(){
                     historico_perseveranca.push(dados[contador].perseveranca);
                     historico_tentativas.push(`${contador_quest}º Passo`)
                     contador_quest++
-                    
                 }
                 var ultimo_indice_listas = historico_determinacao.length-1;
+                var penultimo_indice_listas = historico_determinacao.length-2;
                 ptsDeterminacao = historico_determinacao[ultimo_indice_listas];
                 ptsBravura = historico_bravura[ultimo_indice_listas];
                 ptsJustica = historico_justica[ultimo_indice_listas];
@@ -183,6 +130,13 @@ function receberPontuacaoAtual(){
                 ptsPaciencia = historico_paciencia[ultimo_indice_listas];
                 ptsIntegridade = historico_integridade[ultimo_indice_listas];
                 ptsPerseveranca = historico_perseveranca[ultimo_indice_listas];
+                penultimas_pontuacoes.determinacao = historico_determinacao[penultimo_indice_listas];
+                penultimas_pontuacoes.bravura = historico_bravura[penultimo_indice_listas];
+                penultimas_pontuacoes.justica = historico_justica[penultimo_indice_listas];
+                penultimas_pontuacoes.bondade = historico_bondade[penultimo_indice_listas];
+                penultimas_pontuacoes.paciencia = historico_paciencia[penultimo_indice_listas];
+                penultimas_pontuacoes.integridade = historico_integridade[penultimo_indice_listas];
+                penultimas_pontuacoes.perseveranca = historico_perseveranca[penultimo_indice_listas];
             });
         } else {
             console.log("Houve um erro ao puxar os dados do questionario anterior!");
@@ -199,7 +153,7 @@ function receberPontuacaoAtual(){
 
 function mostrarGrafico(competencia){
     if (modoGraficos == "Gráficos de rosca com resultados atuais") {
-        spnLegenda.style.display = 'block'
+        spnLegenda.style.display = 'block';
         div_chart.style.cssText = `width: 30vw; height: 30vw;`;
     if (competencia == 'determinacao') {
         txtCompetencia.innerHTML = 'DETERMINAÇÃO'
@@ -478,9 +432,7 @@ function mostrarGrafico(competencia){
     Chart.defaults.color = '#ffffff';
     Chart.defaults.elements.line.borderWidth = 5;
     if (competencia == 'determinacao') {
-        console.log(historico_tentativas
-        
-        )
+        console.log(historico_tentativas)
         txtCompetencia.innerHTML = 'DETERMINAÇÃO'
         pctCompetencia.innerHTML = ptsDeterminacao;
         txtCompetencia.style.color = '#ff0000'
@@ -491,6 +443,14 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
+        if (ptsDeterminacao > 7) {
+            spnKPI_linha.innerHTML = `Sua determinação está bem alta, parabéns`
+        } else if(ptsDeterminacao > 4){
+            spnKPI_linha.innerHTML = `Sua determinação está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você pode ser mais determinado! Continue melhorando!`
+        }
+
         elemento_grafico = document.getElementById('graficoDeterminacao');
         grafico = elemento_grafico.getContext('2d');
         elemento_grafico.style.cssText = "left: 0; bottom:0";
@@ -558,6 +518,13 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
+        if (ptsBravura > 7) {
+            spnKPI_linha.innerHTML = `Sua bravura está bem alta, parabéns`
+        } else if(ptsBravura > 4){
+            spnKPI_linha.innerHTML = `Sua bravura está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você poderia ter mais bravura! Continue melhorando!`
+        }
         
         elemento_grafico = document.getElementById('graficoBravura');
         grafico = elemento_grafico.getContext('2d');
@@ -627,6 +594,13 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
+        if (ptsJustica > 7) {
+            spnKPI_linha.innerHTML = `Sua justiça está bem alta, parabéns`
+        } else if(ptsJustica > 4){
+            spnKPI_linha.innerHTML = `Sua justiça está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você pode ser mais justo! Continue melhorando!`
+        }
 
         elemento_grafico = document.getElementById('graficoJustica');
         grafico = elemento_grafico.getContext('2d');
@@ -697,7 +671,13 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        
+        if (ptsBondade > 7) {
+            spnKPI_linha.innerHTML = `Sua bondade está bem alta, parabéns`
+        } else if(ptsBondade > 4){
+            spnKPI_linha.innerHTML = `Sua bondade está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você pode ser mais bondoso! Continue melhorando!`
+        }
         elemento_grafico = document.getElementById('graficoBondade');
         grafico = elemento_grafico.getContext('2d');
         elemento_grafico.style.cssText = "left: 0; bottom:0";
@@ -769,7 +749,13 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'block';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        
+        if (ptsPaciencia > 7) {
+            spnKPI_linha.innerHTML = `Sua paciência está bem alta, parabéns`
+        } else if(ptsPaciencia > 4){
+            spnKPI_linha.innerHTML = `Sua paciência está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você pode ser mais paciente! Continue melhorando!`
+        }
         elemento_grafico = document.getElementById('graficoPaciencia');
         grafico = elemento_grafico.getContext('2d');
         elemento_grafico.style.cssText = "left: 0; bottom:0";
@@ -840,7 +826,13 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'block';
         graficoPerseveranca.style.display = 'none';
-        
+        if (ptsIntegridade > 7) {
+            spnKPI_linha.innerHTML = `Sua integridade está bem alta, parabéns`
+        } else if(ptsIntegridade > 4){
+            spnKPI_linha.innerHTML = `Sua integridade está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você pode ser mais integro! Continue melhorando!`
+        }
         elemento_grafico = document.getElementById('graficoIntegridade');
         grafico = elemento_grafico.getContext('2d');
         elemento_grafico.style.cssText = "left: 0; bottom:0";
@@ -911,7 +903,13 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'block';
-        
+        if (ptsPerseveranca > 7) {
+            spnKPI_linha.innerHTML = `Sua perseverança está bem alta, parabéns`
+        } else if(ptsPerseveranca > 4){
+            spnKPI_linha.innerHTML = `Sua perseverança está razoável, continue melhorando!`
+        } else {
+            spnKPI_linha.innerHTML = `Você pode ser mais perseverante! Continue melhorando!`
+        }
         elemento_grafico = document.getElementById('graficoPerseveranca');
         grafico = elemento_grafico.getContext('2d');
         elemento_grafico.style.cssText = "left: 0; bottom:0";
