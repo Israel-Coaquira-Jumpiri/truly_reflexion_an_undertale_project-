@@ -66,6 +66,7 @@ function somClick (){
     var historico_paciencia = [];
     var historico_integridade = [];
     var historico_perseveranca = [];
+    var passos_realizados = [];
     var ptsDeterminacao = 5;
     var ptsBravura = 5;
     var ptsJustica = 5;
@@ -99,13 +100,27 @@ function receberPontuacaoAtual(){
                 //     const element = array[cont];
                     
                 // }
-                ptsDeterminacao = dados[0].determinacao;
-                ptsBravura = dados[0].bravura;
-                ptsJustica = dados[0].justica;
-                ptsBondade = dados[0].bondade;
-                ptsPaciencia = dados[0].paciencia;
-                ptsIntegridade = dados[0].integridade;
-                ptsPerseveranca = dados[0].perseveranca;
+                var contador_quest = 1;
+                for (var contador = (dados.length-1); contador >= 0; contador--) {
+                    historico_determinacao.push(dados[contador].determinacao);
+                    historico_bravura.push(dados[contador].bravura);
+                    historico_justica.push(dados[contador].justica);
+                    historico_bondade.push(dados[contador].bondade);
+                    historico_paciencia.push(dados[contador].paciencia);
+                    historico_integridade.push(dados[contador].integridade);
+                    historico_perseveranca.push(dados[contador].perseveranca);
+                    passos_realizados.push(`${contador_quest}º Passo`)
+                    contador_quest++
+                    
+                }
+                var ultimo_indice_listas = historico_determinacao.length-1;
+                ptsDeterminacao = historico_determinacao[ultimo_indice_listas];
+                ptsBravura = historico_bravura[ultimo_indice_listas];
+                ptsJustica = historico_justica[ultimo_indice_listas];
+                ptsBondade = historico_bondade[ultimo_indice_listas];
+                ptsPaciencia = historico_paciencia[ultimo_indice_listas];
+                ptsIntegridade = historico_integridade[ultimo_indice_listas];
+                ptsPerseveranca = historico_perseveranca[ultimo_indice_listas];
             });
         } else {
             console.log("Houve um erro ao puxar os dados do questionario anterior!");
@@ -122,7 +137,8 @@ function receberPontuacaoAtual(){
 
 function mostrarGrafico(competencia){
     if (modoGraficos == "Gráficos de rosca com resultados atuais") {
-    spnLegenda.style.display = 'block'
+        spnLegenda.style.display = 'block'
+        div_chart.style.cssText = `width: 30vw; height: 30vw;`;
     if (competencia == 'determinacao') {
         txtCompetencia.innerHTML = 'DETERMINAÇÃO'
         pctCompetencia.innerHTML = ptsDeterminacao * 10;
@@ -134,7 +150,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoDeterminacao').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -168,7 +188,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoBravura').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -203,7 +227,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoJustica').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -238,7 +266,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoBondade').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -273,7 +305,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'block';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoPaciencia').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -307,7 +343,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'block';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoIntegridade').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -341,7 +381,11 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'block';
-        grafico = document.getElementById('graficoPerseveranca').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
@@ -366,8 +410,22 @@ function mostrarGrafico(competencia){
         });
     }  
  } else if(modoGraficos = "Gráficos de linha com histórico de pontuações"){
-    div_chart.style.cssText = ``;
+    div_chart.style.cssText = `width: 50vw; height: 30vw;`;
+    Chart.defaults.font.family = 'Determination Mono Web';
+    Chart.defaults.font.size = 16;
+    Chart.defaults.color = '#ffffff';
+    Chart.defaults.elements.line.borderWidth = 5;
+    Chart.defaults.scales = { 
+        y: { 
+            suggestedMin: 0, 
+            suggestedMax: 10, 
+            ticks: { 
+                stepSize: 
+                1 
+            } 
+        }}
     if (competencia == 'determinacao') {
+        console.log(passos_realizados)
         txtCompetencia.innerHTML = 'DETERMINAÇÃO'
         pctCompetencia.innerHTML = ptsDeterminacao;
         txtCompetencia.style.color = '#ff0000'
@@ -378,51 +436,62 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoDeterminacao').getContext('2d');
+        elemento_grafico = document.getElementById('graficoDeterminacao');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
-        } 
+        }  
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }]
+                label: 'Quantidade de pontos',
+                backgroundColor: '#ff0000',
+                data: historico_determinacao,
+                fill: false,
+                borderColor: '#ff0000',
+                tension: 0.1,
+                }]
             },
             options: {
-                responsive: true,
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
+                    type: 'category', // Força o uso de categorias (rótulos) no eixo X
+                    labels: passos_realizados,
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 }
             }
-        });
+        }
+    });
     } else if (competencia == 'bravura') {
         txtCompetencia.innerHTML = 'BRAVURA'
         pctCompetencia.innerHTML = ptsBravura;
@@ -434,51 +503,61 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoBravura').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoBravura');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
+                label: 'Quantidade de pontos',
+                backgroundColor: '#ff8c00',
+                data: historico_bravura,
+                fill: false,
+                borderColor: '#ff8c00',
                 tension: 0.1
-            }]
+                }]
             },
             options: {
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 }
             }
-        });
-        
+        }
+    });    
     } else if (competencia == 'justica') {
         txtCompetencia.innerHTML = 'JUSTIÇA'
         pctCompetencia.innerHTML = ptsJustica;
@@ -490,50 +569,61 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoJustica').getContext('2d');
+
+        elemento_grafico = document.getElementById('graficoJustica');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
+                label: 'Quantidade de pontos',
+                backgroundColor: '#ffff00',
+                data: historico_justica,
+                fill: false,
+                borderColor: '#ffff00',
                 tension: 0.1
-            }]
+                }]
             },
             options: {
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 }
             }
-        });
+        }
+    });
         
     } else if (competencia == 'bondade') {
         txtCompetencia.innerHTML = 'BONDADE'
@@ -546,50 +636,63 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoBondade').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoBondade');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
+        Chart.defaults.font.family = 'Determination Mono Web';  
+        Chart.defaults.font.size = 16; 
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
+                label: 'Quantidade de pontos',
+                backgroundColor: '#00ff59',
+                data: historico_bondade,
+                fill: false,
+                borderColor: '#00ff59',
                 tension: 0.1
-            }]
+                }]
             },
             options: {
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 }
             }
-        });
+        }
+    });
         
     } else if (competencia == 'paciencia') {
         txtCompetencia.innerHTML = 'PACIÊNCIA'
@@ -602,50 +705,63 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'block';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoPaciencia').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoPaciencia');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
+        Chart.defaults.font.family = 'Determination Mono Web'; 
+        Chart.defaults.font.size = 16; 
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
+                label: 'Quantidade de pontos',
+                backgroundColor: '#00fff7',
+                data: historico_paciencia,
+                fill: false,
+                borderColor: '#00fff7',
                 tension: 0.1
-            }]
+                }]
             },
             options: {
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 }
             }
-        });
+        }
+    });
     } else if (competencia == 'integridade') {
         txtCompetencia.innerHTML = 'INTEGRIDADE'
         pctCompetencia.innerHTML = ptsIntegridade;
@@ -657,50 +773,63 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'block';
         graficoPerseveranca.style.display = 'none';
-        grafico = document.getElementById('graficoIntegridade').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoIntegridade');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
+        Chart.defaults.font.family = 'Determination Mono Web';
+        Chart.defaults.font.size = 16;
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
+                label: 'Quantidade de pontos',
+                backgroundColor: '#0008ff',
+                data: historico_integridade,
+                fill: false,
+                borderColor: '#0008ff',
                 tension: 0.1
-            }]
+                }]
             },
             options: {
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 }
             }
-        });
+        }
+    });
     } else if (competencia == 'perseveranca') {
         txtCompetencia.innerHTML = 'PERSEVERANÇA'
         pctCompetencia.innerHTML = ptsPerseveranca;
@@ -712,50 +841,63 @@ function mostrarGrafico(competencia){
         graficoPaciencia.style.display = 'none';
         graficoIntegridade.style.display = 'none';
         graficoPerseveranca.style.display = 'block';
-        grafico = document.getElementById('graficoPerseveranca').getContext('2d');
+        
+        elemento_grafico = document.getElementById('graficoPerseveranca');
+        grafico = elemento_grafico.getContext('2d');
+        elemento_grafico.style.cssText = "left: 0; bottom:0";
+
         if (graficoExistente) {
             graficoExistente.destroy()
         } 
+        Chart.defaults.font.family = 'Determination Mono Web'; 
+        Chart.defaults.font.size = 16;  
+
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: ["teste1", "teste2", "teste3", "teste4", "teste5", "teste6", "teste7"],
+                labels: passos_realizados,
                 datasets: [{
-                label: 'My First Dataset',
-                backgroundColor: 'aqua',
-                data: [0, 1, 2, 5, 8, 9, 10],
-                fill: true,
-                borderColor: 'rgb(75, 192, 192)',
+                label: 'Quantidade de pontos',
+                backgroundColor: '#ff00ea',
+                data: historico_perseveranca,
+                fill: false,
+                borderColor: '#ff00ea',
                 tension: 0.1
-            }]
+                }]
             },
             options: {
                 plugins: {
                     title: {
-                        display: false,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                }, 
+                    display: false,
+                },
+                legend: {
+                    display: false,
+                },
             },
             scales: {
                 x: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Month'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Questionários realizados'
+                    },
+                    ticks: {
+                        display: true
+                    }
                 },
                 y: {
-                  display: true,
-                  title: {
                     display: true,
-                    text: 'Value'
-                  }
+                    title: {
+                        display: true,
+                        text: 'Quantidade de pontos'
+                    },
+                    ticks: {
+                        display: true
+                    },
                 }
             }
-        });
+        }
+    });
     }
  } 
 }
