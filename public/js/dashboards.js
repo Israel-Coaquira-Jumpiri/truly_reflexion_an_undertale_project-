@@ -2,6 +2,39 @@ var grafico = "";
 var graficoExistente;
 var modo_menu = "fechado"
 var modoGraficos = "Gráficos de rosca com resultados atuais"
+var historico_determinacao = [];
+var historico_bravura = [];
+var historico_justica = [];
+var historico_bondade = [];
+var historico_paciencia = [];
+var historico_integridade = [];
+var historico_perseveranca = [];
+var historico_tentativas = [];
+var ptsDeterminacao = 5;
+var ptsBravura = 5;
+var ptsJustica = 5;
+var ptsBondade = 5;
+var ptsPaciencia = 5;
+var ptsIntegridade = 5;
+var ptsPerseveranca = 5;
+var maiores_pontuacoes = {
+    determinacao: 0,
+    bravura: 0,
+    justica: 0,
+    bondade: 0,
+    paciencia: 0,
+    integridade: 0,
+    perseveranca: 0
+}
+var menores_pontuacoes = {
+    determinacao: 0,
+    bravura: 0,
+    justica: 0,
+    bondade: 0,
+    paciencia: 0,
+    integridade: 0,
+    perseveranca: 0
+}
 
 function tocarTema(){
     temaPagina.play();
@@ -59,21 +92,6 @@ function somClick (){
     butao_som.currentTime = 0
     butao_som.play()
 }
-    var historico_determinacao = [];
-    var historico_bravura = [];
-    var historico_justica = [];
-    var historico_bondade = [];
-    var historico_paciencia = [];
-    var historico_integridade = [];
-    var historico_perseveranca = [];
-    var passos_realizados = [];
-    var ptsDeterminacao = 5;
-    var ptsBravura = 5;
-    var ptsJustica = 5;
-    var ptsBondade = 5;
-    var ptsPaciencia = 5;
-    var ptsIntegridade = 5;
-    var ptsPerseveranca = 5;
 
 function receberPontuacaoAtual(){
     if (sessionStorage.PRIMEIRO_ACESSO == 0) {;
@@ -101,7 +119,51 @@ function receberPontuacaoAtual(){
                     
                 // }
                 var contador_quest = 1;
+                maiores_pontuacoes.determinacao = dados[0].determinacao;
+                maiores_pontuacoes.bravura = dados[0].bravura;
+                maiores_pontuacoes.justica = dados[0].justica;
+                maiores_pontuacoes.bondade = dados[0].bondade;
+                maiores_pontuacoes.paciencia = dados[0].paciencia;
+                maiores_pontuacoes.integridade = dados[0].integridade;
+                maiores_pontuacoes.perseveranca = dados[0].perseveranca;
+                menores_pontuacoes.determinacao = dados[0].determinacao;
+                menores_pontuacoes.bravura = dados[0].bravura;
+                menores_pontuacoes.justica = dados[0].justica;
+                menores_pontuacoes.bondade = dados[0].bondade;
+                menores_pontuacoes.paciencia = dados[0].paciencia;
+                menores_pontuacoes.integridade = dados[0].integridade;
+                menores_pontuacoes.perseveranca = dados[0].perseveranca;
                 for (var contador = (dados.length-1); contador >= 0; contador--) {
+                    if (dados[contador].determinacao > maiores_pontuacoes.determinacao) {
+                        maiores_pontuacoes.determinacao = dados[contador].determinacao;
+                    } else if (dados[contador].bravura > maiores_pontuacoes.bravura) {
+                        maiores_pontuacoes.bravura = dados[contador].bravura;
+                    } else if (dados[contador].justica > maiores_pontuacoes.justica) {
+                        maiores_pontuacoes.justica = dados[contador].justica;
+                    } else if (dados[contador].bondade > maiores_pontuacoes.bondade) {
+                        maiores_pontuacoes.bondade = dados[contador].bondade;
+                    } else if (dados[contador].paciencia > maiores_pontuacoes.paciencia) {
+                        maiores_pontuacoes.paciencia = dados[contador].paciencia;
+                    } else if (dados[contador].integridade > maiores_pontuacoes.integridade) {
+                        maiores_pontuacoes.integridade = dados[contador].integridade;
+                    } else if (dados[contador].perseveranca > maiores_pontuacoes.perseveranca) {
+                        maiores_pontuacoes.perseveranca = dados[contador].perseveranca;
+                    }
+                    if (dados[contador].determinacao < menores_pontuacoes.determinacao) {
+                        menores_pontuacoes.determinacao = dados[contador].determinacao;
+                    } else if (dados[contador].bravura < menores_pontuacoes.bravura) {
+                        menores_pontuacoes.bravura = dados[contador].bravura;
+                    } else if (dados[contador].justica < menores_pontuacoes.justica) {
+                        menores_pontuacoes.justica = dados[contador].justica;
+                    } else if (dados[contador].bondade < menores_pontuacoes.bondade) {
+                        menores_pontuacoes.bondade = dados[contador].bondade;
+                    } else if (dados[contador].paciencia < menores_pontuacoes.paciencia) {
+                        menores_pontuacoes.paciencia = dados[contador].paciencia;
+                    } else if (dados[contador].integridade < menores_pontuacoes.integridade) {
+                        menores_pontuacoes.integridade = dados[contador].integridade;
+                    } else if (dados[contador].perseveranca < menores_pontuacoes.perseveranca) {
+                        menores_pontuacoes.perseveranca = dados[contador].perseveranca;
+                    }
                     historico_determinacao.push(dados[contador].determinacao);
                     historico_bravura.push(dados[contador].bravura);
                     historico_justica.push(dados[contador].justica);
@@ -109,7 +171,7 @@ function receberPontuacaoAtual(){
                     historico_paciencia.push(dados[contador].paciencia);
                     historico_integridade.push(dados[contador].integridade);
                     historico_perseveranca.push(dados[contador].perseveranca);
-                    passos_realizados.push(`${contador_quest}º Passo`)
+                    historico_tentativas.push(`${contador_quest}º Passo`)
                     contador_quest++
                     
                 }
@@ -415,17 +477,10 @@ function mostrarGrafico(competencia){
     Chart.defaults.font.size = 16;
     Chart.defaults.color = '#ffffff';
     Chart.defaults.elements.line.borderWidth = 5;
-    Chart.defaults.scales = { 
-        y: { 
-            suggestedMin: 0, 
-            suggestedMax: 10, 
-            ticks: { 
-                stepSize: 
-                1 
-            } 
-        }}
     if (competencia == 'determinacao') {
-        console.log(passos_realizados)
+        console.log(historico_tentativas
+        
+        )
         txtCompetencia.innerHTML = 'DETERMINAÇÃO'
         pctCompetencia.innerHTML = ptsDeterminacao;
         txtCompetencia.style.color = '#ff0000'
@@ -447,7 +502,7 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#ff0000',
@@ -468,8 +523,6 @@ function mostrarGrafico(competencia){
             },
             scales: {
                 x: {
-                    type: 'category', // Força o uso de categorias (rótulos) no eixo X
-                    labels: passos_realizados,
                     display: true,
                     title: {
                         display: true,
@@ -480,6 +533,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,
@@ -515,7 +570,8 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas
+            ,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#ff8c00',
@@ -546,6 +602,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,
@@ -581,7 +639,8 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas
+            ,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#ffff00',
@@ -612,6 +671,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,
@@ -650,7 +711,8 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas
+            ,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#00ff59',
@@ -681,6 +743,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,
@@ -719,7 +783,8 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas
+            ,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#00fff7',
@@ -750,6 +815,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,
@@ -787,7 +854,8 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas
+            ,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#0008ff',
@@ -818,6 +886,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,
@@ -855,7 +925,8 @@ function mostrarGrafico(competencia){
         graficoExistente = new Chart(grafico, {
             type: 'line',
             data: {
-                labels: passos_realizados,
+                labels: historico_tentativas
+            ,
                 datasets: [{
                 label: 'Quantidade de pontos',
                 backgroundColor: '#ff00ea',
@@ -886,6 +957,8 @@ function mostrarGrafico(competencia){
                     }
                 },
                 y: {
+                    min: 0,
+                    max: 10,
                     display: true,
                     title: {
                         display: true,

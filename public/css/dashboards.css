@@ -207,6 +207,15 @@ h1{
   width: 12vw;
   font-size: 2vw;
  }
+ .spanKPI{
+  position: absolute;
+  top: 20vh;
+  width: 49vw;
+  /* background-color: aqua; */
+  left: 38vw;
+  text-align: center;
+  font-size: 2.2vw;
+ }
  #graficoDeterminacao, #graficoBravura, #graficoJustica, #graficoBondade, #graficoPaciencia, #graficoIntegridade, #graficoPerseveranca{
   display: none;
   left: 7vw;
