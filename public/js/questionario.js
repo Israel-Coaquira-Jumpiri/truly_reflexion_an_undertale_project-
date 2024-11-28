@@ -270,6 +270,10 @@ var questoes = [
     var ptsIntegridade = 5;
     var ptsPerseveranca = 5;
 
+    function voltarParaSessao(){
+        setTimeout(()=> window.location.href = "./sessao.html", 200)
+    }
+
     function receberPontuacaoAtual(){
         if (sessionStorage.PRIMEIRO_ACESSO == 0) {;
             ptsDeterminacao = 5;
@@ -388,7 +392,7 @@ var questoes = [
                 lista_questoes.push(questaoAleatoria);
             }
             var tamanho_lista = lista_questoes.length;
-            if (tamanho_lista < 5) {
+            if (tamanho_lista < 4) {
                 contador--
             } else{
                 lista_selecionada = lista_questoes;
@@ -488,7 +492,7 @@ var questoes = [
     }
     function escolher(alternativa){
         butao_som.play();
-        if (indexPergunta < 4) {
+        if (indexPergunta < 3) {
         if (alternativa == 'A') {
             ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Determinacao;
             ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Bravura;
@@ -583,28 +587,28 @@ var questoes = [
         cutscene_Final.style.display = 'flex'; 
         cutscene_fim.currentTime = 0;
         cutscene_fim.play();
-            return new Promise((resolve) =>{
+            return new Promise((finalizar) =>{
             cutscene_fim.addEventListener('ended', function(){
                 cutscene_Final.style.display = 'none'; 
-                resolve();
+                finalizar();
             }, { once: true})
         })
     }
     function efeitorEscrever(texto, som) { 
-        return new Promise((resolve) => {
+        return new Promise((finalizar) => {
         const texto_em_vetor = texto.innerHTML.split(''); 
         texto.innerHTML = ' '; 
         texto_em_vetor.forEach(function(letra, indice) {
             setTimeout(function() { 
                 texto.innerHTML += letra; 
                 if (som) { 
-                    // som.currentTime = 0; 
+                    som.currentTime = 0; 
                     som.play()
                 }
                 if (indice == texto_em_vetor.length -1) {
-                    resolve();
+                    finalizar();
                 }
-            }, 40 * indice); 
+            }, 70 * indice); 
         });
         });
     };
@@ -616,8 +620,6 @@ var questoes = [
                     desabilitarIniciar();
                     await efeitorEscrever(dialogoInicial, somSans);
                     habilitarBotoes(); 
-                } else { 
-                    console.error('texto #dialogo_pergunta ou #sans-sound não encontrado.'); 
                 }
         }
     
@@ -642,7 +644,7 @@ var questoes = [
             sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
             dialogo_pergunta.innerHTML = 'Creio que cheguei a uma conclusão sobre você!'
             await efeitorEscrever(dialogo_pergunta, somSans)
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(finalizar => setTimeout(finalizar, 2000));
             // await exibirCutsceneFinal();
             recado_final_soundtrack.play();
             dialogo_pergunta.innerHTML ='Bom, por onde posso começar...';
@@ -651,102 +653,102 @@ var questoes = [
             var ptsAdaptabilidade = (ptsBondade + ptsJustica + ptsIntegridade)/3
             await efeitorEscrever(dialogo_pergunta, somSans)
             if (ptsResiliencia < 5) {
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(finalizar => setTimeout(finalizar, 2000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
                 dialogo_pergunta.innerHTML = "Percebi que lidar com certas pressões tem sido desafiador pra você. Imagino que isso esteja te deixando sobrecarregado, e entendo como pode ser difícil."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(finalizar => setTimeout(finalizar, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Que tal começar com algo simples, como identificar uma coisa que te faz bem e dedicar um tempinho pra isso? Vamos encontrar um equilíbrio juntos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsResiliencia < 8){
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(finalizar => setTimeout(finalizar, 2000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "Notei que você tem enfrentado os desafios, mas às vezes parece que eles te desestabilizam mais do que deveriam. Entendo que não é fácil estar sempre no controle."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(finalizar => setTimeout(finalizar, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "O que acha de prestar atenção nos momentos em que se sente mais vulnerável e experimentar abordagens diferentes para lidar com eles? Pode fazer uma boa diferença.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(finalizar => setTimeout(finalizar, 2000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "Você lida muito bem com desafios que aparecem no caminho. Isso demonstra força e clareza sobre o que é importante pra você."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 2000));
+                await new Promise(finalizar => setTimeout(finalizar, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Continue se ouvindo e cuidando de si mesmo, porque esse essa força de vontade é uma habilidade valiosa e rara.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
 
             if (ptsProatividade < 5) {
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
                 dialogo_pergunta.innerHTML = "Notei que você parece estar evitando se comprometer mais ou deixando algumas coisas para depois. Imagino que possa estar sentindo falta de motivação ou clareza sobre por onde começar."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
                 dialogo_pergunta.innerHTML = "Que tal escolher uma única tarefa simples pra concluir hoje? Isso pode ajudar a engrenar e retomar o ritmo.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsProatividade < 8){
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
                 dialogo_pergunta.innerHTML = "Você está se esforçando e fazendo o que precisa, mas ainda há um potencial que poderia ser explorado. Talvez esteja faltando um pouco mais de confiança pra dar passos maiores."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "O que acha de assumir uma nova responsabilidade ou tentar um desafio que te motive? Pode ser a virada que você está precisando.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
                 dialogo_pergunta.innerHTML = "É incrível ver o quanto você toma iniciativa e busca soluções antes mesmo que os problemas apareçam. Isso demonstra uma mente estratégica e um senso de responsabilidade admirável."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Continue assim, mas lembre-se de ajustar o ritmo quando necessário, pra manter o equilíbrio entre produtividade e bem-estar. Isso faz toda a diferença.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
 
             if (ptsAdaptabilidade < 5) {
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
                 dialogo_pergunta.innerHTML = "Percebi que alguns momentos de interação social têm sido mais complicados pra você. Sinto que possa estar se sentindo desconfortável, inseguro ou deslocado.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg' 
                 dialogo_pergunta.innerHTML = "Que tal dar um passo pequeno, como ouvir com atenção ou fazer uma pergunta em conversas? Não precisa ser perfeito, apenas genuíno.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsAdaptabilidade < 8){
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
                 dialogo_pergunta.innerHTML = "Você tem conseguido se adaptar em muitos momentos, mas ainda parece hesitar em algumas situações. Talvez você tenha medo de ser mal interpretado.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 3000)); 
+                await new Promise(finalizar => setTimeout(finalizar, 3000)); 
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "Que tal focar em pequenos gestos que demonstrem sua autenticidade? Um pouco mais de confiança pode ser o que falta pra transformar interações mornas em conexões verdadeiras.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 3000));
+                await new Promise(finalizar => setTimeout(finalizar, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
                 dialogo_pergunta.innerHTML = "Você tem uma habilidade admirável de se ajustar e criar conexões em diversas situações. Me sinto feliz pois isso demonstra empatia e inteligência social, algo que faz toda a diferença em ambientes acadêmicos e até profissionais.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 3000)); 
+                await new Promise(finalizar => setTimeout(finalizar, 3000)); 
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Continue se permitindo ser quem você é, mas também lembre-se de respeitar seus próprios limites. Conexões genuínas surgem quando somos honestos com os outros e conosco mesmos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
             
-            await new Promise(resolve => setTimeout(resolve, 3000));
+            await new Promise(finalizar => setTimeout(finalizar, 3000));
             sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg' 
             dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
             await efeitorEscrever(dialogo_pergunta, somSans)
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(finalizar => setTimeout(finalizar, 2000));
             sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
             dialogo_pergunta.innerHTML = "Espero que tenha aprendido alguma lição e nos vemos na próxima!";
             await efeitorEscrever(dialogo_pergunta, somSans)
             registrarPontuacaoFinal();
             atualizarAcesso();
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            await new Promise(finalizar => setTimeout(finalizar, 2000));
             window.location.href = "../dashboards/sessao.html";
         }

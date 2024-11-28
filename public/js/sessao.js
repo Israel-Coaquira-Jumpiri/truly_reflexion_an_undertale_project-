@@ -13,10 +13,8 @@ function validarSessao() {
 }
 function ativarMusica(){ 
     var audio = document.getElementById('menu_theme'); 
-    if (audio) {  // Reinicia o som 
+    if (audio) { 
         audio.play()
-    } else { 
-        console.error('Elemento #menu_theme não encontrado.'); 
     }
 } 
 function butaoHover (){

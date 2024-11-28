@@ -9,6 +9,20 @@ body{
     font-family: 'Determination Mono Web';
     align-items: center;
 }
+.btnVoltar{
+  position: absolute;
+  top: 1vh;
+  left: 1vw;
+  color: #FFF;
+  font-size: 4vw;
+  background-color: #000;
+  border: 0 solid transparent;
+  text-decoration: none;
+  cursor: pointer;
+}
+.fas:hover{
+  color: #ffff00;
+}
 .area_cutscene{
   display: none;
   position: absolute;

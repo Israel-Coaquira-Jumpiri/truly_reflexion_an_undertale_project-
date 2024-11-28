@@ -118,7 +118,7 @@ function receberPontuacaoAtual(){
                     historico_paciencia.push(dados[contador].paciencia);
                     historico_integridade.push(dados[contador].integridade);
                     historico_perseveranca.push(dados[contador].perseveranca);
-                    historico_tentativas.push(`${contador_quest}º Passo`)
+                    historico_tentativas.push(`${contador_quest}º Vez`)
                     contador_quest++
                 }
                 var ultimo_indice_listas = historico_determinacao.length-1;
@@ -171,7 +171,7 @@ function mostrarGrafico(competencia){
         grafico = elemento_grafico.getContext('2d');
         elemento_grafico.style.cssText = "left: 7vw; bottom: auto";
 
-        if (graficoExistente) {
+        if (graficoExistente) { 
             graficoExistente.destroy()
         } 
         graficoExistente = new Chart(grafico, {
