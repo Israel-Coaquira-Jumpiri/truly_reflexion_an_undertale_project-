@@ -594,23 +594,23 @@ var questoes = [
         return new Promise((resolve) => {
         const texto_em_vetor = texto.innerHTML.split(''); 
         texto.innerHTML = ' '; 
-        texto_em_vetor.forEach(function(letra, i) {
+        texto_em_vetor.forEach(function(letra, indice) {
             setTimeout(function() { 
                 texto.innerHTML += letra; 
                 if (som) { 
                     // som.currentTime = 0; 
                     som.play()
                 }
-                if (i == texto_em_vetor.length -1) {
+                if (indice == texto_em_vetor.length -1) {
                     resolve();
                 }
-            }, 40 * i); 
+            }, 40 * indice); 
         });
         });
     };
-        document.addEventListener('DOMContentLoaded', async function() {
-            const dialogoInicial = document.getElementById('dialogo_pergunta'); 
-            const somSans = document.getElementById('sans-sound'); 
+        async function iniciarDialogo(){
+            var dialogoInicial = document.getElementById('dialogo_pergunta'); 
+            var somSans = document.getElementById('sans-sound'); 
                 if (dialogoInicial && somSans) { 
                     somSans.load();
                     desabilitarIniciar();
@@ -619,8 +619,8 @@ var questoes = [
                 } else { 
                     console.error('texto #dialogo_pergunta ou #sans-sound não encontrado.'); 
                 }
-            }
-        );
+        }
+    
         function somDeMenuCursor(botao){
             if (botao.disabled === false) {
                 botao.style.color = '#ffff00';
@@ -653,91 +653,91 @@ var questoes = [
             if (ptsResiliencia < 5) {
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
-                dialogo_pergunta.innerHTML = "Percebi que você tem encontrado dificuldade em lidar com as adversidades. Imagino que isso esteja pesando pra você, e sinto que pode estar precisando de um momento pra respirar. É importante lembrar que falhar não é o fim"; 
+                dialogo_pergunta.innerHTML = "Percebi que lidar com certas pressões tem sido desafiador pra você. Imagino que isso esteja te deixando sobrecarregado, e entendo como pode ser difícil."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
-                dialogo_pergunta.innerHTML = "é parte do processo. Que tal começar identificando uma única coisa que pode aliviar essa pressão? Pequenos passos também levam a grandes caminhos.";
+                dialogo_pergunta.innerHTML = "Que tal começar com algo simples, como identificar uma coisa que te faz bem e dedicar um tempinho pra isso? Vamos encontrar um equilíbrio juntos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsResiliencia < 8){
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
-                dialogo_pergunta.innerHTML = "Notei que você está enfrentando os desafios, mas em alguns momentos parece que o peso é maior do que deveria. Imagino que seja frustrante sentir que nem sempre dá conta de tudo."; 
+                dialogo_pergunta.innerHTML = "Notei que você tem enfrentado os desafios, mas às vezes parece que eles te desestabilizam mais do que deveriam. Entendo que não é fácil estar sempre no controle."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
-                dialogo_pergunta.innerHTML = "Que tal experimentar estratégias que te ajudem a se reequilibrar mais rápido, como reconhecer o que realmente está ao seu alcance? Lembre-se: sua força está no que você já faz, só precisa lapidá-la.";
+                dialogo_pergunta.innerHTML = "O que acha de prestar atenção nos momentos em que se sente mais vulnerável e experimentar abordagens diferentes para lidar com eles? Pode fazer uma boa diferença.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
-                dialogo_pergunta.innerHTML = "Você tem mostrado uma habilidade notável em enfrentar os altos e baixos com equilíbrio. Isso demonstra maturidade e autoconsciência, qualidades que nem todo mundo cultiva com facilidade."; 
+                dialogo_pergunta.innerHTML = "Você lida muito bem com desafios que aparecem no caminho. Isso demonstra força e clareza sobre o que é importante pra você."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
                 await new Promise(resolve => setTimeout(resolve, 2000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
-                dialogo_pergunta.innerHTML = "Continue praticando esse cuidado consigo mesmo, mas fique atento: até os mais resilientes precisam de momentos de pausa. Preservar o que você já conquistou é tão importante quanto crescer.";
+                dialogo_pergunta.innerHTML = "Continue se ouvindo e cuidando de si mesmo, porque esse essa força de vontade é uma habilidade valiosa e rara.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
 
             if (ptsProatividade < 5) {
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
-                dialogo_pergunta.innerHTML = "Notei que você tem deixado algumas coisas acumularem ou talvez nem saiba por onde começar. Isso pode estar deixando as coisas ainda mais difíceis. Que tal dedicar cinco minutos hoje pra listar as tarefas que você precisa resolver?"; 
+                dialogo_pergunta.innerHTML = "Notei que você parece estar evitando se comprometer mais ou deixando algumas coisas para depois. Imagino que possa estar sentindo falta de motivação ou clareza sobre por onde começar."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
-                dialogo_pergunta.innerHTML = "Não precisa ser perfeito, o importante é dar o primeiro passo. Sua organização pode se transformar na sua melhor aliada, mas só se você der uma chance pra ela.";
+                dialogo_pergunta.innerHTML = "Que tal escolher uma única tarefa simples pra concluir hoje? Isso pode ajudar a engrenar e retomar o ritmo.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsProatividade < 8){
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
-                dialogo_pergunta.innerHTML = "Você está fazendo o básico e se esforçando, mas parece que ainda há espaço pra ir além. Talvez a sensação de conforto esteja segurando seu potencial."; 
+                dialogo_pergunta.innerHTML = "Você está se esforçando e fazendo o que precisa, mas ainda há um potencial que poderia ser explorado. Talvez esteja faltando um pouco mais de confiança pra dar passos maiores."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
-                dialogo_pergunta.innerHTML = "Que tal buscar algo que te desafie de verdade, algo que você sabe que pode fazer, mas ainda não tentou? Crescer às vezes significa sair da zona de conforto, mesmo que dê um frio na barriga.";
+                dialogo_pergunta.innerHTML = "O que acha de assumir uma nova responsabilidade ou tentar um desafio que te motive? Pode ser a virada que você está precisando.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg'
                 dialogo_pergunta.innerHTML = "É incrível ver o quanto você toma iniciativa e busca soluções antes mesmo que os problemas apareçam. Isso demonstra uma mente estratégica e um senso de responsabilidade admirável."; 
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
-                dialogo_pergunta.innerHTML = "Continue mantendo esse ritmo, mas lembre-se: ser proativo também envolve saber priorizar e respeitar seus próprios limites. Sua produtividade deve sempre trabalhar ao seu favor, e não contra.";
+                dialogo_pergunta.innerHTML = "Continue assim, mas lembre-se de ajustar o ritmo quando necessário, pra manter o equilíbrio entre produtividade e bem-estar. Isso faz toda a diferença.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
 
             if (ptsAdaptabilidade < 5) {
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
-                dialogo_pergunta.innerHTML = "Percebi que você tem encontrado dificuldade em se ajustar a algumas situações sociais. Isso pode ser desconfortável, mas saiba que é algo comum. Talvez você esteja se sentindo deslocado ou inseguro sobre como agir.";
+                dialogo_pergunta.innerHTML = "Percebi que alguns momentos de interação social têm sido mais complicados pra você. Sinto que possa estar se sentindo desconfortável, inseguro ou deslocado.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg' 
-                dialogo_pergunta.innerHTML = "Que tal começar ouvindo com mais atenção ou contribuindo com pequenos comentários durante conversas? Criar conexões não precisa ser perfeito, só precisa ser genuíno.";
+                dialogo_pergunta.innerHTML = "Que tal dar um passo pequeno, como ouvir com atenção ou fazer uma pergunta em conversas? Não precisa ser perfeito, apenas genuíno.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else if (ptsAdaptabilidade < 8){
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
-                dialogo_pergunta.innerHTML = "Você tem conseguido se adaptar, mas às vezes parece hesitar em mostrar quem você realmente é. Talvez tenha receio de não ser compreendido, o que é totalmente normal.";
+                dialogo_pergunta.innerHTML = "Você tem conseguido se adaptar em muitos momentos, mas ainda parece hesitar em algumas situações. Talvez você tenha medo de ser mal interpretado.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000)); 
+                await new Promise(resolve => setTimeout(resolve, 3000)); 
                 sansImg.src = '../assets/imgs/sannesOlhandoLado.jpg'
                 dialogo_pergunta.innerHTML = "Que tal focar em pequenos gestos que demonstrem sua autenticidade? Um pouco mais de confiança pode ser o que falta pra transformar interações mornas em conexões verdadeiras.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             } else {
-                await new Promise(resolve => setTimeout(resolve, 4000));
+                await new Promise(resolve => setTimeout(resolve, 3000));
                 sansImg.src = '../assets/imgs/sannesNormal.jpg'
-                dialogo_pergunta.innerHTML = "Você tem uma habilidade admirável de se ajustar e criar conexões em diversas situações. Isso demonstra empatia e inteligência social, algo que faz toda a diferença em ambientes acadêmicos e profissionais.";
+                dialogo_pergunta.innerHTML = "Você tem uma habilidade admirável de se ajustar e criar conexões em diversas situações. Me sinto feliz pois isso demonstra empatia e inteligência social, algo que faz toda a diferença em ambientes acadêmicos e até profissionais.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
-                await new Promise(resolve => setTimeout(resolve, 4000)); 
+                await new Promise(resolve => setTimeout(resolve, 3000)); 
                 sansImg.src = '../assets/imgs/sannesMaosCima.jpg'
                 dialogo_pergunta.innerHTML = "Continue se permitindo ser quem você é, mas também lembre-se de respeitar seus próprios limites. Conexões genuínas surgem quando somos honestos com os outros e conosco mesmos.";
                 await efeitorEscrever(dialogo_pergunta, somSans)
             }
             
-            await new Promise(resolve => setTimeout(resolve, 4000));
+            await new Promise(resolve => setTimeout(resolve, 3000));
             sansImg.src = '../assets/imgs/sannesOlhosFechados.jpg' 
             dialogo_pergunta.innerHTML = "Bom... acredito que já disse tudo o que tinha de falar...";
             await efeitorEscrever(dialogo_pergunta, somSans)
