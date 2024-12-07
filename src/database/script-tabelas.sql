@@ -2,6 +2,8 @@ CREATE DATABASE undereflexion;
 
 USE undereflexion;
 
+
+
 CREATE TABLE Usuario(
 	idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(45),

@@ -392,7 +392,7 @@ var questoes = [
                 lista_questoes.push(questaoAleatoria);
             }
             var tamanho_lista = lista_questoes.length;
-            if (tamanho_lista < 4) {
+            if (tamanho_lista < 10) {
                 contador--
             } else{
                 lista_selecionada = lista_questoes;
@@ -492,7 +492,7 @@ var questoes = [
     }
     function escolher(alternativa){
         butao_som.play();
-        if (indexPergunta < 3) {
+        if (indexPergunta < 9) {
         if (alternativa == 'A') {
             ptsDeterminacao += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Determinacao;
             ptsBravura += questoes[lista_selecionada[indexPergunta]].alternativas[0].pontuacao.Bravura;
@@ -608,7 +608,7 @@ var questoes = [
                 if (indice == texto_em_vetor.length -1) {
                     finalizar();
                 }
-            }, 70 * indice); 
+            }, 35 * indice); 
         });
         });
     };
