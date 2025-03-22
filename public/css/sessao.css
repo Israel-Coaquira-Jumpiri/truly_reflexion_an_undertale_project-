@@ -8,6 +8,7 @@ body{
     flex-direction: column;
     font-family: 'Determination Mono Web';
     align-items: center;
+    overflow-y: hidden;
 }
 .titulo{
     font-family: 'Monster Friend Fore';
@@ -31,11 +32,12 @@ body{
 .areaButtons{
     margin-top: 10vh;
     display: grid;
-    height: 13vh;
-    width: 59vw;
+    height: 28vh;
+    width: 30vw;
+    /* background-color: aqua; */
     align-items: center;
     justify-items: center;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
     gap: 1vw;
 }
 .butao{
@@ -52,6 +54,12 @@ body{
 .esquerdo{
     opacity: 0;
     animation: surgirEsquerda 2s;
+    animation-delay: 2s;
+    animation-fill-mode: forwards;
+}
+.baixo{
+    opacity: 0;
+    animation: surgirDeBaixo 2s;
     animation-delay: 2s;
     animation-fill-mode: forwards;
 }
@@ -100,7 +108,7 @@ body{
   }
   @keyframes surgirDeBaixo {
     from{
-        opacity: 1;
+        opacity: 0;
         transform: translateY(15vh);
     }
     to{

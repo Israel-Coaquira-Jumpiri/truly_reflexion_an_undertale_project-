@@ -4,13 +4,17 @@
   }
 @font-face {
     font-family:"Determination Mono Web";
-    src: url(/public/assets/fonts/DeterminationMonoWebRegular-Z5oq.ttf) format("truetype");
+    src: url('../assets/fonts/DeterminationMonoWebRegular-Z5oq.ttf') format("truetype");
   }
 @font-face {
     font-family:"Determination Sans Web";
-    src: url(/public/assets/fonts/DeterminationSansWebRegular-369X.ttf) format("truetype");
+    src: url('../assets/fonts/DeterminationSansWebRegular-369X.ttf') format("truetype");
   }
 @font-face {
     font-family:"Monster Friend Fore";
-    src: url(/public/assets/fonts/MonsterFriendFore.otf) format("truetype");
+    src: url('../assets/fonts/MonsterFriendFore.otf') format("truetype");
   }
+@font-face {
+    font-family:"Press Start 2P";
+    src: url('../assets/fonts/PressStart2P-Regular.ttf') format("truetype");
+}
